@@ -12,10 +12,14 @@ class World {
     ];
 
     backgroundObjects = [
-        new BackgroundObject('img/5_background/layers/air.png', 0),
-        new BackgroundObject('img/5_background/layers/3_third_layer/1.png', 0),
-        new BackgroundObject('img/5_background/layers/2_second_layer/1.png', 0),
-        new BackgroundObject('img/5_background/layers/1_first_layer/1.png', 0),
+        new BackgroundObject('imgs/game_background_4/layers/sky.png', 0),
+        new BackgroundObject('imgs/game_background_4/layers/sun.png', 0),
+        new BackgroundObject('imgs/game_background_4/layers/sea.png', 0),
+        new BackgroundObject('imgs/game_background_4/layers/cloud.png', 0),
+        new BackgroundObject('imgs/game_background_4/layers/decor.png', 0),
+        new BackgroundObject('imgs/game_background_4/layers/land.png', 0),
+        
+        
     ];
 
     canvas;

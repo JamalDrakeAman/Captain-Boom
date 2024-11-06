@@ -1,19 +1,21 @@
 class Character extends MovableObject {
-    height = 270;
-    width = 130;
+    height = 400;
+    width = 400;
+    y = 140;
     speed = 10;
     IMAGES_WALKING = [
-        'img/2_character_pepe/2_walk/W-21.png',
-        'img/2_character_pepe/2_walk/W-22.png',
-        'img/2_character_pepe/2_walk/W-23.png',
-        'img/2_character_pepe/2_walk/W-24.png',
-        'img/2_character_pepe/2_walk/W-25.png',
-        'img/2_character_pepe/2_walk/W-26.png'
+        'img/1_character/walk/pirate_run1.png',
+        'img/1_character/walk/pirate_run2.png',
+        'img/1_character/walk/pirate_run3.png',
+        'img/1_character/walk/pirate_run4.png',
+        'img/1_character/walk/pirate_run5.png',
+        'img/1_character/walk/pirate_run6.png',
     ];
+    
     world;
 
     constructor() {
-        super().loadImage('img/2_character_pepe/2_walk/W-21.png');
+        super().loadImage('img/1_character/walk/pirate_run1.png');
         this.loadImages(this.IMAGES_WALKING);
 
         this.animate()

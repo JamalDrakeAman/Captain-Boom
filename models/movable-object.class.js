@@ -9,6 +9,7 @@ class MovableObject {
     speed = 0.15;
     otherDirection = false;
 
+
     loadImage(path) {
         this.img = new Image(); // this.img = document.getElementById('imge') <img id="image" src>
         this.img.src = path;
@@ -25,8 +26,8 @@ class MovableObject {
             img.src = path;
             this.imageCache[path] = img;
         })
-
     }
+
 
     moveRight() {
         console.log('Moving right');
