@@ -11,7 +11,7 @@ class Character extends MovableObject {
         'img/1_character/walk/pirate_run5.png',
         'img/1_character/walk/pirate_run6.png',
     ];
-    
+
     world;
 
     constructor() {
@@ -25,16 +25,16 @@ class Character extends MovableObject {
 
 
         setInterval(() => {
-            if (this.world.keyboard.RIGHT) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.x += this.speed;
                 this.otherDirection = false;
             }
 
-            if (this.world.keyboard.LEFT) {
+            if (this.world.keyboard.LEFT && this.x > -100) {
                 this.x -= this.speed;
                 this.otherDirection = true;
             }
-            this.world.camera_x = -this.x;
+            this.world.camera_x = -this.x - 35;
         }, 1000 / 60)
 
 
