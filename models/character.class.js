@@ -11,8 +11,8 @@ class Character extends MovableObject {
         'img/1_character/walk/pirate_run5.png',
         'img/1_character/walk/pirate_run6.png',
     ];
-
     world;
+    walking_sound = new Audio('audio/walk.mp3')
 
     constructor() {
         super().loadImage('img/1_character/walk/pirate_run1.png');
@@ -25,14 +25,17 @@ class Character extends MovableObject {
 
 
         setInterval(() => {
+            this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.x += this.speed;
                 this.otherDirection = false;
+                this.walking_sound.play();
             }
 
             if (this.world.keyboard.LEFT && this.x > -100) {
                 this.x -= this.speed;
                 this.otherDirection = true;
+                this.walking_sound.play();
             }
             this.world.camera_x = -this.x - 35;
         }, 1000 / 60)
