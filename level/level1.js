@@ -45,5 +45,3 @@ const level1 = new Level(
         new BackgroundObject('img/5_background/layers/land.png', 719 * 3),
     ]
 );
-
-// img/5_background/layers/cloud.png

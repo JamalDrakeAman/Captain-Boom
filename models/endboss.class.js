@@ -1,8 +1,8 @@
 class Endboss extends MovableObject {
 
-    height = 350;
-    width = 450;
-    y = 50;
+    height = 330;
+    width = 430;
+    y = 70;
 
     IMAGES_WALKING = [
         'img/4_boss/2_alert/Bringer-of-Death_Cast_1.png',
