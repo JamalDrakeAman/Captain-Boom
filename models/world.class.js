@@ -6,6 +6,8 @@ class World {
     keyboard;
     camera_x = 0;
     healthStatusBar = new HealthStatusBar();
+    coinStatusBar = new CoinStatusBar();
+    throwableObjects = [];
 
 
     constructor(canvas, keyboard) {
@@ -15,7 +17,8 @@ class World {
         this.draw();
         this.setWorld();
 
-        this.checkCollisions();
+        // this.checkCollisions();
+        this.run();
     }
 
     setWorld() {
@@ -23,16 +26,28 @@ class World {
     }
 
 
-    checkCollisions() {
+    run() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    this.character.hit();
-                    console.log('Collision with Character, energy', this.character.energy);
-                    this.healthStatusBar.setPercentage(this.character.energy);
-                }
-            });
-        }, 1000)
+            this.checkCollisions();
+            this.checkThrowObjects();
+        }, 200)
+    }
+
+    checkThrowObjects(){
+        if(this.keyboard.D){
+            let ammo = new ThrowableObject(this.character.x + 100, this.character.y + 30);
+            this.throwableObjects.push(ammo);
+        }
+    }
+
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                console.log('Collision with Character, energy', this.character.energy);
+                this.healthStatusBar.setPercentage(this.character.energy);
+            }
+        });
     }
 
 
@@ -43,11 +58,16 @@ class World {
         this.addToMap(this.character);
 
         this.ctx.translate(-this.camera_x, 0);
+
         this.addToMap(this.healthStatusBar);
+        this.addToMap(this.coinStatusBar);
+
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObjects);
+
         this.ctx.translate(-this.camera_x, 0)
 
         // draw() wird immer wieder aufgerufen
