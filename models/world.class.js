@@ -33,10 +33,13 @@ class World {
         }, 200)
     }
 
-    checkThrowObjects(){
-        if(this.keyboard.D){
+    checkThrowObjects() {
+        if (this.keyboard.D) {
             let ammo = new ThrowableObject(this.character.x + 100, this.character.y + 30);
             this.throwableObjects.push(ammo);
+            setTimeout(() => {
+                this.throwableObjects.splice(1, 1)
+            }, 300)
         }
     }
 
