@@ -31,4 +31,4 @@ class ThrowableObject extends MovableObject {
         },60)
 
     }
-} s
+} 
