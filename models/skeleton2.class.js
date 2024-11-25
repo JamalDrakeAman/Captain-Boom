@@ -18,8 +18,6 @@ class Skeleton2 extends EnemyObject {
         'img/3_enemies/skeleton2/walk/skeleton2-walk11.png',
     ];
 
-
-
     constructor() {
         super().loadImage('img/3_enemies/skeleton/walk/skeleton-walk1.png');
         this.loadImages(this.IMAGES_WALKING);

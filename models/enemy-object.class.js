@@ -13,7 +13,6 @@ class EnemyObject extends MovableObject {
         'img/3_enemies/skeleton/walk/skeleton-walk8.png',
     ];
 
-
     animate() {
         setInterval(() => {
             this.moveLeft();
