@@ -64,14 +64,14 @@ class Character extends MovableObject {
         'img/1_character/sword-attack1/pirate_attack1_3.png',
         'img/1_character/sword-attack1/pirate_attack1_4.png',
         'img/1_character/sword-attack1/pirate_attack1_5.png',
-
+        // ATTACK 2
         'img/1_character/sword-attack2/pirate_attack2_0.png',
         'img/1_character/sword-attack2/pirate_attack2_1.png',
         'img/1_character/sword-attack2/pirate_attack2_2.png',
         'img/1_character/sword-attack2/pirate_attack2_3.png',
         'img/1_character/sword-attack2/pirate_attack2_4.png',
         'img/1_character/sword-attack2/pirate_attack2_5.png',
-
+        // ATTACK 3
         'img/1_character/sword-attack3/pirate_attack3_0.png',
         'img/1_character/sword-attack3/pirate_attack3_1.png',
         'img/1_character/sword-attack3/pirate_attack3_2.png',
@@ -82,26 +82,28 @@ class Character extends MovableObject {
 
     ];
 
-    IMAGES_SWORD_ATTACK_2 = [
-        'img/1_character/sword-attack2/pirate_attack2_0.png',
-        'img/1_character/sword-attack2/pirate_attack2_1.png',
-        'img/1_character/sword-attack2/pirate_attack2_2.png',
-        'img/1_character/sword-attack2/pirate_attack2_3.png',
-        'img/1_character/sword-attack2/pirate_attack2_4.png',
-        'img/1_character/sword-attack2/pirate_attack2_5.png',
-    ];
+    // IMAGES_SWORD_ATTACK_2 = [
+    //     'img/1_character/sword-attack2/pirate_attack2_0.png',
+    //     'img/1_character/sword-attack2/pirate_attack2_1.png',
+    //     'img/1_character/sword-attack2/pirate_attack2_2.png',
+    //     'img/1_character/sword-attack2/pirate_attack2_3.png',
+    //     'img/1_character/sword-attack2/pirate_attack2_4.png',
+    //     'img/1_character/sword-attack2/pirate_attack2_5.png',
+    // ];
 
-    IMAGES_SWORD_ATTACK_3 = [
-        'img/1_character/sword-attack3/pirate_attack3_0.png',
-        'img/1_character/sword-attack3/pirate_attack3_1.png',
-        'img/1_character/sword-attack3/pirate_attack3_2.png',
-        'img/1_character/sword-attack3/pirate_attack3_3.png',
-        'img/1_character/sword-attack3/pirate_attack3_4.png',
-        'img/1_character/sword-attack3/pirate_attack3_5.png',
-    ];
+    // IMAGES_SWORD_ATTACK_3 = [
+    //     'img/1_character/sword-attack3/pirate_attack3_0.png',
+    //     'img/1_character/sword-attack3/pirate_attack3_1.png',
+    //     'img/1_character/sword-attack3/pirate_attack3_2.png',
+    //     'img/1_character/sword-attack3/pirate_attack3_3.png',
+    //     'img/1_character/sword-attack3/pirate_attack3_4.png',
+    //     'img/1_character/sword-attack3/pirate_attack3_5.png',
+    // ];
 
     world;
-    walking_sound = new Audio('audio/walk.mp3')
+    walking_sound = new Audio('audio/walk.mp3');
+    shoot_sound = new Audio('audio/shot.mp3');
+    sword_sound = new Audio('audio/sword.mp3');
 
     constructor() {
         super().loadImage('img/1_character/walk/pirate_run1.png');
@@ -146,12 +148,15 @@ class Character extends MovableObject {
 
 
         setInterval(() => {
+            // this.shoot_sound.pause();
             if (this.world.keyboard.D) {
+                this.shoot_sound.play();
                 this.playAnimation(this.IMAGES_GUN_SHOOT);
             }
 
             if (this.world.keyboard.F) {
                 this.playAnimation(this.IMAGES_SWORD_ATTACK_1);
+                this.sword_sound.play();
             }
         }, 1000 / 30)
 
