@@ -1,8 +1,14 @@
 class Endboss extends MovableObject {
-
     height = 330;
     width = 430;
     y = 70;
+
+    offset = {
+        top: 100,
+        left: 250,
+        right: 50,
+        bottom: 0
+    }
 
     IMAGES_WALKING = [
         'img/4_boss/2_alert/Bringer-of-Death_Cast_1.png',
@@ -21,7 +27,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.animate();
 
-        this.x = 2200;
+        this.x = 220;
     }
 
     animate() {
