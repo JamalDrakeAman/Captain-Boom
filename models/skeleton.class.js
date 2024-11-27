@@ -2,6 +2,14 @@ class Skeleton extends EnemyObject {
     height = 150;
     width = 150;
     y = 240;
+
+    offset = {
+        top: 65,
+        left: 50,
+        right: 50,
+        bottom: 0
+    }
+
     IMAGES_WALKING = [
         'img/3_enemies/skeleton/walk/skeleton-walk1.png',
         'img/3_enemies/skeleton/walk/skeleton-walk2.png',
@@ -21,16 +29,6 @@ class Skeleton extends EnemyObject {
         this.animate();
     }
 
-    // animate() {
 
-    //     setInterval(() => {
-    //         this.moveLeft();
-    //     }, 1000 / 60);
-
-
-    //     setInterval(() => {
-    //         this.playAnimation(this.IMAGES_WALKING);
-    //     }, 200);
-    // }
 }
 

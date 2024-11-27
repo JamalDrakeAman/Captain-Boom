@@ -7,10 +7,10 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
 
     offset = {
-        top: 50,
-        left: 50,
-        right: 50,
-        bottom: 20
+        // top: 50,
+        // left: 50,
+        // right: 50,
+        // bottom: 20
     }
 
     applyGravity() {

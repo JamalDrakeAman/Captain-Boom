@@ -9,7 +9,7 @@ class Character extends MovableObject {
         left: 165,
         right: 165,
         bottom: 130
-    }
+    };
 
     IMAGES_WALKING = [
         'img/1_character/walk/pirate_run1.png',

@@ -3,6 +3,13 @@ class Skeleton2 extends EnemyObject {
     width = 200;
     y = 240;
 
+    offset = {
+        top: 45,
+        left: 70,
+        right: 15,
+        bottom: 45
+    }
+
     IMAGES_WALKING = [
         'img/3_enemies/skeleton2/walk/skeleton2-walk0.png',
         'img/3_enemies/skeleton2/walk/skeleton2-walk1.png',
