@@ -177,10 +177,9 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_SWORD_ATTACK_1);
                 this.sword_sound.play();
             }
-        }, 1000 / 30)
+        }, 1000 / 20)
 
         setInterval(() => {
-
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {

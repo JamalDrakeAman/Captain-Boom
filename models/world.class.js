@@ -8,6 +8,7 @@ class World {
     healthStatusBar = new HealthStatusBar();
     coinStatusBar = new CoinStatusBar();
     throwableObjects = [];
+    coins = [new Coin(), new Coin(), new Coin()];
 
 
     constructor(canvas, keyboard) {
@@ -66,6 +67,8 @@ class World {
         this.addToMap(this.coinStatusBar);
 
         this.ctx.translate(this.camera_x, 0);
+
+        this.addObjectsToMap(this.coins);
 
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
