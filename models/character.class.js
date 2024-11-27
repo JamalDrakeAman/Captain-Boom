@@ -5,11 +5,19 @@ class Character extends MovableObject {
     speed = 10;
 
     offset = {
-        top: 125, 
+        top: 125,
         left: 165,
         right: 165,
         bottom: 130
     };
+
+    IMAGES_IDLE = [
+        'img/1_character/idle/pirate_idle0.png',
+        'img/1_character/idle/pirate_idle1.png',
+        'img/1_character/idle/pirate_idle2.png',
+        'img/1_character/idle/pirate_idle3.png',
+        'img/1_character/idle/pirate_idle4.png'
+    ];
 
     IMAGES_WALKING = [
         'img/1_character/walk/pirate_run1.png',
@@ -115,6 +123,7 @@ class Character extends MovableObject {
 
     constructor() {
         super().loadImage('img/1_character/walk/pirate_run1.png');
+        this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_HURT);
@@ -148,14 +157,17 @@ class Character extends MovableObject {
                 this.jump();
             }
 
-
-
             this.world.camera_x = -this.x - 35;
         }, 1000 / 60)
 
 
         setInterval(() => {
-            // this.shoot_sound.pause();
+            this.playAnimation(this.IMAGES_IDLE);
+        }, 1000 / 10)
+
+
+        setInterval(() => {
+
             if (this.world.keyboard.D) {
                 this.shoot_sound.play();
                 this.playAnimation(this.IMAGES_GUN_SHOOT);
