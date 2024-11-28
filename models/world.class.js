@@ -33,10 +33,9 @@ class World {
             this.checkCollisions();
             this.checkThrowObjects();
 
-            this.checkPickupItems(this.coins);
-
-            this.checkPickupItems(this.coins);
-        }, 50)
+            this.checkPickupCoins();
+            this.checkPickupAmmo();
+        }, 100)
     }
 
     checkThrowObjects() {
@@ -61,11 +60,21 @@ class World {
 
     ////////
 
-    checkPickupItems(array) { // Muss noch irgendwie nach index entfernt werden sonst wird immer nur das erste entfernt 
-        array.forEach((array, index) => {
-            if (this.character.isColliding(array)) {
+    checkPickupCoins() { // Muss noch irgendwie nach index entfernt werden sonst wird immer nur das erste entfernt 
+        this.coins.forEach((coins, index) => {
+            if (this.character.isColliding(coins)) {
                 console.log('Collision with coin');
-                this.array.splice(index, 1)
+                this.coins.splice(index, 1)
+                // this.coinStatusBar.setPercentage(this.character.energy);
+            }
+        });
+    }
+
+    checkPickupAmmo() { // Muss noch irgendwie nach index entfernt werden sonst wird immer nur das erste entfernt 
+        this.ammo.forEach((ammo, index) => {
+            if (this.character.isColliding(ammo)) {
+                console.log('Collision with coin');
+                this.ammo.splice(index, 1)
                 // this.coinStatusBar.setPercentage(this.character.energy);
             }
         });
