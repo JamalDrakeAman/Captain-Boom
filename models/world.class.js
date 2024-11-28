@@ -8,7 +8,7 @@ class World {
     healthStatusBar = new HealthStatusBar();
     coinStatusBar = new CoinStatusBar();
     throwableObjects = [];
-    coins = [new Coin(), new Coin(), new Coin()];
+    coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
     ammo = [new Ammo(), new Ammo(), new Ammo()];
 
 
@@ -32,7 +32,11 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
-        }, 200)
+
+            this.checkPickupItems(this.coins);
+
+            this.checkPickupItems(this.coins);
+        }, 50)
     }
 
     checkThrowObjects() {
@@ -54,6 +58,21 @@ class World {
             }
         });
     }
+
+    ////////
+
+    checkPickupItems(array) { // Muss noch irgendwie nach index entfernt werden sonst wird immer nur das erste entfernt 
+        array.forEach((array, index) => {
+            if (this.character.isColliding(array)) {
+                console.log('Collision with coin');
+                this.array.splice(index, 1)
+                // this.coinStatusBar.setPercentage(this.character.energy);
+            }
+        });
+    }
+
+
+    ////////////////
 
 
     draw() {
