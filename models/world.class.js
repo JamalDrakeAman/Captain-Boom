@@ -73,7 +73,7 @@ class World {
     checkPickupAmmo() { // Muss noch irgendwie nach index entfernt werden sonst wird immer nur das erste entfernt 
         this.ammo.forEach((ammo, index) => {
             if (this.character.isColliding(ammo)) {
-                console.log('Collision with coin');
+                console.log('Collision with ammo');
                 this.ammo.splice(index, 1)
                 // this.coinStatusBar.setPercentage(this.character.energy);
             }
