@@ -23,7 +23,6 @@ function fullscreen() {
 
 
     canvas.classList.toggle('fullscreen');
-
     gameTitle.classList.toggle('d-none');
 
 }
