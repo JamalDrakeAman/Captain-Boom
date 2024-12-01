@@ -20,11 +20,8 @@ function startGame() {
 function fullscreen() {
     let canvas = document.getElementById('canvas');
     let gameTitle = document.getElementById('game-title');
-
-
     canvas.classList.toggle('fullscreen');
     gameTitle.classList.toggle('d-none');
-
 }
 
 ////////////////////
