@@ -40,6 +40,15 @@ canvas {
     position: relative;
 }
 
+.sound-icon {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    top: 6px;
+    right: 80px;
+    cursor: pointer;
+}
+
 .fullscreen-icon {
     width: 50px;
     height: 50px;

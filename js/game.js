@@ -3,10 +3,29 @@ let world;
 let keyboard = new Keyboard();
 
 
+let sound = false;
+let game_music_sound = new Audio('audio/pirates-music.mp3');
+
+
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     console.log('My character is', world);
+}
+
+function toggleSound() {
+    let soundIcon = document.getElementById('sound-icon');
+    sound = !sound;
+    if (sound) {
+        soundIcon.src = 'img/sound-icon.png';
+        game_music_sound.play();
+        setInterval(() => {
+            game_music_sound.play();
+        }, 67000);
+    } else {
+        soundIcon.src = 'img/mute-icon.png';
+        game_music_sound.pause();
+    }
 }
 
 
