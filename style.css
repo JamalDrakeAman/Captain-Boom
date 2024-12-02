@@ -31,6 +31,7 @@ body {
 
 canvas {
     background-color: black;
+    display: block;
 }
 
 .fullscreen {
@@ -147,9 +148,11 @@ canvas {
     0% {
         text-shadow: 0 0 10px #fff, 0 0 20px #ff8c00, 0 0 30px #ff8c00, 0 0 40px #ff4500, 0 0 50px #ff4500, 0 0 60px #ff4500;
     }
+
     50% {
         text-shadow: 0 0 20px #fff, 0 0 30px #ff8c00, 0 0 40px #ff8c00, 0 0 50px #ff4500, 0 0 60px #ff4500, 0 0 70px #ff4500;
     }
+
     100% {
         text-shadow: 0 0 10px #fff, 0 0 20px #ff8c00, 0 0 30px #ff8c00, 0 0 40px #ff4500, 0 0 50px #ff4500, 0 0 60px #ff4500;
     }
@@ -159,9 +162,11 @@ canvas {
     0% {
         box-shadow: 0 0 10px #fff, 0 0 20px #ff8c00, 0 0 30px #ff8c00, 0 0 40px #ff4500;
     }
+
     50% {
         box-shadow: 0 0 20px #fff, 0 0 30px #ff8c00, 0 0 40px #ff8c00, 0 0 50px #ff4500;
     }
+
     100% {
         box-shadow: 0 0 10px #fff, 0 0 20px #ff8c00, 0 0 30px #ff8c00, 0 0 40px #ff4500;
     }
@@ -172,16 +177,28 @@ canvas {
     0% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.1);
     }
+
     100% {
         transform: scale(1);
     }
 }
 
-
-
 .d-none {
     display: none;
+}
+
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
 }
