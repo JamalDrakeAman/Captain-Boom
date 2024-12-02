@@ -40,7 +40,7 @@ class World {
 
     checkThrowObjects() {
         if (this.keyboard.D) {
-            let ammo = new ThrowableObject(this.character.x + 100, this.character.y + 30);
+            let ammo = new ThrowableObject(this.character.x + 160, this.character.y + 30);
             this.throwableObjects.push(ammo);
             setTimeout(() => {
                 this.throwableObjects.splice(1, 1)
@@ -66,7 +66,7 @@ class World {
                 console.log('Collision with coin');
                 this.coins.splice(index, 1);
                 this.coinStatusBar.pickupItem();
-                this.coinStatusBar.setPercentage(this.coinStatusBar.itemCount);
+                // this.coinStatusBar.setPercentage(this.coinStatusBar.itemCount);
             }
         });
     }
@@ -109,7 +109,9 @@ class World {
         // Dynamische Anzeige
         this.ctx.font = '35px Arial';
         this.ctx.fillStyle = 'white';
-        this.ctx.fillText(`${this.ammoStatusBar.itemCount}`, 100, 145);
+        this.ctx.fillText(`${this.coinStatusBar.itemCount}`, 100, 100);
+        this.ctx.fillText(`${this.ammoStatusBar.itemCount}`, 100, 150);
+
 
         // draw() wird immer wieder aufgerufen
         let self = this;

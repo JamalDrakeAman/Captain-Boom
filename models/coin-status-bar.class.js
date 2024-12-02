@@ -12,11 +12,16 @@ class CoinStatusBar extends StatusBar {
 
     constructor() {
         super();
-        this.loadImages(this.IMAGES);
+        // this.loadImages(this.IMAGES);
+        this.loadImage('img/8_item/coin/coin0.png');
         this.x = 40;
-        this.y = 45;
-        this.width = 200;
-        this.height = 60;
-        this.setPercentage(this.itemCount);
+        this.y = 65;
+        this.width = 45;
+        this.height = 45;
+        // this.setPercentage(this.itemCount);
+    }
+
+    pickupItem() {
+        this.itemCount += 1;
     }
 }
