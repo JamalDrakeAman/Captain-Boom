@@ -7,6 +7,7 @@ class World {
     camera_x = 0;
     healthStatusBar = new HealthStatusBar();
     coinStatusBar = new CoinStatusBar();
+    ammoStatusBar = new AmmoStatusBar();
     throwableObjects = [];
     coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
     ammo = [new Ammo(), new Ammo(), new Ammo()];
@@ -18,10 +19,9 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-
-        // this.checkCollisions();
         this.run();
     }
+
 
     setWorld() {
         this.character.world = this;
@@ -32,11 +32,11 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
-
             this.checkPickupCoins();
             this.checkPickupAmmo();
         }, 100)
     }
+
 
     checkThrowObjects() {
         if (this.keyboard.D) {
@@ -48,6 +48,7 @@ class World {
         }
     }
 
+
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
@@ -58,7 +59,6 @@ class World {
         });
     }
 
-    ////////
 
     checkPickupCoins() { // Muss noch irgendwie nach index entfernt werden sonst wird immer nur das erste entfernt 
         this.coins.forEach((coins, index) => {
@@ -67,23 +67,21 @@ class World {
                 this.coins.splice(index, 1);
                 this.coinStatusBar.pickupItem();
                 this.coinStatusBar.setPercentage(this.coinStatusBar.itemCount);
-                // this.coinStatusBar.setPercentage(this.character.energy);
             }
         });
     }
+
 
     checkPickupAmmo() { // Muss noch irgendwie nach index entfernt werden sonst wird immer nur das erste entfernt 
         this.ammo.forEach((ammo, index) => {
             if (this.character.isColliding(ammo)) {
                 console.log('Collision with ammo');
                 this.ammo.splice(index, 1)
+                this.ammoStatusBar.pickupItem();
                 // this.coinStatusBar.setPercentage(this.character.energy);
             }
         });
     }
-
-
-    ////////////////
 
 
     draw() {
@@ -93,20 +91,25 @@ class World {
         this.addToMap(this.character);
 
         this.ctx.translate(-this.camera_x, 0);
-
         this.addToMap(this.healthStatusBar);
         this.addToMap(this.coinStatusBar);
+        this.addToMap(this.ammoStatusBar);
+
 
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.coins);
         this.addObjectsToMap(this.ammo);
-
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0)
+
+        // Dynamische Anzeige
+        this.ctx.font = '35px Arial';
+        this.ctx.fillStyle = 'white';
+        this.ctx.fillText(`${this.ammoStatusBar.itemCount}`, 100, 145);
 
         // draw() wird immer wieder aufgerufen
         let self = this;
@@ -115,17 +118,18 @@ class World {
         });
     }
 
+
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         })
     }
 
+
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
-
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
         mo.drawHitbox(this.ctx);
@@ -134,6 +138,7 @@ class World {
         }
     }
 
+
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -141,10 +146,10 @@ class World {
         mo.x = mo.x * -1;
     }
 
+
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
-
 
 }
