@@ -93,3 +93,12 @@ window.addEventListener('keyup', (e) => {
     }
 });
 
+function moveLeft() {
+    keyboard.LEFT = true;
+    console.log('Left touch');
+}
+
+
+function moveRight() {
+    keyboard.RIGHT = true;
+}

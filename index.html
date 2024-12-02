@@ -52,14 +52,19 @@
         </canvas>
 
         <div class="move-container">
-            <img class="move-btn" src="img/9_intro_outro_screens/start/left.png" alt="">
-            <img class="move-btn" src="img/9_intro_outro_screens/start/right.png" alt="">
+            <img class="move-btn" ontouchstart="keyboard.LEFT = true;" ontouchend="keyboard.LEFT = false;"
+                src="img/9_intro_outro_screens/start/left.png" alt="">
+            <img class="move-btn" ontouchstart="keyboard.RIGHT = true;" ontouchend="keyboard.RIGHT = false;"
+                src="img/9_intro_outro_screens/start/right.png" alt="">
         </div>
 
         <div class="action-container">
-            <img class="attack-btn" src="img/9_intro_outro_screens/start/gun.png" alt="">
-            <img class="attack-btn" src="img/9_intro_outro_screens/start/sword.png" alt="">
-            <img class="move-btn" src="img/9_intro_outro_screens/start/up.png" alt="">
+            <img class="attack-btn" ontouchstart="keyboard.D = true;" ontouchend="keyboard.D = false;"
+                src="img/9_intro_outro_screens/start/gun.png" alt="">
+            <img class="attack-btn" ontouchstart="keyboard.F = true;" ontouchend="keyboard.F = false;"
+                src="img/9_intro_outro_screens/start/sword.png" alt="">
+            <img class="move-btn" ontouchstart="keyboard.SPACE = true;" ontouchend="keyboard.SPACE = false;"
+                src="img/9_intro_outro_screens/start/up.png" alt="">
 
         </div>
     </div>
