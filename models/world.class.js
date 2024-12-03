@@ -10,7 +10,7 @@ class World {
     ammoStatusBar = new AmmoStatusBar();
     throwableObjects = [];
     coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
-    ammo = [new Ammo(), new Ammo(), new Ammo()];
+    ammo = [new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo()];
 
 
     constructor(canvas, keyboard) {
@@ -43,8 +43,9 @@ class World {
             let ammo = new ThrowableObject(this.character.x + 160, this.character.y + 30);
             this.throwableObjects.push(ammo);
             this.ammoStatusBar.itemCount--;
+            this.character.shoot_sound.play();
             setTimeout(() => {
-                this.throwableObjects.splice(1, 1)
+                this.throwableObjects.splice(1, 1);
             }, 300)
         }
     }
@@ -77,6 +78,7 @@ class World {
         this.ammo.forEach((ammo, index) => {
             if (this.character.isColliding(ammo)) {
                 console.log('Collision with ammo');
+                this.character.loaded_sound.play();
                 this.ammo.splice(index, 1)
                 this.ammoStatusBar.pickupItem();
                 // this.coinStatusBar.setPercentage(this.character.energy);

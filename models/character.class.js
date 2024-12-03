@@ -117,9 +117,12 @@ class Character extends MovableObject {
     // ];
 
     world;
+
     walking_sound = new Audio('audio/walk.mp3');
     shoot_sound = new Audio('audio/shot.mp3');
     sword_sound = new Audio('audio/sword.mp3');
+    trigger_sound = new Audio('audio/trigger.mp3');
+    loaded_sound = new Audio('audio/load-ammo.mp3');
 
     constructor() {
         super().loadImage('img/1_character/walk/pirate_run1.png');
@@ -169,7 +172,7 @@ class Character extends MovableObject {
         setInterval(() => {
 
             if (this.world.keyboard.D) {
-                this.shoot_sound.play();
+                this.trigger_sound.play();
                 this.playAnimation(this.IMAGES_GUN_SHOOT);
             }
 
