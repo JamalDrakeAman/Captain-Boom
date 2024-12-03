@@ -39,9 +39,10 @@ class World {
 
 
     checkThrowObjects() {
-        if (this.keyboard.D) {
+        if (this.keyboard.D && this.ammoStatusBar.itemCount > 0) {
             let ammo = new ThrowableObject(this.character.x + 160, this.character.y + 30);
             this.throwableObjects.push(ammo);
+            this.ammoStatusBar.itemCount--;
             setTimeout(() => {
                 this.throwableObjects.splice(1, 1)
             }, 300)
