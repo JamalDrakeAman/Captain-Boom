@@ -28,6 +28,11 @@ function toggleSound() {
     }
 }
 
+function toggleControlsInfo() {
+    let ControleContainer = document.getElementById('controls-info-container');
+    ControleContainer.classList.toggle('show-hide-box')
+}
+
 
 function startGame() {
     let startScreen = document.getElementById('startscreen');

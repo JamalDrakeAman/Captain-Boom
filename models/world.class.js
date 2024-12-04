@@ -66,6 +66,7 @@ class World {
         this.coins.forEach((coins, index) => {
             if (this.character.isColliding(coins)) {
                 console.log('Collision with coin');
+                this.character.coins_sound.play();
                 this.coins.splice(index, 1);
                 this.coinStatusBar.pickupItem();
                 // this.coinStatusBar.setPercentage(this.coinStatusBar.itemCount);

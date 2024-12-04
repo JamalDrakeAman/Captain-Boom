@@ -65,20 +65,39 @@ class Endboss extends MovableObject {
         'img/4_boss/5_dead/Bringer-of-Death_Death_8.png',
         'img/4_boss/5_dead/Bringer-of-Death_Death_9.png',
         'img/4_boss/5_dead/Bringer-of-Death_Death_10.png'
-
     ];
+
+
+    hadFirstContact = false;
 
     constructor() {
         super().loadImage(this.IMAGES_HURT[0]);
+        this.loadImages(this.IMAGES_ALERT);
+        this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_DEATH);
         this.animate();
 
         this.x = 2200;
     }
 
     animate() {
+        let i = 0;
         setInterval(() => {
-            this.playAnimation(this.IMAGES_HURT);
+
+            if (i < 10) {
+                this.playAnimation(this.IMAGES_ALERT);
+            } else {
+                this.playAnimation(this.IMAGES_WALKING);
+            }
+            i++;
+
+            if (world.character.x > 1700 && !this.hadFirstContact) {
+                i = 0;
+                this.hadFirstContact = true
+            }
+
         }, 200);
     }
 
