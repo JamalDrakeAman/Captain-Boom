@@ -128,7 +128,6 @@ canvas {
     color: rgba(16, 152, 247, 0.8);
     font-size: 50px;
     font-weight: 700;
-    /* text-shadow: 2px 2px 5px white; */
     margin: 0 0 150px 0;
     animation: shimmer 2s infinite alternate, pulse 2s infinite ease-in-out;
 }
@@ -137,7 +136,7 @@ canvas {
     color: black;
     width: 250px;
     height: 80px;
-    /* border: solid 2px black; */
+    font-size: 25px;
     border-radius: 20px;
     display: flex;
     justify-content: center;
