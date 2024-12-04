@@ -153,6 +153,9 @@ canvas {
 
 .controls-info-btn {
     position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 15px;
     bottom: 50px;
     text-shadow: 0 0 10px #fff;
     cursor: pointer;
