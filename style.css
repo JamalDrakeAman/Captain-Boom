@@ -166,25 +166,44 @@ canvas {
 
 .controls-info-container {
     position: absolute;
+    flex-direction: column;
     width: 600px;
     height: 550px;
     background-color: rgba(74, 129, 202, 1);
     display: flex;
     justify-content: center;
+    align-items: center;
     transform: translateY(600px);
     transition: all ease-in-out 100ms;
     border-radius: 20px;
     box-shadow: 0 0 20px #fff
 }
 
-.show-hide-box{
-    transform: translateY(0);
+.controls-box {
+    width: 500px;
+    height: 450px;
+    flex-direction: column;
+    border: solid 1px;
+}
+
+.keyboard-icon {
+    height: 50px;
+    width: 50px;
+}
+
+.keyboard-icon-space{
+    height: 70px;
+    width: 150px;
 }
 
 
+.show-hide-box {
+    transform: translateY(0);
+}
+
 .controls-info-close-btn {
     position: absolute;
-    bottom: 30px;
+    bottom: 20px;
     background-color: #d84646;
     padding: 10px;
     border-radius: 20px;
