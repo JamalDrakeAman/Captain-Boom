@@ -187,6 +187,19 @@ canvas {
     height: 450px;
     flex-direction: column;
     border: solid 1px;
+    position: relative;
+}
+
+.arrows-box {
+    position: absolute;
+    display: flex;
+    right: 80px;
+    justify-content: center;
+    border: solid 1px;
+    width: 200px;
+    height: 200px;
+    top: 100px;
+    right: 0;
 }
 
 .keyboard-icon {
@@ -194,11 +207,79 @@ canvas {
     width: 50px;
 }
 
-.keyboard-icon-space{
+.up-arrow {
+    position: absolute;
+    top: 30px;
+}
+
+.left-arrow {
+    position: absolute;
+    top: 90px;
+    right: 135px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.8);
+    background-color: white;
+    border-radius: 10px;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.right-arrow {
+    position: absolute;
+    top: 90px;
+    right: 15px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.8);
+    background-color: white;
+    border-radius: 10px;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.down-arrow {
+    position: absolute;
+    top: 90px;
+}
+
+.info-left {
+    position: absolute;
+    left: 5px;
+    bottom: 20px;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.info-right {
+    position: absolute;
+    right: 5px;
+    bottom: 20px;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.keyboard-icon-space {
     height: 70px;
     width: 150px;
 }
 
+.action-box{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: solid 1px;
+    width: 250px;
+    height: 200px;
+    top: 100px;
+    left: 0;
+}
+
+.action-info{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-effect{
+    animation: pulse 2s infinite ease-in-out;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.8);
+    background-color: white;
+    border-radius: 10px;
+}
 
 .show-hide-box {
     transform: translateY(0);

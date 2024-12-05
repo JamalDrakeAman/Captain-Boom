@@ -11,6 +11,8 @@ class Character extends MovableObject {
         bottom: 130
     };
 
+    i = 0;
+
     IMAGES_IDLE = [
         'img/1_character/idle/pirate_idle0.png',
         'img/1_character/idle/pirate_idle1.png',
@@ -131,6 +133,8 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
+        this.loadImages(this.IMAGES_FALLING);
+        this.loadImages(this.IMAGES_LANDING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_GUN_SHOOT);
@@ -160,6 +164,7 @@ class Character extends MovableObject {
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
+                this.i = 0;
             }
 
             this.world.camera_x = -this.x - 35;
@@ -184,13 +189,34 @@ class Character extends MovableObject {
             }
         }, 1000 / 20)
 
+
+
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_JUMPING);
+
+                if (this.i < 10) {
+                    this.playAnimation(this.IMAGES_JUMPING);
+                } else {
+                    this.playAnimation(this.IMAGES_FALLING);
+                }
+
+                if (this.i > 18) {
+                    this.playAnimation(this.IMAGES_LANDING);
+                }
+
+                this.i++;
+                console.log('Count i', this.i);
+
+
+                // setTimeout(() => {
+                //     this.playAnimation(this.IMAGES_FALLING);
+                // },150)
+
+
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     // Walk animation
