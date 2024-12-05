@@ -7,6 +7,13 @@ class ThrowableObject extends MovableObject {
         'img/6_gun/shot/shot_3.png'
     ];
 
+    offset = {
+        top: 130,
+        left: 100,
+        right: 50,
+        bottom: 130
+    };
+
     constructor(x, y) {
         super().loadImage('img/6_gun/shot/shot_0.png');
         this.loadImages(this.IMAGES_SHOOT);
@@ -27,7 +34,7 @@ class ThrowableObject extends MovableObject {
 
         setInterval(() => {
             this.playAnimation(this.IMAGES_SHOOT);
-        },60)
+        }, 60)
 
     }
 } 

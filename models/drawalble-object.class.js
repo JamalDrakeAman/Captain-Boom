@@ -37,7 +37,7 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Skeleton || this instanceof Skeleton2 || this instanceof Endboss || this instanceof Coin || this instanceof Ammo) {
+        if (this instanceof Character || this instanceof Skeleton || this instanceof Skeleton2 || this instanceof Endboss || this instanceof Coin || this instanceof Ammo || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
@@ -47,7 +47,7 @@ class DrawableObject {
     }
 
     drawHitbox(ctx) {
-        if (this instanceof Character || this instanceof Skeleton || this instanceof Skeleton2 || this instanceof Endboss || this instanceof Coin || this instanceof Ammo) {
+        if (this instanceof Character || this instanceof Skeleton || this instanceof Skeleton2 || this instanceof Endboss || this instanceof Coin || this instanceof Ammo || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = 'red';

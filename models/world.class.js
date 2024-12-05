@@ -34,6 +34,7 @@ class World {
             this.checkThrowObjects();
             this.checkPickupCoins();
             this.checkPickupAmmo();
+            this.checkHitEnemys();
         }, 100)
     }
 
@@ -87,6 +88,16 @@ class World {
         });
     }
 
+    checkHitEnemys() {
+        this.level.enemies.forEach((enemy, index) => {
+
+            if (this.throwableObjects[0].isColliding(enemy)) {
+                console.log('Shoot down enemy');
+                this.level.enemies.splice(index, 1)
+                // this.coinStatusBar.setPercentage(this.character.energy);
+            }
+        });
+    }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
