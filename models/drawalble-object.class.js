@@ -31,9 +31,7 @@ class DrawableObject {
         } catch (e) {
             console.warn('Error loading image', e);
             console.log('Could not load image', this.img.src);
-
         }
-
     }
 
     drawFrame(ctx) {

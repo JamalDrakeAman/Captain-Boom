@@ -16,6 +16,7 @@ class EnemyObject extends MovableObject {
     animate() {
         setInterval(() => {
             this.moveLeft();
+            this.otherDirection = true;
         }, 1000 / 60);
 
 

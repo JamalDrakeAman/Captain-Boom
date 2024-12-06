@@ -95,12 +95,17 @@ class World {
 
 
     checkHitEnemys() {
-        this.level.enemies.forEach((enemy) => {
+        this.level.enemies.forEach((enemy, index) => {
 
             this.throwableObjects.forEach((obj) => {
                 if (obj.isColliding(enemy)) {
                     // this.throwableObjects.hit();
                     console.log('Ammo Collision with Character', this.throwableObjects);
+                    console.log('Ammo', obj);
+                    console.log('Enemy', enemy);
+                    this.level.enemies.splice(index, 1)
+
+
                     // this.healthStatusBar.setPercentage(this.character.energy);
                 }
             })
