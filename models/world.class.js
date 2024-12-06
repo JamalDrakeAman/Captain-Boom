@@ -88,16 +88,52 @@ class World {
         });
     }
 
-    checkHitEnemys() {
-        this.level.enemies.forEach((enemy, index) => {
 
-            if (this.throwableObjects[0].isColliding(enemy)) {
-                console.log('Shoot down enemy');
-                this.level.enemies.splice(index, 1)
-                // this.coinStatusBar.setPercentage(this.character.energy);
-            }
+
+    /////////////////
+
+
+
+    checkHitEnemys() {
+        this.level.enemies.forEach((enemy) => {
+
+            this.throwableObjects.forEach((obj) => {
+                if (obj.isColliding(enemy)) {
+                    // this.throwableObjects.hit();
+                    console.log('Ammo Collision with Character', this.throwableObjects);
+                    // this.healthStatusBar.setPercentage(this.character.energy);
+                }
+            })
+
         });
     }
+
+
+
+    // checkHitEnemys() {
+    //     this.level.enemies.forEach((enemy, index) => {
+
+    //         this.throwableObjects.forEach((ammoObj, i) => {
+    //             let ammo = ammoObj[i]
+    //             console.log('ammo in array', ammo);
+
+
+
+    //                 if (this.ammo.isColliding(enemy)) {
+    //                     console.log('Shoot down enemy');
+    //                     this.level.enemies.splice(index, 1)
+    //                     // this.coinStatusBar.setPercentage(this.character.energy);
+    //                 }
+
+
+    //         })
+
+    //     });
+    // }
+
+    ///////////////////
+
+
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
