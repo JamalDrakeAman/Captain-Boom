@@ -46,7 +46,7 @@ class World {
             this.ammoStatusBar.itemCount--;
             this.character.shoot_sound.play();
             setTimeout(() => {
-                this.throwableObjects.splice(1, 1);
+                this.throwableObjects.splice(0, 1);
             }, 300)
         }
     }
@@ -103,8 +103,10 @@ class World {
                     console.log('Ammo Collision with Character', this.throwableObjects);
                     console.log('Ammo', obj);
                     console.log('Enemy', enemy);
-                    this.level.enemies.splice(index, 1)
 
+                    // this.level.enemies.splice(index, 1);
+
+                    this.level.enemies[index].enemyDie();
 
                     // this.healthStatusBar.setPercentage(this.character.energy);
                 }
