@@ -5,8 +5,8 @@ class Skeleton2 extends EnemyObject {
 
     offset = {
         top: 45,
-        left: 70,
-        right: 15,
+        left: 15,
+        right: 70,
         bottom: 45
     }
 
