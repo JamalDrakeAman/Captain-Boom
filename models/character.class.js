@@ -11,8 +11,6 @@ class Character extends MovableObject {
         bottom: 130
     };
 
-    i = 0;
-
     IMAGES_IDLE = [
         'img/1_character/idle/pirate_idle0.png',
         'img/1_character/idle/pirate_idle1.png',
@@ -124,7 +122,6 @@ class Character extends MovableObject {
     shoot_sound = new Audio('audio/shot.mp3');
     sword_sound = new Audio('audio/sword.mp3');
     trigger_sound = new Audio('audio/trigger.mp3');
-
     loaded_sound = new Audio('audio/load-ammo.mp3');
     coins_sound = new Audio('audio/coins.mp3');
 
@@ -171,51 +168,102 @@ class Character extends MovableObject {
         }, 1000 / 60)
 
 
+        // setInterval(() => {
+        //     this.playAnimation(this.IMAGES_IDLE);
+        // }, 1000 / 10)
+
+
+        // setInterval(() => {
+        //     if (this.world.keyboard.D) {
+        //         this.trigger_sound.play();
+        //         this.playAnimation(this.IMAGES_GUN_SHOOT);
+        //     }
+
+        //     if (this.world.keyboard.F) {
+        //         this.playAnimation(this.IMAGES_SWORD_ATTACK_1);
+        //         this.sword_sound.play();
+        //     }
+        // }, 1000 / 20)
+
+
+
+        // setInterval(() => {
+        //     if (this.isDead()) {
+        //         this.playAnimation(this.IMAGES_DEAD);
+        //     } else if (this.isHurt()) {
+        //         this.playAnimation(this.IMAGES_HURT);
+        //     } else if (this.isAboveGround()) {
+
+        //         if (this.speedY > 0) {
+        //             this.playAnimation(this.IMAGES_JUMPING);
+        //             if (this.currentImage < 1) {
+        //                 this.currentImage--
+        //             }
+        //         } else {
+        //             this.playAnimation(this.IMAGES_FALLING);
+        //         }
+
+        //         if (this.i > 18) {
+        //             this.playAnimation(this.IMAGES_LANDING);
+        //         }
+
+        //     } else {
+        //         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+        //             // Walk animation
+        //             this.playAnimation(this.IMAGES_WALKING);
+        //         }
+        //     }
+        // }, 50);
+
+
+
+        // setInterval(() => {
+        //     this.playAnimation(this.IMAGES_IDLE);
+        // }, 1000 / 10)
+
+
+        // setInterval(() => {
+        //     if (this.world.keyboard.D) {
+        //         this.trigger_sound.play();
+        //         this.playAnimation(this.IMAGES_GUN_SHOOT);
+        //     }
+
+        //     if (this.world.keyboard.F) {
+        //         this.playAnimation(this.IMAGES_SWORD_ATTACK_1);
+        //         this.sword_sound.play();
+        //     }
+        // }, 1000 / 20)
+
+
         setInterval(() => {
             this.playAnimation(this.IMAGES_IDLE);
-        }, 1000 / 10)
-
-
-        setInterval(() => {
-
-            if (this.world.keyboard.D) {
-                this.trigger_sound.play();
-                this.playAnimation(this.IMAGES_GUN_SHOOT);
-            }
-
-            if (this.world.keyboard.F) {
-                this.playAnimation(this.IMAGES_SWORD_ATTACK_1);
-                this.sword_sound.play();
-            }
-        }, 1000 / 20)
-
-
-
-        setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+            } else if (this.world.keyboard.D) {
+                this.trigger_sound.play();
+                this.playAnimation(this.IMAGES_GUN_SHOOT);
+            } else if (this.world.keyboard.F) {
+                this.playAnimation(this.IMAGES_SWORD_ATTACK_1);
+                this.sword_sound.play();
             } else if (this.isAboveGround()) {
-
-                if (this.i < 10) {
+                if (this.speedY > 0) {
                     this.playAnimation(this.IMAGES_JUMPING);
+                    if (this.currentImage < 1) {
+                        this.currentImage--
+                    }
                 } else {
                     this.playAnimation(this.IMAGES_FALLING);
+                    console.log('The SpeedY', this.speedY);
+                    if (this.speedY < -27) {
+                        this.playAnimation(this.IMAGES_LANDING);
+                    }
                 }
 
-                if (this.i > 18) {
-                    this.playAnimation(this.IMAGES_LANDING);
-                }
-
-                this.i++;
-                console.log('Count i', this.i);
-
-
-                // setTimeout(() => {
-                //     this.playAnimation(this.IMAGES_FALLING);
-                // },150)
-
+                // if (this.i > 18) {
+                //     this.playAnimation(this.IMAGES_LANDING);
+                // }
 
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
@@ -223,7 +271,10 @@ class Character extends MovableObject {
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }
-        }, 50);
+        }, 150);
+
+
+
     }
 
 

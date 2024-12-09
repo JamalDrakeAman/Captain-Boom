@@ -22,6 +22,7 @@ class EnemyObject extends MovableObject {
 
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
+            this.otherDirection = true;
         }, 200);
     }
 

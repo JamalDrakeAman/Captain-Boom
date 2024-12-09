@@ -73,6 +73,8 @@ class Skeleton extends EnemyObject {
         'img/3_enemies/skeleton/attack3/skeleton-attack7.png'
     ]
 
+    walkInterval;
+
     constructor() {
         super().loadImage('img/3_enemies/skeleton/walk/skeleton-walk1.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -93,16 +95,16 @@ class Skeleton extends EnemyObject {
             this.otherDirection = true;
         }, 1000 / 60);
 
-
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
+
         }, 200);
+
     }
 
 
     enemyDie() {
         this.playAnimation(this.IMAGES_DEAD);
-
     }
 
 
