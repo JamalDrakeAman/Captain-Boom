@@ -2,6 +2,9 @@ class EnemyObject extends MovableObject {
     height = 150;
     width = 150;
     y = 240;
+
+    enemyEnergy = 100;
+
     IMAGES_WALKING = [
         'img/3_enemies/skeleton/walk/skeleton-walk1.png',
         'img/3_enemies/skeleton/walk/skeleton-walk2.png',
@@ -26,5 +29,24 @@ class EnemyObject extends MovableObject {
         }, 200);
     }
 
-    
+
+    swordHit() {
+        this.enemyEnergy -= 20;
+        if (this.enemyEnergy < 0) {
+            this.enemyEnergy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+
+    shootHit(){
+        this.enemyEnergy -= 50;
+        if (this.enemyEnergy < 0) {
+            this.enemyEnergy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
 }

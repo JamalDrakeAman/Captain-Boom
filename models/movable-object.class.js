@@ -104,9 +104,7 @@ class MovableObject extends DrawableObject {
             let path = images[i];
             this.img = this.imageCache[path];
             this.currentImage++
-
         }
-
     }
 
     moveRight() {

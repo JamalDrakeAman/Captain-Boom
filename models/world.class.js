@@ -63,18 +63,20 @@ class World {
         });
     }
 
+
     checkCollisionsWithSword() {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isCollidingWithSword(enemy)) {
                 console.log('Collision with Sword, energy', this.character.energy);
                 if (this.keyboard.F) {
-                    this.level.enemies.splice(index, 1);
+                    // this.level.enemies.splice(index, 1);
+                    this.level.enemies[index].swordHit();
+                    console.log('Hit enemy Energy',this.level.enemies[index].enemyEnergy);
+                    
                 }
             }
         });
     }
-
-
 
 
     checkPickupCoins() { // Muss noch irgendwie nach index entfernt werden sonst wird immer nur das erste entfernt 
@@ -103,11 +105,6 @@ class World {
     }
 
 
-
-    /////////////////
-
-
-
     checkHitEnemys() {
         this.level.enemies.forEach((enemy, index) => {
 
@@ -119,8 +116,8 @@ class World {
                     console.log('Enemy', enemy);
 
                     // this.level.enemies.splice(index, 1);
-
-                    this.level.enemies[index].enemyDie();
+                    this.level.enemies[index].shootHit()
+                    // this.level.enemies[index].enemyDie();
 
                     // this.healthStatusBar.setPercentage(this.character.energy);
                 }
@@ -130,43 +127,22 @@ class World {
     }
 
 
-
-    // checkHitEnemys() {
-    //     this.level.enemies.forEach((enemy, index) => {
-
-    //         this.throwableObjects.forEach((ammoObj, i) => {
-    //             let ammo = ammoObj[i]
-    //             console.log('ammo in array', ammo);
-
-
-
-    //                 if (this.ammo.isColliding(enemy)) {
-    //                     console.log('Shoot down enemy');
-    //                     this.level.enemies.splice(index, 1)
-    //                     // this.coinStatusBar.setPercentage(this.character.energy);
-    //                 }
-
-
-    //         })
-
-    //     });
-    // }
-
-    ///////////////////
-
-
-
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
         this.ctx.translate(this.camera_x, 0);
+
+        this.resetShadow();
         this.addObjectsToMap(this.level.backgroundObjects);
+
+        this.enableShadow();
         this.addToMap(this.character);
 
         this.ctx.translate(-this.camera_x, 0);
+
         this.addToMap(this.healthStatusBar);
         this.addToMap(this.coinStatusBar);
         this.addToMap(this.ammoStatusBar);
-
 
         this.ctx.translate(this.camera_x, 0);
 
@@ -181,20 +157,33 @@ class World {
         // Dynamische Anzeige
         this.ctx.font = '40px pirates, Arial, Helvetica, sans-serif';
         this.ctx.fillStyle = '#51bbe8';
-        this.ctx.shadowColor = '#000000'; // Schattenfarbe (schwarz)
-        this.ctx.shadowBlur = 10; // Weiche des Schattens
-        this.ctx.shadowOffsetX = 5; // Horizontale Verschiebung des Schattens
-        this.ctx.shadowOffsetY = 5; // Vertikale Verschiebung des Schattens
 
         this.ctx.fillText(`${this.coinStatusBar.itemCount}`, 100, 100);
-        this.ctx.fillText(`${this.ammoStatusBar.itemCount}`, 100, 150);
-
+        this.ctx.fillText(`${this.ammoStatusBar.itemCount}`, 100, 155);
 
         // draw() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
         });
+    }
+
+    enableShadow() {
+        this.ctx.shadowColor = '#000000'; // Schattenfarbe
+        this.ctx.shadowBlur = 10; // Weiche des Schattens
+        this.ctx.shadowOffsetX = 5; // Horizontale Verschiebung
+        this.ctx.shadowOffsetY = 5; // Vertikale Verschiebung
+    }
+
+    resetShadow() {
+        this.ctx.shadowColor = 'transparent'; // Schattenfarbe entfernen
+        this.ctx.shadowBlur = 0; // Schatten unsichtbar machen
+        this.ctx.shadowOffsetX = 0; // Horizontal zurücksetzen
+        this.ctx.shadowOffsetY = 0; // Vertikal zurücksetzen
+    }
+
+    showEnemyEnergy(index){
+        this.ctx.fillText(`${this.level.enemies[index].enemyEnergy}`, 100, 100);
     }
 
 
