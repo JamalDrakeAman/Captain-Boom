@@ -6,6 +6,9 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
 
+    counter = 0;
+    counting = false;
+
     offset = {
 
     }
@@ -31,11 +34,27 @@ class MovableObject extends DrawableObject {
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
 
+    isCollidingWithSword(mo) {
+        return this.x + this.width - this.offset.right + 70 > mo.x + mo.offset.left && // +100 für den erweiterten Bereich
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+    }
+
     // isCollidingWithSword(mo) {
-    //     return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
-    //         this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
-    //         this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-    //         this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+    //     // Wenn es nicht klappt, ChatGPT fragen
+    //     // "Ich möchte bitte, dass diese Funktion noch 100px mehr nach rechts mit beinhaltet"
+    //     if (this.otherDirection) {
+    //         return this.x + this.width - (this.offset.right - 100) > mo.x + mo.offset.left &&
+    //             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+    //             this.x + this.offset.left < mo.x + mo.width - (mo.offset.right - 100) &&
+    //             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+    //     } else {
+    //         return this.x + this.width - (this.offset.right + 100) > mo.x + mo.offset.left &&
+    //             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+    //             this.x + this.offset.left < mo.x + mo.width - (mo.offset.right + 100) &&
+    //             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+    //     }
     // }
 
 
@@ -58,11 +77,36 @@ class MovableObject extends DrawableObject {
         return this.energy == 0;
     }
 
+    // playAnimation(images) {
+    //     let i = this.currentImage % images.length
+    //     let path = images[i];
+    //     this.img = this.imageCache[path];
+    //     this.currentImage++
+    // }
+
+
     playAnimation(images) {
-        let i = this.currentImage % images.length
-        let path = images[i];
-        this.img = this.imageCache[path];
-        this.currentImage++
+        // console.log(this.counter);
+        if (this.counting && this.counter > 0) {
+            this.counter--
+            // console.log('counter reduced');
+        } else if (!this.counting && this.counter > 0) {
+            this.counting = true;
+            let i = this.currentImage % images.length;
+            let path = images[i];
+            this.img = this.imageCache[path];
+            this.currentImage++
+        } else if (this.counter == 0) {
+
+            this.counting = false;
+            // console.log('counter is null');
+            let i = this.currentImage % images.length;
+            let path = images[i];
+            this.img = this.imageCache[path];
+            this.currentImage++
+
+        }
+
     }
 
     moveRight() {

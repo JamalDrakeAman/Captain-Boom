@@ -58,10 +58,35 @@ class Character extends MovableObject {
 
     IMAGES_GUN_OUT = [
         'img/1_character/gun-out/pirate_gun_out0.png',
+        'img/1_character/gun-out/pirate_gun_out0.png',
+        'img/1_character/gun-out/pirate_gun_out0.png',
+        'img/1_character/gun-out/pirate_gun_out0.png',
+
         'img/1_character/gun-out/pirate_gun_out1.png',
+        'img/1_character/gun-out/pirate_gun_out1.png',
+        'img/1_character/gun-out/pirate_gun_out1.png',
+        'img/1_character/gun-out/pirate_gun_out1.png',
+
         'img/1_character/gun-out/pirate_gun_out2.png',
+        'img/1_character/gun-out/pirate_gun_out2.png',
+        'img/1_character/gun-out/pirate_gun_out2.png',
+        'img/1_character/gun-out/pirate_gun_out2.png',
+
         'img/1_character/gun-out/pirate_gun_out3.png',
+        'img/1_character/gun-out/pirate_gun_out3.png',
+        'img/1_character/gun-out/pirate_gun_out3.png',
+        'img/1_character/gun-out/pirate_gun_out3.png',
+
+
         'img/1_character/gun-out/pirate_gun_out4.png',
+        'img/1_character/gun-out/pirate_gun_out4.png',
+        'img/1_character/gun-out/pirate_gun_out4.png',
+        'img/1_character/gun-out/pirate_gun_out4.png',
+
+
+        'img/1_character/gun-out/pirate_gun_out5.png',
+        'img/1_character/gun-out/pirate_gun_out5.png',
+        'img/1_character/gun-out/pirate_gun_out5.png',
         'img/1_character/gun-out/pirate_gun_out5.png'
     ];
 
@@ -136,8 +161,6 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_GUN_SHOOT);
         this.loadImages(this.IMAGES_SWORD_ATTACK_1);
-        // this.loadImages(this.IMAGES_FALLING);
-        // this.loadImages(this.IMAGES_LANDING);
 
         this.applyGravity();
         this.animate();
@@ -161,12 +184,11 @@ class Character extends MovableObject {
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
-                this.i = 0;
+                this.isLanding = false;
             }
 
             this.world.camera_x = -this.x - 35;
         }, 1000 / 60)
-
 
         // setInterval(() => {
         //     this.playAnimation(this.IMAGES_IDLE);
@@ -184,8 +206,6 @@ class Character extends MovableObject {
         //         this.sword_sound.play();
         //     }
         // }, 1000 / 20)
-
-
 
         // setInterval(() => {
         //     if (this.isDead()) {
@@ -255,23 +275,24 @@ class Character extends MovableObject {
                     }
                 } else {
                     this.playAnimation(this.IMAGES_FALLING);
+                    if (this.currentImage < 1) {
+                        this.currentImage--
+                        this.isLanding = false;
+                    }
                     console.log('The SpeedY', this.speedY);
-                    if (this.speedY < -27) {
+                    console.log('character y:', this.y);
+                    if (this.y > 50 && !this.isLanding) {
+                        this.counter = 1
                         this.playAnimation(this.IMAGES_LANDING);
                     }
                 }
-
-                // if (this.i > 18) {
-                //     this.playAnimation(this.IMAGES_LANDING);
-                // }
-
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     // Walk animation
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }
-        }, 150);
+        }, 80);
 
 
 

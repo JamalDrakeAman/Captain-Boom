@@ -1,6 +1,7 @@
 class SwordHit extends MovableObject {
     height = 400;
     width = 400;
+    y = 80;
 
 
 
@@ -14,5 +15,5 @@ class SwordHit extends MovableObject {
 
 
 
-    
+
 }

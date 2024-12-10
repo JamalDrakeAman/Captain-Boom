@@ -35,6 +35,7 @@ class World {
             this.checkPickupCoins();
             this.checkPickupAmmo();
             this.checkHitEnemys();
+            this.checkCollisionsWithSword();
         }, 100)
     }
 
@@ -61,6 +62,19 @@ class World {
             }
         });
     }
+
+    checkCollisionsWithSword() {
+        this.level.enemies.forEach((enemy, index) => {
+            if (this.character.isCollidingWithSword(enemy)) {
+                console.log('Collision with Sword, energy', this.character.energy);
+                if (this.keyboard.F) {
+                    this.level.enemies.splice(index, 1);
+                }
+            }
+        });
+    }
+
+
 
 
     checkPickupCoins() { // Muss noch irgendwie nach index entfernt werden sonst wird immer nur das erste entfernt 
@@ -165,8 +179,13 @@ class World {
         this.ctx.translate(-this.camera_x, 0)
 
         // Dynamische Anzeige
-        this.ctx.font = '35px Arial';
-        this.ctx.fillStyle = 'white';
+        this.ctx.font = '40px pirates, Arial, Helvetica, sans-serif';
+        this.ctx.fillStyle = '#51bbe8';
+        this.ctx.shadowColor = '#000000'; // Schattenfarbe (schwarz)
+        this.ctx.shadowBlur = 10; // Weiche des Schattens
+        this.ctx.shadowOffsetX = 5; // Horizontale Verschiebung des Schattens
+        this.ctx.shadowOffsetY = 5; // Vertikale Verschiebung des Schattens
+
         this.ctx.fillText(`${this.coinStatusBar.itemCount}`, 100, 100);
         this.ctx.fillText(`${this.ammoStatusBar.itemCount}`, 100, 150);
 
