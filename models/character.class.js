@@ -123,24 +123,6 @@ class Character extends MovableObject {
 
     ];
 
-    // IMAGES_SWORD_ATTACK_2 = [
-    //     'img/1_character/sword-attack2/pirate_attack2_0.png',
-    //     'img/1_character/sword-attack2/pirate_attack2_1.png',
-    //     'img/1_character/sword-attack2/pirate_attack2_2.png',
-    //     'img/1_character/sword-attack2/pirate_attack2_3.png',
-    //     'img/1_character/sword-attack2/pirate_attack2_4.png',
-    //     'img/1_character/sword-attack2/pirate_attack2_5.png',
-    // ];
-
-    // IMAGES_SWORD_ATTACK_3 = [
-    //     'img/1_character/sword-attack3/pirate_attack3_0.png',
-    //     'img/1_character/sword-attack3/pirate_attack3_1.png',
-    //     'img/1_character/sword-attack3/pirate_attack3_2.png',
-    //     'img/1_character/sword-attack3/pirate_attack3_3.png',
-    //     'img/1_character/sword-attack3/pirate_attack3_4.png',
-    //     'img/1_character/sword-attack3/pirate_attack3_5.png',
-    // ];
-
     world;
 
     walking_sound = new Audio('audio/walk.mp3');
@@ -190,71 +172,7 @@ class Character extends MovableObject {
             this.world.camera_x = -this.x - 35;
         }, 1000 / 60)
 
-        // setInterval(() => {
-        //     this.playAnimation(this.IMAGES_IDLE);
-        // }, 1000 / 10)
-
-
-        // setInterval(() => {
-        //     if (this.world.keyboard.D) {
-        //         this.trigger_sound.play();
-        //         this.playAnimation(this.IMAGES_GUN_SHOOT);
-        //     }
-
-        //     if (this.world.keyboard.F) {
-        //         this.playAnimation(this.IMAGES_SWORD_ATTACK_1);
-        //         this.sword_sound.play();
-        //     }
-        // }, 1000 / 20)
-
-        // setInterval(() => {
-        //     if (this.isDead()) {
-        //         this.playAnimation(this.IMAGES_DEAD);
-        //     } else if (this.isHurt()) {
-        //         this.playAnimation(this.IMAGES_HURT);
-        //     } else if (this.isAboveGround()) {
-
-        //         if (this.speedY > 0) {
-        //             this.playAnimation(this.IMAGES_JUMPING);
-        //             if (this.currentImage < 1) {
-        //                 this.currentImage--
-        //             }
-        //         } else {
-        //             this.playAnimation(this.IMAGES_FALLING);
-        //         }
-
-        //         if (this.i > 18) {
-        //             this.playAnimation(this.IMAGES_LANDING);
-        //         }
-
-        //     } else {
-        //         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-        //             // Walk animation
-        //             this.playAnimation(this.IMAGES_WALKING);
-        //         }
-        //     }
-        // }, 50);
-
-
-
-        // setInterval(() => {
-        //     this.playAnimation(this.IMAGES_IDLE);
-        // }, 1000 / 10)
-
-
-        // setInterval(() => {
-        //     if (this.world.keyboard.D) {
-        //         this.trigger_sound.play();
-        //         this.playAnimation(this.IMAGES_GUN_SHOOT);
-        //     }
-
-        //     if (this.world.keyboard.F) {
-        //         this.playAnimation(this.IMAGES_SWORD_ATTACK_1);
-        //         this.sword_sound.play();
-        //     }
-        // }, 1000 / 20)
-
-
+      
         setInterval(() => {
             this.playAnimation(this.IMAGES_IDLE);
             if (this.isDead()) {

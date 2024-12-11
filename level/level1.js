@@ -1,11 +1,11 @@
 const level1 = new Level(
     [
-        // new Skeleton(),
-        // new Skeleton(),
+        new Skeleton(),
+        new Skeleton(),
         new Skeleton(),
         new Skeleton2(),
-        // new Skeleton2(),
-        // new Skeleton2(),
+        new Skeleton2(),
+        new Skeleton2(),
         new Endboss()
     ],
     [

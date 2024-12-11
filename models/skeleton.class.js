@@ -3,6 +3,8 @@ class Skeleton extends EnemyObject {
     width = 150;
     y = 240;
 
+    jumpCounter = 0;
+
     offset = {
         top: 65,
         left: 50,
@@ -20,6 +22,16 @@ class Skeleton extends EnemyObject {
         'img/3_enemies/skeleton/walk/skeleton-walk7.png',
         'img/3_enemies/skeleton/walk/skeleton-walk8.png',
     ];
+
+    IMAGES_RUN = [
+        'img/3_enemies/skeleton/run/skeleton-run1.png',
+        'img/3_enemies/skeleton/run/skeleton-run2.png',
+        'img/3_enemies/skeleton/run/skeleton-run3.png',
+        'img/3_enemies/skeleton/run/skeleton-run4.png',
+        'img/3_enemies/skeleton/run/skeleton-run5.png',
+        'img/3_enemies/skeleton/run/skeleton-run6.png',
+        'img/3_enemies/skeleton/run/skeleton-run7.png'
+    ]
 
     IMAGES_JUMP = [
         'img/3_enemies/skeleton/jump/skeleton-jump1.png',
@@ -78,6 +90,7 @@ class Skeleton extends EnemyObject {
     constructor() {
         super().loadImage('img/3_enemies/skeleton/walk/skeleton-walk1.png');
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_RUN);
         this.loadImages(this.IMAGES_JUMP);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
@@ -86,6 +99,8 @@ class Skeleton extends EnemyObject {
         this.loadImages(this.IMAGES_ATTACK_3);
         this.x = 500 + Math.random() * 2200;
         this.speed = 0.15 + Math.random() * 0.25;
+
+        this.applyGravity();
         this.animate();
     }
 
@@ -96,24 +111,46 @@ class Skeleton extends EnemyObject {
         }, 1000 / 60);
 
         setInterval(() => {
+
             this.playAnimation(this.IMAGES_WALKING);
             if (this.enemyEnergy == 0) {
                 this.enemyDie();
             } else if (this.isHurt()) {
                 this.enemyHurt();
+            } else if (this.jumpCounter > 50) {
+                this.enemyRun();
             }
-
+            this.jumpCounter++
         }, 200);
 
     }
 
     enemyDie() {
         this.playAnimation(this.IMAGES_DEAD);
-        // this.speed = 0;
+        this.speed = 0;
+
     }
 
     enemyHurt() {
         this.playAnimation(this.IMAGES_HURT);
+    }
+
+    enemyJump() {
+        this.playAnimation(this.IMAGES_JUMP);
+        this.speedY = 30;
+        this.jumpCounter = 0;
+    }
+
+    enemyRun() {
+        this.playAnimation(this.IMAGES_RUN);
+        if (this.jumpCounter == 51) {
+            this.speed = this.speed * 4;
+        } else if (this.jumpCounter == 60) {
+
+            this.jumpCounter = 0;
+
+            this.speed = this.speed / 4;
+        }
     }
 
 

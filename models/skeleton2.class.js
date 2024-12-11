@@ -25,6 +25,28 @@ class Skeleton2 extends EnemyObject {
         'img/3_enemies/skeleton2/walk/skeleton2-walk11.png',
     ];
 
+    IMAGES_ATTACK = [
+        'img/3_enemies/skeleton2/attack/skeleton2-attack0.png',
+        'img/3_enemies/skeleton2/attack/skeleton2-attack1.png',
+        'img/3_enemies/skeleton2/attack/skeleton2-attack2.png',
+        'img/3_enemies/skeleton2/attack/skeleton2-attack3.png',
+        'img/3_enemies/skeleton2/attack/skeleton2-attack4.png',
+        'img/3_enemies/skeleton2/attack/skeleton2-attack5.png',
+        'img/3_enemies/skeleton2/attack/skeleton2-attack6.png',
+        'img/3_enemies/skeleton2/attack/skeleton2-attack7.png',
+        'img/3_enemies/skeleton2/attack/skeleton2-attack8.png',
+        'img/3_enemies/skeleton2/attack/skeleton2-attack9.png',
+        'img/3_enemies/skeleton2/attack/skeleton2-attack10.png',
+        'img/3_enemies/skeleton2/attack/skeleton2-attack11.png',
+        'img/3_enemies/skeleton2/attack/skeleton2-attack12.png'
+    ]
+
+    IMAGES_HURT = [
+        'img/3_enemies/skeleton2/hurt/skeleton2-hurt0.png',
+        'img/3_enemies/skeleton2/hurt/skeleton2-hurt1.png',
+        'img/3_enemies/skeleton2/hurt/skeleton2-hurt2.png'
+    ]
+
     IMAGES_DEAD = [
         'img/3_enemies/skeleton2/death/skeleton2-dead1.png',
         'img/3_enemies/skeleton2/death/skeleton2-dead2.png',
@@ -45,6 +67,8 @@ class Skeleton2 extends EnemyObject {
         super().loadImage('img/3_enemies/skeleton/walk/skeleton-walk1.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_ATTACK);
         this.x = 500 + Math.random() * 2200;
         this.speed = 0.15 + Math.random() * 0.25;
         this.animate();
@@ -58,6 +82,11 @@ class Skeleton2 extends EnemyObject {
 
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
+            if (this.enemyEnergy == 0) {
+                this.enemyDie();
+            } else if (this.isHurt()) {
+                this.enemyHurt();
+            }
 
         }, 200);
 
@@ -66,6 +95,12 @@ class Skeleton2 extends EnemyObject {
 
     enemyDie() {
         this.playAnimation(this.IMAGES_DEAD);
+        this.speed = 0;
+        
+    }
+
+    enemyHurt() {
+        this.playAnimation(this.IMAGES_HURT);
     }
 
 }
