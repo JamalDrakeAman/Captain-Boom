@@ -126,6 +126,8 @@ class Character extends MovableObject {
     world;
 
     walking_sound = new Audio('audio/walk.mp3');
+    jump_sound = new Audio('audio/jump.mp3');
+    landing_sound = new Audio('audio/landing.mp3');
     shoot_sound = new Audio('audio/shot.mp3');
     sword_sound = new Audio('audio/sword.mp3');
     trigger_sound = new Audio('audio/trigger.mp3');
@@ -157,22 +159,20 @@ class Character extends MovableObject {
                 this.otherDirection = false;
                 this.walking_sound.play();
             }
-
             if (this.world.keyboard.LEFT && this.x > -100) {
                 this.moveLeft();
                 this.otherDirection = true;
                 this.walking_sound.play();
             }
-
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
+                this.jump_sound.play();
                 this.isLanding = false;
             }
-
             this.world.camera_x = -this.x - 35;
         }, 1000 / 60)
 
-      
+
         setInterval(() => {
             this.playAnimation(this.IMAGES_IDLE);
             if (this.isDead()) {
@@ -202,6 +202,7 @@ class Character extends MovableObject {
                     if (this.y > 50 && !this.isLanding) {
                         this.counter = 1
                         this.playAnimation(this.IMAGES_LANDING);
+                        this.landing_sound.play();
                     }
                 }
             } else {

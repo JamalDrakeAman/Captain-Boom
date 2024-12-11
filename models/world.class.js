@@ -10,7 +10,7 @@ class World {
     ammoStatusBar = new AmmoStatusBar();
     throwableObjects = [];
     coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
-    ammo = [new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo()];
+    ammo = [new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo()];
 
 
     constructor(canvas, keyboard) {
@@ -37,7 +37,8 @@ class World {
             this.checkHitEnemys();
             this.checkCollisionsWithSword();
 
-            this.clerDeadEnemys();
+            this.clearDeadEnemys();
+            // this.checkEnemyClose();
         }, 100)
     }
 
@@ -59,7 +60,7 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
-                console.log('Collision with Character, energy', this.character.energy);
+                // console.log('Collision with Character, energy', this.character.energy);
                 this.healthStatusBar.setPercentage(this.character.energy);
             }
         });
@@ -113,9 +114,9 @@ class World {
             this.throwableObjects.forEach((obj) => {
                 if (obj.isColliding(enemy)) {
                     // this.throwableObjects.hit();
-                    console.log('Ammo Collision with Character', this.throwableObjects);
-                    console.log('Ammo', obj);
-                    console.log('Enemy', enemy);
+                    // console.log('Ammo Collision with Character', this.throwableObjects);
+                    // console.log('Ammo', obj);
+                    // console.log('Enemy', enemy);
 
                     // this.level.enemies.splice(index, 1);
                     this.level.enemies[index].shootHit()
@@ -128,15 +129,25 @@ class World {
         });
     }
 
-    clerDeadEnemys() {
+    clearDeadEnemys() {
         this.level.enemies.forEach((enemy, index) => {
             if (enemy.enemyEnergy == 0) {
+
                 setTimeout(() => {
                     this.level.enemies.splice(index, 1);
-                }, 2000)
+                }, 1000)
             }
         });
     }
+
+    // checkEnemyClose(){
+    //     this.level.enemies.forEach((enemy, index) => {
+    //         if (Math.abs(this.character.x - enemy.x) <= 200) {
+    //            console.log('Enemy go Attack', enemy);
+               
+    //         }
+    //     });
+    // }
 
 
     draw() {

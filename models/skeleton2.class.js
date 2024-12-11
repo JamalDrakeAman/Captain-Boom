@@ -96,11 +96,15 @@ class Skeleton2 extends EnemyObject {
     enemyDie() {
         this.playAnimation(this.IMAGES_DEAD);
         this.speed = 0;
-        
+
     }
 
     enemyHurt() {
         this.playAnimation(this.IMAGES_HURT);
+    }
+
+    enemyAttack() {
+        this.playAnimation(this.IMAGES_ATTACK);
     }
 
 }
