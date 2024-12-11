@@ -3,7 +3,8 @@ class Skeleton extends EnemyObject {
     width = 150;
     y = 240;
 
-    jumpCounter = 0;
+    runCounter = Math.round(Math.random() * 100);
+    run = false;
 
     offset = {
         top: 65,
@@ -65,7 +66,20 @@ class Skeleton extends EnemyObject {
         'img/3_enemies/skeleton/attack1/skeleton-attack4.png',
         'img/3_enemies/skeleton/attack1/skeleton-attack5.png',
         'img/3_enemies/skeleton/attack1/skeleton-attack6.png',
-        'img/3_enemies/skeleton/attack1/skeleton-attack7.png'
+        'img/3_enemies/skeleton/attack1/skeleton-attack7.png',
+
+        'img/3_enemies/skeleton/attack2/skeleton-attack1.png',
+        'img/3_enemies/skeleton/attack2/skeleton-attack2.png',
+        'img/3_enemies/skeleton/attack2/skeleton-attack3.png',
+        'img/3_enemies/skeleton/attack2/skeleton-attack4.png',
+
+        'img/3_enemies/skeleton/attack3/skeleton-attack1.png',
+        'img/3_enemies/skeleton/attack3/skeleton-attack2.png',
+        'img/3_enemies/skeleton/attack3/skeleton-attack3.png',
+        'img/3_enemies/skeleton/attack3/skeleton-attack4.png',
+        'img/3_enemies/skeleton/attack3/skeleton-attack5.png',
+        'img/3_enemies/skeleton/attack3/skeleton-attack6.png',
+        'img/3_enemies/skeleton/attack3/skeleton-attack7.png'
     ]
 
     IMAGES_ATTACK_2 = [
@@ -97,7 +111,7 @@ class Skeleton extends EnemyObject {
         this.loadImages(this.IMAGES_ATTACK_1);
         this.loadImages(this.IMAGES_ATTACK_2);
         this.loadImages(this.IMAGES_ATTACK_3);
-        this.x = 500 + Math.random() * 2200;
+        this.x = 500 + Math.random() * 2500;
         this.speed = 0.15 + Math.random() * 0.25;
 
         this.applyGravity();
@@ -117,10 +131,10 @@ class Skeleton extends EnemyObject {
                 this.enemyDie();
             } else if (this.isHurt()) {
                 this.enemyHurt();
-            } else if (this.jumpCounter > 50) {
+            } else if (this.runCounter > 100) {
                 this.enemyRun();
             }
-            this.jumpCounter++
+            this.runCounter++
         }, 200);
 
     }
@@ -133,6 +147,7 @@ class Skeleton extends EnemyObject {
 
     enemyHurt() {
         this.playAnimation(this.IMAGES_HURT);
+        this.runCounter = 97;
     }
 
     enemyJump() {
@@ -143,13 +158,13 @@ class Skeleton extends EnemyObject {
 
     enemyRun() {
         this.playAnimation(this.IMAGES_RUN);
-        if (this.jumpCounter == 51) {
-            this.speed = this.speed * 4;
-        } else if (this.jumpCounter == 60) {
-
-            this.jumpCounter = 0;
-
-            this.speed = this.speed / 4;
+        if (!this.run) {
+            this.speed = this.speed * 8;
+            this.run = true;
+        } else if (this.runCounter > 110) {
+            this.runCounter = Math.round(Math.random() * 100);
+            this.speed = this.speed / 8;
+            this.run = false;
         }
     }
 

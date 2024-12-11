@@ -3,6 +3,14 @@ const level1 = new Level(
         new Skeleton(),
         new Skeleton(),
         new Skeleton(),
+        new Skeleton(),
+        new Skeleton(),
+        new Skeleton(),
+        new Skeleton(),
+        new Skeleton(),
+        new Skeleton(),
+        new Skeleton(),
+        new Skeleton(),
         new Skeleton2(),
         new Skeleton2(),
         new Skeleton2(),
@@ -46,8 +54,5 @@ const level1 = new Level(
         new BackgroundObject('img/5_background/layers/cloud.png', 719 * 3),
         new BackgroundObject('img/5_background/layers/decor.png', 719 * 3),
         new BackgroundObject('img/5_background/layers/land.png', 719 * 3),
-    ],
-    [
-        new Coin()
     ]
 );

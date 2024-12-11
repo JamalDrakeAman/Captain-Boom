@@ -84,14 +84,22 @@ class Endboss extends MovableObject {
 
     animate() {
         let i = 0;
+        let attackCounter = 100;
         setInterval(() => {
 
             if (i < 10) {
                 this.playAnimation(this.IMAGES_ALERT);
+            } else if (attackCounter < 50) {
+                this.playAnimation(this.IMAGES_ATTACK);
+                if (attackCounter < 0) {
+                    attackCounter = 100;
+                }
             } else {
                 this.playAnimation(this.IMAGES_WALKING);
             }
             i++;
+            attackCounter -= 2
+            console.log('couter for attack', attackCounter);
 
             if (world.character.x > 1700 && !this.hadFirstContact) {
                 i = 0;

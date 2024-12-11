@@ -10,7 +10,7 @@ class World {
     ammoStatusBar = new AmmoStatusBar();
     throwableObjects = [];
     coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
-    ammo = [new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo()];
+    ammo = [new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo()];
 
 
     constructor(canvas, keyboard) {
@@ -36,6 +36,8 @@ class World {
             this.checkPickupAmmo();
             this.checkHitEnemys();
             this.checkCollisionsWithSword();
+
+            this.clerDeadEnemys();
         }, 100)
     }
 
@@ -71,8 +73,8 @@ class World {
                 if (this.keyboard.F) {
                     // this.level.enemies.splice(index, 1);
                     this.level.enemies[index].swordHit();
-                    console.log('Hit enemy Energy',this.level.enemies[index].enemyEnergy);
-                    
+                    console.log('Hit enemy Energy', this.level.enemies[index].enemyEnergy);
+
                 }
             }
         });
@@ -123,6 +125,16 @@ class World {
                 }
             })
 
+        });
+    }
+
+    clerDeadEnemys() {
+        this.level.enemies.forEach((enemy, index) => {
+            if (enemy.enemyEnergy == 0) {
+                setTimeout(() => {
+                    this.level.enemies.splice(index, 1);
+                }, 2000)
+            }
         });
     }
 
@@ -182,7 +194,7 @@ class World {
         this.ctx.shadowOffsetY = 0; // Vertikal zurücksetzen
     }
 
-    showEnemyEnergy(index){
+    showEnemyEnergy(index) {
         this.ctx.fillText(`${this.level.enemies[index].enemyEnergy}`, 100, 100);
     }
 

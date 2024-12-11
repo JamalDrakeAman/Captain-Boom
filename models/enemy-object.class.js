@@ -41,7 +41,7 @@ class EnemyObject extends MovableObject {
 
 
     shootHit(){
-        this.enemyEnergy -= 50;
+        this.enemyEnergy -= 40;
         if (this.enemyEnergy < 0) {
             this.enemyEnergy = 0;
         } else {
