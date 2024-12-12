@@ -246,7 +246,7 @@ canvas {
     transform: translateY(0);
 }
 
-.controls-info-close-btn {
+/* .controls-info-close-btn {
     position: absolute;
     bottom: 20px;
     background-color: #d84646;
@@ -259,7 +259,7 @@ canvas {
 
 .controls-info-close-btn:hover {
     scale: 1.1;
-}
+} */
 
 
 /* Schimmer-Effekt */
