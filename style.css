@@ -170,8 +170,9 @@ canvas {
 .controls-info-container {
     position: absolute;
     flex-direction: column;
-    width: 600px;
-    height: 550px;
+    width: 700px;
+    /* height: 550px; */
+    height: 350px;
     background-color: rgba(74, 129, 202, 1);
     display: flex;
     justify-content: center;
@@ -183,23 +184,24 @@ canvas {
 }
 
 .controls-box {
-    width: 500px;
-    height: 450px;
-    flex-direction: column;
-    border: solid 1px;
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 700px;
+    height: 500px;
 }
 
 .arrows-box {
-    position: absolute;
+    color: black;
     display: flex;
-    right: 80px;
-    justify-content: center;
-    border: solid 1px;
+    justify-content: space-between;
+    align-items: center;
     width: 200px;
     height: 200px;
-    top: 100px;
-    right: 0;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.8);
+    padding: 10px;
 }
 
 .keyboard-icon {
@@ -207,47 +209,10 @@ canvas {
     width: 50px;
 }
 
-.up-arrow {
-    position: absolute;
-    top: 30px;
-}
-
-.left-arrow {
-    position: absolute;
-    top: 90px;
-    right: 135px;
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.8);
-    background-color: white;
-    border-radius: 10px;
-    animation: pulse 2s infinite ease-in-out;
-}
-
-.right-arrow {
-    position: absolute;
-    top: 90px;
-    right: 15px;
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.8);
-    background-color: white;
-    border-radius: 10px;
-    animation: pulse 2s infinite ease-in-out;
-}
-
-.down-arrow {
-    position: absolute;
-    top: 90px;
-}
-
-.info-left {
-    position: absolute;
-    left: 5px;
-    bottom: 20px;
-    animation: pulse 2s infinite ease-in-out;
-}
-
-.info-right {
-    position: absolute;
-    right: 5px;
-    bottom: 20px;
+.arraw-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     animation: pulse 2s infinite ease-in-out;
 }
 
@@ -256,30 +221,26 @@ canvas {
     width: 150px;
 }
 
-.action-box{
-    position: absolute;
+.action-box {
+    color: black;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    border: solid 1px;
     width: 250px;
     height: 200px;
-    top: 100px;
-    left: 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.8);
+    background-color: white;
+    padding: 10px;
 }
 
-.action-info{
+.action-info {
     display: flex;
     align-items: center;
     gap: 10px;
+    animation: pulse 2s infinite ease-in-out;
 }
 
-.btn-effect{
-    animation: pulse 2s infinite ease-in-out;
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.8);
-    background-color: white;
-    border-radius: 10px;
-}
 
 .show-hide-box {
     transform: translateY(0);
