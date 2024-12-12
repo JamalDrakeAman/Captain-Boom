@@ -1,5 +1,7 @@
 class AmmoStatusBar extends StatusBar {
 
+    itemCount = 1;
+
     constructor() {
         super();
         this.loadImage('img/8_item/ammo/bullet0.png');

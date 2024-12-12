@@ -197,8 +197,8 @@ class Character extends MovableObject {
                         this.currentImage--
                         this.isLanding = false;
                     }
-                    console.log('The SpeedY', this.speedY);
-                    console.log('character y:', this.y);
+                    // console.log('The SpeedY', this.speedY);
+                    // console.log('character y:', this.y);
                     if (this.y > 50 && !this.isLanding) {
                         this.counter = 1
                         this.playAnimation(this.IMAGES_LANDING);

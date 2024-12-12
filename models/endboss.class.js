@@ -100,7 +100,6 @@ class Endboss extends MovableObject {
             i++;
             attackCounter -= 2
             // console.log('couter for attack', attackCounter);
-
             if (world.character.x > 1700 && !this.hadFirstContact) {
                 i = 0;
                 this.hadFirstContact = true
