@@ -8,6 +8,7 @@ let game_music_sound = new Audio('audio/pirates-music.mp3');
 
 
 function init() {
+    initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     console.log('My character is', world);
