@@ -86,7 +86,8 @@ class World {
                     // this.level.enemies.splice(index, 1);
                     enemy.swordHit();
                     console.log('Hit enemy Energy', enemy.enemyEnergy);
-
+                    enemy.showEnergy = true; // Energieanzeige aktivieren
+                    setTimeout(() => enemy.showEnergy = false, 2000); // Nach 2 Sekunden ausblenden
                 }
             }
         });
@@ -127,13 +128,15 @@ class World {
                     // this.throwableObjects.hit();
                     // console.log('Ammo Collision with Character', this.throwableObjects);
                     // console.log('Ammo', obj);
-                    // console.log('Enemy', enemy);
+                    console.log('Enemy', enemy);
 
                     // this.level.enemies.splice(index, 1);
                     this.level.enemies[index].shootHit()
                     // this.level.enemies[index].enemyDie();
 
                     // this.healthStatusBar.setPercentage(this.character.energy);
+                    enemy.showEnergy = true; // Energieanzeige aktivieren
+                    setTimeout(() => enemy.showEnergy = false, 2000); // Nach 2 Sekunden ausblenden
                 }
             })
 
@@ -183,6 +186,18 @@ class World {
         this.addObjectsToMap(this.ammo);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+
+
+        this.level.enemies.forEach((enemy) => {
+            if (enemy.showEnergy) {
+                this.ctx.font = '25px pirates, Arial, Helvetica, sans-serif';
+                this.ctx.fillStyle = 'red';
+                this.ctx.fillText(`${enemy.enemyEnergy}o`, enemy.x + enemy.width / 2, enemy.y + 45);
+            }
+        });
+
+
+
         this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0)
