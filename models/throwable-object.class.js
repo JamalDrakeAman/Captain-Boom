@@ -14,21 +14,27 @@ class ThrowableObject extends MovableObject {
         bottom: 130
     };
 
-    constructor(x, y) {
+    constructor(x, y, otherDirection) {
         super().loadImage('img/6_gun/shot/shot_0.png');
         this.loadImages(this.IMAGES_SHOOT);
         this.x = x;
         this.y = y;
         this.height = 350;
         this.width = 250;
+
+        this.otherDirection = otherDirection
         this.shoot();
     }
 
     shoot() {
-        // this.speedY = 30;
-        // this.applyGravity();
         setInterval(() => {
-            this.x += 10;
+
+            if (this.otherDirection) {
+                this.x -= 10;
+            } else {
+                this.x += 10;
+            }
+
         }, 10)
         setInterval(() => {
             this.playAnimation(this.IMAGES_SHOOT);

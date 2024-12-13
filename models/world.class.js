@@ -45,6 +45,16 @@ class World {
 
     checkThrowObjects() {
         if (this.keyboard.D && this.ammoStatusBar.itemCount > 0) {
+
+            if (this.character.otherDirection) {
+                let ammo = new ThrowableObject(this.character.x + 160, this.character.y + 30, this.character.otherDirection);
+                this.throwableObjects.push(ammo);
+                this.ammoStatusBar.itemCount--;
+                this.character.shoot_sound.play();
+                setTimeout(() => {
+                    this.throwableObjects.splice(0, 1);
+                }, 300)
+            } else {
             let ammo = new ThrowableObject(this.character.x + 160, this.character.y + 30);
             this.throwableObjects.push(ammo);
             this.ammoStatusBar.itemCount--;
@@ -52,6 +62,7 @@ class World {
             setTimeout(() => {
                 this.throwableObjects.splice(0, 1);
             }, 300)
+        }
         }
     }
 
@@ -144,7 +155,7 @@ class World {
     //     this.level.enemies.forEach((enemy, index) => {
     //         if (Math.abs(this.character.x - enemy.x) <= 200) {
     //            console.log('Enemy go Attack', enemy);
-               
+
     //         }
     //     });
     // }
