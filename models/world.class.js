@@ -143,6 +143,7 @@ class World {
         });
     }
 
+    
     clearDeadEnemys() {
         this.level.enemies.forEach((enemy) => {
             if (enemy.enemyEnergy == 0) {
