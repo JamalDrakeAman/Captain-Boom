@@ -55,14 +55,14 @@ class World {
                     this.throwableObjects.splice(0, 1);
                 }, 300)
             } else {
-            let ammo = new ThrowableObject(this.character.x + 160, this.character.y + 30);
-            this.throwableObjects.push(ammo);
-            this.ammoStatusBar.itemCount--;
-            this.character.shoot_sound.play();
-            setTimeout(() => {
-                this.throwableObjects.splice(0, 1);
-            }, 300)
-        }
+                let ammo = new ThrowableObject(this.character.x + 160, this.character.y + 30);
+                this.throwableObjects.push(ammo);
+                this.ammoStatusBar.itemCount--;
+                this.character.shoot_sound.play();
+                setTimeout(() => {
+                    this.throwableObjects.splice(0, 1);
+                }, 300)
+            }
         }
     }
 
@@ -79,13 +79,13 @@ class World {
 
 
     checkCollisionsWithSword() {
-        this.level.enemies.forEach((enemy, index) => {
+        this.level.enemies.forEach((enemy) => {
             if (this.character.isCollidingWithSword(enemy)) {
                 console.log('Collision with Sword, energy', this.character.energy);
                 if (this.keyboard.F) {
                     // this.level.enemies.splice(index, 1);
-                    this.level.enemies[index].swordHit();
-                    console.log('Hit enemy Energy', this.level.enemies[index].enemyEnergy);
+                    enemy.swordHit();
+                    console.log('Hit enemy Energy', enemy.enemyEnergy);
 
                 }
             }
@@ -141,11 +141,10 @@ class World {
     }
 
     clearDeadEnemys() {
-        this.level.enemies.forEach((enemy, index) => {
+        this.level.enemies.forEach((enemy) => {
             if (enemy.enemyEnergy == 0) {
-
                 setTimeout(() => {
-                    this.level.enemies.splice(index, 1);
+                    this.level.enemies = this.level.enemies.filter(e => e !== enemy);
                 }, 1000)
             }
         });
