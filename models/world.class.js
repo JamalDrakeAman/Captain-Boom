@@ -143,7 +143,7 @@ class World {
         });
     }
 
-    
+
     clearDeadEnemys() {
         this.level.enemies.forEach((enemy) => {
             if (enemy.enemyEnergy == 0) {
@@ -188,7 +188,6 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
 
-
         this.level.enemies.forEach((enemy) => {
             if (enemy.showEnergy) {
                 this.ctx.font = '25px pirates, Arial, Helvetica, sans-serif';
@@ -197,16 +196,12 @@ class World {
             }
         });
 
-
-
         this.addObjectsToMap(this.throwableObjects);
-
-        this.ctx.translate(-this.camera_x, 0)
+        this.ctx.translate(-this.camera_x, 0);
 
         // Dynamische Anzeige
         this.ctx.font = '40px pirates, Arial, Helvetica, sans-serif';
         this.ctx.fillStyle = '#51bbe8';
-
         this.ctx.fillText(`${this.coinStatusBar.itemCount}`, 100, 100);
         this.ctx.fillText(`${this.ammoStatusBar.itemCount}`, 100, 155);
 
@@ -230,11 +225,6 @@ class World {
         this.ctx.shadowOffsetX = 0; // Horizontal zurücksetzen
         this.ctx.shadowOffsetY = 0; // Vertikal zurücksetzen
     }
-
-    showEnemyEnergy(index) {
-        this.ctx.fillText(`${this.level.enemies[index].enemyEnergy}`, 100, 100);
-    }
-
 
     addObjectsToMap(objects) {
         objects.forEach(o => {
