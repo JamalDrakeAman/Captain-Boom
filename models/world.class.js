@@ -34,7 +34,7 @@ class World {
             this.checkThrowObjects();
             this.checkPickupCoins();
             this.checkPickupAmmo();
-            this.checkHitEnemys();
+            this.checkShootHitEnemys();
             this.checkCollisionsWithSword();
 
             this.clearDeadEnemys();
@@ -120,7 +120,7 @@ class World {
     }
 
 
-    checkHitEnemys() {
+    checkShootHitEnemys() {
         this.level.enemies.forEach((enemy, index) => {
 
             this.throwableObjects.forEach((obj) => {

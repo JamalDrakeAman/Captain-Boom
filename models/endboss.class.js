@@ -1,7 +1,9 @@
-class Endboss extends MovableObject {
+class Endboss extends EnemyObject {
     height = 330;
     width = 430;
     y = 70;
+
+    enemyEnergy = 1000;
 
     offset = {
         top: 100,
