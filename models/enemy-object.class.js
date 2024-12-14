@@ -4,7 +4,6 @@ class EnemyObject extends MovableObject {
     y = 240;
 
     showEnergy = false;
-
     enemyEnergy = 100;
 
     IMAGES_WALKING = [
