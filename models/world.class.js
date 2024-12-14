@@ -47,7 +47,7 @@ class World {
         if (this.keyboard.D && this.ammoStatusBar.itemCount > 0) {
 
             if (this.character.otherDirection) {
-                let ammo = new ThrowableObject(this.character.x + 160, this.character.y + 30, this.character.otherDirection);
+                let ammo = new ThrowableObject(this.character.x - 10, this.character.y + 30, this.character.otherDirection);
                 this.throwableObjects.push(ammo);
                 this.ammoStatusBar.itemCount--;
                 this.character.shoot_sound.play();
