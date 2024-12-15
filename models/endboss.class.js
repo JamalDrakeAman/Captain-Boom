@@ -103,7 +103,7 @@ class Endboss extends EnemyObject {
 
             if (i < 10) {
                 this.playAnimation(this.IMAGES_ALERT);
-            } else if (this.enemyEnergy == 0) {
+            } else if (this.endBossDead()) {
                 this.playAnimation(this.IMAGES_DEATH);
             } else if (attackCounter < 50) {
                 this.playAnimation(this.IMAGES_ATTACK);
@@ -127,6 +127,11 @@ class Endboss extends EnemyObject {
                 this.enemyEnergy += 10;
             }
         }, 1000)
+    }
+
+
+    endBossDead() {
+        return this.enemyEnergy == 0;
     }
 
 

@@ -42,7 +42,7 @@ class World {
             this.checkCollisionsWithSword();
 
             this.clearDeadEnemys();
-            // this.checkEnemyClose();
+            this.checkEnemyClose();
         }, 100)
     }
 
@@ -160,6 +160,20 @@ class World {
         });
     }
 
+
+
+    checkEnemyClose() {
+        let distance = 100000000000;
+        this.level.enemies.forEach(enemy => {
+            let enemyDistance = Math.abs(enemy.x - this.character.x - 100);
+            if (enemyDistance < distance) {
+                distance = enemyDistance;
+            }
+            console.log('Distance Enemy to Character', enemy);
+        })
+        console.log('Distance Enemy to Character', distance);
+        return distance;
+    }
     // checkEnemyClose(){
     //     this.level.enemies.forEach((enemy, index) => {
     //         if (Math.abs(this.character.x - enemy.x) <= 200) {
