@@ -35,27 +35,18 @@ class MovableObject extends DrawableObject {
     }
 
     isCollidingWithSword(mo) {
-        return this.x + this.width - this.offset.right + 75 > mo.x + mo.offset.left && // +100 für den erweiterten Bereich
-            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
-            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+        if (this.otherDirection) {
+            return this.x + this.offset.left - 75 < mo.x + mo.width - mo.offset.right && // Erweiterter Bereich nach links
+                this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+                this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+                this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
+        } else {
+            return this.x + this.width - this.offset.right + 75 > mo.x + mo.offset.left && // +100 für den erweiterten Bereich
+                this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+                this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+                this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+        }
     }
-
-    // isCollidingWithSword(mo) {
-    //     // Wenn es nicht klappt, ChatGPT fragen
-    //     // "Ich möchte bitte, dass diese Funktion noch 100px mehr nach rechts mit beinhaltet"
-    //     if (this.otherDirection) {
-    //         return this.x + this.width - (this.offset.right - 100) > mo.x + mo.offset.left &&
-    //             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
-    //             this.x + this.offset.left < mo.x + mo.width - (mo.offset.right - 100) &&
-    //             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
-    //     } else {
-    //         return this.x + this.width - (this.offset.right + 100) > mo.x + mo.offset.left &&
-    //             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
-    //             this.x + this.offset.left < mo.x + mo.width - (mo.offset.right + 100) &&
-    //             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
-    //     }
-    // }
 
 
     hit() {
