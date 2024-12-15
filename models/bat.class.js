@@ -4,7 +4,7 @@ class Bat extends EnemyObject {
     y = 240;
 
 
-    enemyEnergy = 50;
+    enemyEnergy = 30 ;
 
     runCounter = Math.round(Math.random() * 100);
     run = false;

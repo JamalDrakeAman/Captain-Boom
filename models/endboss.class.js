@@ -12,6 +12,17 @@ class Endboss extends EnemyObject {
         bottom: 0
     }
 
+    IMAGES_IDLE = [
+        'img/4_boss/idle/Bringer-of-Death_Idle_1.png',
+        'img/4_boss/idle/Bringer-of-Death_Idle_2.png',
+        'img/4_boss/idle/Bringer-of-Death_Idle_3.png',
+        'img/4_boss/idle/Bringer-of-Death_Idle_4.png',
+        'img/4_boss/idle/Bringer-of-Death_Idle_5.png',
+        'img/4_boss/idle/Bringer-of-Death_Idle_6.png',
+        'img/4_boss/idle/Bringer-of-Death_Idle_7.png',
+        'img/4_boss/idle/Bringer-of-Death_Idle_8.png'
+    ]
+
     IMAGES_WALKING = [
         'img/4_boss/walk/Bringer-of-Death_Walk_1.png',
         'img/4_boss/walk/Bringer-of-Death_Walk_2.png',
@@ -74,6 +85,7 @@ class Endboss extends EnemyObject {
 
     constructor() {
         super().loadImage(this.IMAGES_HURT[0]);
+        this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_ALERT);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_ATTACK);
@@ -97,7 +109,7 @@ class Endboss extends EnemyObject {
                     attackCounter = 100;
                 }
             } else {
-                this.playAnimation(this.IMAGES_WALKING);
+                this.playAnimation(this.IMAGES_IDLE);
             }
             i++;
             attackCounter -= 2

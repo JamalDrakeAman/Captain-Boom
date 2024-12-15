@@ -206,7 +206,7 @@ class World {
         this.ctx.fillText(`${this.ammoStatusBar.itemCount}`, 100, 155);
 
         this.ctx.fillStyle = 'red';
-        this.ctx.fillText(`${this.level.enemies[this.level.enemies.length - 1].enemyEnergy} o`, 590, 90);
+        this.ctx.fillText(`${this.level.enemies[this.level.enemies.length - 1].enemyEnergy}o`, 600, 90);
 
         // draw() wird immer wieder aufgerufen
         let self = this;
