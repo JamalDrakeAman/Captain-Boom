@@ -12,12 +12,13 @@ class Health extends PickupItemObject {
     }
 
     IMAGES = [
-      'img/8_item/health/heart-icon.png'
+        'img/8_item/health/heart-icon0.png',
+        'img/8_item/health/heart-icon1.png'
     ];
 
 
     constructor() {
-        super().loadImage('img/8_item/health/heart-icon.png');
+        super().loadImage('img/8_item/health/heart-icon0.png');
         this.loadImages(this.IMAGES);
         this.x = 800 + Math.random() * 1000;
         this.y = 50 + Math.random() * 300;
