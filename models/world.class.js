@@ -42,7 +42,7 @@ class World {
             this.checkCollisionsWithSword();
 
             this.clearDeadEnemys();
-            this.checkEnemyClose();
+            this.checkEnemyDistance();
         }, 100)
     }
 
@@ -162,7 +162,7 @@ class World {
 
 
 
-    checkEnemyClose() {
+    checkEnemyDistance() {
         let distance = 100000000000;
         this.level.enemies.forEach(enemy => {
             let enemyDistance = Math.abs(enemy.x - this.character.x - 100);
