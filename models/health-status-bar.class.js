@@ -19,4 +19,14 @@ class HealthStatusBar extends StatusBar {
         this.setPercentage(100);
     }
 
+
+    pickupItem() {
+        if (this.percentage < 100) {
+            this.percentage + 20;
+        } else {
+            this.percentage = 100
+        }
+        return this.percentage;
+    }
+
 }

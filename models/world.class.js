@@ -11,6 +11,7 @@ class World {
     throwableObjects = [];
     coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
     ammo = [new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo()];
+    health = [new Health()]
 
 
     constructor(canvas, keyboard) {
@@ -34,6 +35,9 @@ class World {
             this.checkThrowObjects();
             this.checkPickupCoins();
             this.checkPickupAmmo();
+
+            this.checkPickupHealth()
+
             this.checkShootHitEnemys();
             this.checkCollisionsWithSword();
 
@@ -107,6 +111,18 @@ class World {
     }
 
 
+    checkPickupHealth() { // Muss noch irgendwie nach index entfernt werden sonst wird immer nur das erste entfernt 
+        this.health.forEach((health, index) => {
+            if (this.character.isColliding(health)) {
+                console.log('Collision with Health');
+                this.health.splice(index, 1);
+                this.character.health();
+                this.healthStatusBar.setPercentage(this.character.energy);
+            }
+        });
+    }
+
+
     checkPickupAmmo() { // Muss noch irgendwie nach index entfernt werden sonst wird immer nur das erste entfernt 
         this.ammo.forEach((ammo, index) => {
             if (this.character.isColliding(ammo)) {
@@ -122,24 +138,14 @@ class World {
 
     checkShootHitEnemys() {
         this.level.enemies.forEach((enemy, index) => {
-
             this.throwableObjects.forEach((obj) => {
                 if (obj.isColliding(enemy)) {
-                    // this.throwableObjects.hit();
-                    // console.log('Ammo Collision with Character', this.throwableObjects);
-                    // console.log('Ammo', obj);
                     console.log('Enemy', enemy);
-
-                    // this.level.enemies.splice(index, 1);
                     this.level.enemies[index].shootHit()
-                    // this.level.enemies[index].enemyDie();
-
-                    // this.healthStatusBar.setPercentage(this.character.energy);
                     enemy.showEnergy = true; // Energieanzeige aktivieren
                     setTimeout(() => enemy.showEnergy = false, 2000); // Nach 2 Sekunden ausblenden
                 }
             })
-
         });
     }
 
@@ -159,6 +165,40 @@ class World {
     //         if (Math.abs(this.character.x - enemy.x) <= 200) {
     //            console.log('Enemy go Attack', enemy);
 
+    //         }
+    //     });
+    // }
+
+    // checkEnemyClose() {
+    //     this.level.enemies.forEach((enemy) => {
+    //         const distance = Math.abs(this.character.x - enemy.x);
+    //         if (distance <= 200) {
+    //             if (this.character.x < enemy.x) {
+    //                 console.log('Enemy is close on the right:', enemy);
+    //             } else {
+    //                 console.log('Enemy is close on the left:', enemy);
+    //             }
+    //         }
+    //     });
+    // }
+
+    // checkEnemyClose() {
+    //     this.level.enemies.forEach((enemy) => {
+    //         const distance = Math.abs(this.character.x - enemy.x);
+
+    //         if (distance <= 200) {
+    //             if (this.character.x < enemy.x) {
+    //                 // Charakter ist links vom Gegner
+    //                 enemy.characterPosition = 'left';
+    //                 console.log('Enemy detects character close on the left:', enemy);
+    //             } else if (this.character.x > enemy.x) {
+    //                 // Charakter ist rechts vom Gegner
+    //                 enemy.characterPosition = 'right';
+    //                 console.log('Enemy detects character close on the right:', enemy);
+    //             }
+    //         } else {
+    //             // Charakter ist nicht in der Nähe
+    //             enemy.characterPosition = 'none';
     //         }
     //     });
     // }
@@ -185,6 +225,7 @@ class World {
 
         this.addObjectsToMap(this.coins);
         this.addObjectsToMap(this.ammo);
+        this.addObjectsToMap(this.health);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
 

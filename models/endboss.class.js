@@ -119,6 +119,12 @@ class Endboss extends EnemyObject {
             }
 
         }, 200);
+
+        setInterval(() => {
+            if (this.enemyEnergy < 1000) {
+                this.enemyEnergy += 10
+            }
+        }, 1000)
     }
 
 

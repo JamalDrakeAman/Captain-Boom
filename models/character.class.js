@@ -218,5 +218,14 @@ class Character extends MovableObject {
     }
 
 
+    health() {
+        if (this.energy <= 80) {
+            this.energy = this.energy + 20;
+        } else {
+            this.energy = 100;
+        }
+    }
+
+
 
 }
