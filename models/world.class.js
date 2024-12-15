@@ -169,53 +169,14 @@ class World {
             if (enemyDistance < distance) {
                 distance = enemyDistance;
             }
-            console.log('Distance Enemy to Character', enemy);
+            // console.log('Distance Enemy to Character', enemy);
         })
-        console.log('Distance Enemy to Character', distance);
+        if (distance < 400) {
+            console.log('Distance Enemy to Character', distance);
+        }
+
         return distance;
     }
-    // checkEnemyClose(){
-    //     this.level.enemies.forEach((enemy, index) => {
-    //         if (Math.abs(this.character.x - enemy.x) <= 200) {
-    //            console.log('Enemy go Attack', enemy);
-
-    //         }
-    //     });
-    // }
-
-    // checkEnemyClose() {
-    //     this.level.enemies.forEach((enemy) => {
-    //         const distance = Math.abs(this.character.x - enemy.x);
-    //         if (distance <= 200) {
-    //             if (this.character.x < enemy.x) {
-    //                 console.log('Enemy is close on the right:', enemy);
-    //             } else {
-    //                 console.log('Enemy is close on the left:', enemy);
-    //             }
-    //         }
-    //     });
-    // }
-
-    // checkEnemyClose() {
-    //     this.level.enemies.forEach((enemy) => {
-    //         const distance = Math.abs(this.character.x - enemy.x);
-
-    //         if (distance <= 200) {
-    //             if (this.character.x < enemy.x) {
-    //                 // Charakter ist links vom Gegner
-    //                 enemy.characterPosition = 'left';
-    //                 console.log('Enemy detects character close on the left:', enemy);
-    //             } else if (this.character.x > enemy.x) {
-    //                 // Charakter ist rechts vom Gegner
-    //                 enemy.characterPosition = 'right';
-    //                 console.log('Enemy detects character close on the right:', enemy);
-    //             }
-    //         } else {
-    //             // Charakter ist nicht in der Nähe
-    //             enemy.characterPosition = 'none';
-    //         }
-    //     });
-    // }
 
 
     draw() {
