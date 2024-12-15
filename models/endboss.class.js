@@ -103,6 +103,8 @@ class Endboss extends EnemyObject {
 
             if (i < 10) {
                 this.playAnimation(this.IMAGES_ALERT);
+            } else if (this.enemyEnergy == 0) {
+                this.playAnimation(this.IMAGES_DEATH);
             } else if (attackCounter < 50) {
                 this.playAnimation(this.IMAGES_ATTACK);
                 if (attackCounter < 0) {
@@ -121,8 +123,8 @@ class Endboss extends EnemyObject {
         }, 200);
 
         setInterval(() => {
-            if (this.enemyEnergy < 1000) {
-                this.enemyEnergy += 10
+            if (this.enemyEnergy < 1000 && this.enemyEnergy > 0) {
+                this.enemyEnergy += 10;
             }
         }, 1000)
     }

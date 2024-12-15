@@ -11,7 +11,7 @@ class World {
     throwableObjects = [];
     coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
     ammo = [new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo()];
-    health = [new Health()]
+    health = [new Health(), new Health(), new Health()]
 
 
     constructor(canvas, keyboard) {

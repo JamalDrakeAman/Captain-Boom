@@ -77,12 +77,10 @@ class Character extends MovableObject {
         'img/1_character/gun-out/pirate_gun_out3.png',
         'img/1_character/gun-out/pirate_gun_out3.png',
 
-
         'img/1_character/gun-out/pirate_gun_out4.png',
         'img/1_character/gun-out/pirate_gun_out4.png',
         'img/1_character/gun-out/pirate_gun_out4.png',
         'img/1_character/gun-out/pirate_gun_out4.png',
-
 
         'img/1_character/gun-out/pirate_gun_out5.png',
         'img/1_character/gun-out/pirate_gun_out5.png',
@@ -119,8 +117,6 @@ class Character extends MovableObject {
         'img/1_character/sword-attack3/pirate_attack3_3.png',
         'img/1_character/sword-attack3/pirate_attack3_4.png',
         'img/1_character/sword-attack3/pirate_attack3_5.png'
-
-
     ];
 
     world;
@@ -213,10 +209,7 @@ class Character extends MovableObject {
             }
         }, 80);
 
-
-
     }
-
 
     health() {
         if (this.energy <= 80) {
@@ -225,7 +218,5 @@ class Character extends MovableObject {
             this.energy = 100;
         }
     }
-
-
 
 }
