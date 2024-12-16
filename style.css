@@ -3,6 +3,9 @@
     src: url('fonts/pirates.ttf');
 }
 
+*{
+    box-sizing: border-box;
+}
 
 body {
     font-family: 'pirates', Arial, Helvetica, sans-serif;
@@ -149,6 +152,21 @@ canvas {
 
 .start-game-btn:hover {
     scale: 1.2;
+}
+
+
+.character-images-container {
+    position: absolute;
+    scale: 1.1;
+    bottom: 30px;
+    left: 150px;
+    width: 130px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    padding-right: 30px;
+    align-items: center;
+    overflow: hidden;
 }
 
 .controls-info-btn {
