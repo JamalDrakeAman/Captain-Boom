@@ -43,6 +43,7 @@ class World {
 
             this.clearDeadEnemys();
             this.checkEnemyDistance();
+            this.checkJumpOnEnemy()
         }, 100)
     }
 
@@ -82,6 +83,19 @@ class World {
     }
 
 
+    checkJumpOnEnemy() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
+                console.log('Jump on Enemy and Hit');
+                enemy.jumpHit();
+                this.character.bounceOffEnemy();
+            }
+
+        })
+    }
+
+
+
     checkCollisionsWithSword() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isCollidingWithSword(enemy)) {
@@ -98,6 +112,8 @@ class World {
     }
 
 
+
+
     checkPickupCoins() { // Muss noch irgendwie nach index entfernt werden sonst wird immer nur das erste entfernt 
         this.coins.forEach((coins, index) => {
             if (this.character.isColliding(coins)) {
@@ -105,7 +121,6 @@ class World {
                 this.character.coins_sound.play();
                 this.coins.splice(index, 1);
                 this.coinStatusBar.pickupItem();
-                // this.coinStatusBar.setPercentage(this.coinStatusBar.itemCount);
             }
         });
     }
@@ -130,7 +145,6 @@ class World {
                 this.character.loaded_sound.play();
                 this.ammo.splice(index, 1)
                 this.ammoStatusBar.pickupItem();
-                // this.coinStatusBar.setPercentage(this.character.energy);
             }
         });
     }
@@ -172,7 +186,11 @@ class World {
             // console.log('Distance Enemy to Character', enemy);
         })
         if (distance < 400) {
-            console.log('Distance Enemy to Character', distance);
+
+
+            // console.log('Distance Enemy to Character', distance);
+
+
         }
 
         return distance;

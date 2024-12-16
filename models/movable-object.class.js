@@ -111,4 +111,9 @@ class MovableObject extends DrawableObject {
         this.currentImage = 0;
     }
 
+    bounceOffEnemy() {
+        this.speedY = 20;
+        this.currentImage = 0;
+    }
+
 }

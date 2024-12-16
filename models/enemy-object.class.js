@@ -50,4 +50,13 @@ class EnemyObject extends MovableObject {
         }
     }
 
+    jumpHit(){
+        this.enemyEnergy -= 50;
+        if (this.enemyEnergy < 0) {
+            this.enemyEnergy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
 }
