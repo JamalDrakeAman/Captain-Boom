@@ -125,6 +125,9 @@ function toggleSound() {
 function toggleControlsInfo() {
     let ControleContainer = document.getElementById('controls-info-container');
     ControleContainer.classList.toggle('show-hide-box')
+
+    let characterShowContainer = document.getElementById('character-images-container');
+    characterShowContainer.classList.toggle('change-character-position')
 }
 
 

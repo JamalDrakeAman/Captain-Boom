@@ -3,7 +3,7 @@
     src: url('fonts/pirates.ttf');
 }
 
-*{
+* {
     box-sizing: border-box;
 }
 
@@ -157,9 +157,9 @@ canvas {
 
 .character-images-container {
     position: absolute;
-    scale: 1.1;
+    scale: 1.5;
     bottom: 30px;
-    left: 150px;
+    left: 110px;
     width: 130px;
     height: 100px;
     display: flex;
@@ -167,6 +167,13 @@ canvas {
     padding-right: 30px;
     align-items: center;
     overflow: hidden;
+    transition: all ease-in-out 100ms;
+}
+
+.change-character-position {
+    z-index: 1;
+    bottom: 210px;
+    left: 385px;
 }
 
 .controls-info-btn {
@@ -204,7 +211,8 @@ canvas {
 .controls-box {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 25px;
     width: 700px;
     height: 500px;
 }
