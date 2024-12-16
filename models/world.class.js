@@ -89,6 +89,8 @@ class World {
                 console.log('Jump on Enemy and Hit');
                 enemy.jumpHit();
                 this.character.bounceOffEnemy();
+                enemy.showEnergy = true; // Energieanzeige aktivieren
+                setTimeout(() => enemy.showEnergy = false, 2000); // Nach 2 Sekunden ausblenden
             }
 
         })
