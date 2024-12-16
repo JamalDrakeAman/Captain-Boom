@@ -200,7 +200,7 @@ canvas {
     width: 700px;
     /* height: 550px; */
     height: 350px;
-    background-color: rgba(74, 129, 202, 1);
+    background-color: rgba(74, 129, 202, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -269,6 +269,9 @@ canvas {
     animation: pulse 2s infinite ease-in-out;
 }
 
+.d-none {
+    display: none;
+}
 
 .show-hide-box {
     transform: translateY(0);
@@ -334,9 +337,7 @@ canvas {
     }
 }
 
-.d-none {
-    display: none;
-}
+
 
 @media only screen and (max-width: 720px) {
     canvas {

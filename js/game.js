@@ -128,6 +128,12 @@ function toggleControlsInfo() {
 
     let characterShowContainer = document.getElementById('character-images-container');
     characterShowContainer.classList.toggle('change-character-position')
+
+    let startScreenTitle = document.getElementById('startscreen-title');
+    startScreenTitle.classList.toggle('d-none');
+
+    let startScreenBtn = document.getElementById('start-game-btn');
+    startScreenBtn.classList.toggle('d-none');
 }
 
 
