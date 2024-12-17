@@ -31,11 +31,13 @@ class World {
 
     run() {
         setInterval(() => {
+            this.checkJumpOnEnemy();
             this.checkCollisions();
+
             this.checkThrowObjects();
+
             this.checkPickupCoins();
             this.checkPickupAmmo();
-
             this.checkPickupHealth()
 
             this.checkShootHitEnemys();
@@ -43,7 +45,6 @@ class World {
 
             this.clearDeadEnemys();
             this.checkEnemyDistance();
-            this.checkJumpOnEnemy()
         }, 100)
     }
 
@@ -72,9 +73,37 @@ class World {
     }
 
 
+
+
+
+    // checkCollisions() {
+    //     this.level.enemies.forEach((enemy) => {
+    //         if (this.character.isColliding(enemy)) {
+    //             this.character.hit();
+    //             // console.log('Collision with Character, energy', this.character.energy);
+    //             this.healthStatusBar.setPercentage(this.character.energy);
+    //         }
+    //     });
+    // }
+
+
+    // checkJumpOnEnemy() {
+    //     this.level.enemies.forEach((enemy) => {
+    //         if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
+    //             console.log('Jump on Enemy and Hit');
+    //             enemy.jumpHit();
+    //             this.character.bounceOffEnemy();
+    //             enemy.showEnergy = true; // Energieanzeige aktivieren
+    //             setTimeout(() => enemy.showEnergy = false, 2000); // Nach 2 Sekunden ausblenden
+    //         }
+
+    //     })
+    // }
+
+
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && !this.character.enemyHit) {
                 this.character.hit();
                 // console.log('Collision with Character, energy', this.character.energy);
                 this.healthStatusBar.setPercentage(this.character.energy);
@@ -82,15 +111,20 @@ class World {
         });
     }
 
-
     checkJumpOnEnemy() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
-                console.log('Jump on Enemy and Hit');
+            if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.speedY < 0 && !this.character.enemyHit) {
+                this.character.enemyHit = true;
+                console.log('enemyHit set to true', this.character.enemyHit)
+                //console.log('Jump on Enemy and Hit');
                 enemy.jumpHit();
                 this.character.bounceOffEnemy();
                 enemy.showEnergy = true; // Energieanzeige aktivieren
                 setTimeout(() => enemy.showEnergy = false, 2000); // Nach 2 Sekunden ausblenden
+                setTimeout(() => {
+                    this.character.enemyHit = false;
+                    console.log('enemyHit set to false', this.character.enemyHit)
+                }, 500)
             }
 
         })

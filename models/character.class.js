@@ -4,6 +4,8 @@ class Character extends MovableObject {
     y = 80;
     speed = 10;
 
+    enemyHit = false;
+
     offset = {
         top: 140,
         left: 165,
