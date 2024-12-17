@@ -6,8 +6,8 @@ class Endboss extends EnemyObject {
     enemyEnergy = 1000;
 
     offset = {
-        top: 100,
-        left: 250,
+        top: 120,
+        left: 270,
         right: 50,
         bottom: 0
     }
@@ -93,7 +93,7 @@ class Endboss extends EnemyObject {
         this.loadImages(this.IMAGES_DEATH);
         this.animate();
 
-        this.x = 2200;
+        this.x = 2000;
     }
 
     animate() {

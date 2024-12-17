@@ -107,6 +107,7 @@ function init() {
     console.log('My character is', world);
 }
 
+
 function toggleSound() {
     let soundIcon = document.getElementById('sound-icon');
     sound = !sound;
@@ -138,6 +139,10 @@ function toggleControlsInfo() {
 
 
 function startGame() {
+    initLevel();
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
+    console.log('My character is', world);
     let startScreen = document.getElementById('startscreen');
     startScreen.classList.add('d-none');
 }
