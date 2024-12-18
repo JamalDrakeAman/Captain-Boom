@@ -93,7 +93,7 @@ class Endboss extends EnemyObject {
         this.loadImages(this.IMAGES_DEATH);
         this.animate();
 
-        this.x = 1200;
+        this.x = 2000;
     }
 
     animate() {
@@ -132,9 +132,10 @@ class Endboss extends EnemyObject {
             }
 
 
-            if (world.character.x > 900 && !this.hadFirstContact) {
+            if (world.character.x > 1700 && !this.hadFirstContact) {
                 i = 0;
                 this.hadFirstContact = true
+                this.summonEnemies();
             }
 
             i++;
@@ -153,7 +154,6 @@ class Endboss extends EnemyObject {
     endBossDead() {
         return this.enemyEnergy == 0;
     }
-
 
     summonEnemies() {
         console.log("Der Endboss beschwört Verstärkung!");
