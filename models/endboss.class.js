@@ -93,18 +93,30 @@ class Endboss extends EnemyObject {
         this.loadImages(this.IMAGES_DEATH);
         this.animate();
 
-        this.x = 2000;
+        this.x = 1200;
     }
 
     animate() {
+
         let i = 0;
         let attackCounter = 100;
-        setInterval(() => {
 
-            if (i < 10) {
-                this.playAnimation(this.IMAGES_ALERT);
-            } else if (this.endBossDead()) {
+        let alertTriggered = false;
+
+        setInterval(() => {
+            if (this.endBossDead()) {
                 this.playAnimation(this.IMAGES_DEATH);
+            }
+
+
+            else if (this.enemyEnergy <= 600 && !alertTriggered) {
+                this.playAnimation(this.IMAGES_ALERT);
+                this.summonEnemies(); // Methode zum Beschwören neuer GegnerÍ‚
+                // this.summonEnemies(); // Methode zum Beschwören neuer Gegner
+            }
+
+            else if (i < 10) {
+                this.playAnimation(this.IMAGES_ALERT);
             } else if (attackCounter < 50) {
                 this.playAnimation(this.IMAGES_ATTACK);
                 if (attackCounter < 0) {
@@ -113,12 +125,20 @@ class Endboss extends EnemyObject {
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
             }
-            i++;
-            attackCounter -= 2
-            if (world.character.x > 1700 && !this.hadFirstContact) {
+
+
+            if (this.enemyEnergy <= 400 && !alertTriggered) {
+                alertTriggered = true; // Sicherstellen, dass Alert nur einmal passiert
+            }
+
+
+            if (world.character.x > 900 && !this.hadFirstContact) {
                 i = 0;
                 this.hadFirstContact = true
             }
+
+            i++;
+            attackCounter -= 2
 
         }, 200);
 
@@ -132,6 +152,17 @@ class Endboss extends EnemyObject {
 
     endBossDead() {
         return this.enemyEnergy == 0;
+    }
+
+
+    summonEnemies() {
+        console.log("Der Endboss beschwört Verstärkung!");
+        for (let j = 0; j < 3; j++) { // Beschwöre z.B. 3 neue Gegner
+            let newEnemy = new Bat(); // Erstelle einen neuen Gegner
+            newEnemy.x = this.x + 350 // Setze die Gegnerposition nahe beim Endboss
+            newEnemy.y = 70 + Math.random() * 200;; // Standard Y-Position
+            world.level.enemies.push(newEnemy); // Füge den Gegner zur Gegnerliste hinzu
+        }
     }
 
 
