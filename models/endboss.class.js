@@ -93,6 +93,7 @@ class Endboss extends EnemyObject {
         this.loadImages(this.IMAGES_DEATH);
         this.animate();
 
+        this.speed = 3;
         this.x = 2000;
     }
 
@@ -100,22 +101,14 @@ class Endboss extends EnemyObject {
 
         let i = 0;
         let attackCounter = 100;
-
         let alertTriggered = false;
-
         setInterval(() => {
             if (this.endBossDead()) {
                 this.playAnimation(this.IMAGES_DEATH);
-            }
-
-
-            else if (this.enemyEnergy <= 600 && !alertTriggered) {
+            } else if (this.enemyEnergy <= 600 && !alertTriggered) {
                 this.playAnimation(this.IMAGES_ALERT);
-                this.summonEnemies(); // Methode zum Beschwören neuer GegnerÍ‚
-                // this.summonEnemies(); // Methode zum Beschwören neuer Gegner
-            }
-
-            else if (i < 10) {
+                this.summonEnemies(); // Methode zum Beschwören neuer Gegner
+            } else if (i < 10) {
                 this.playAnimation(this.IMAGES_ALERT);
             } else if (attackCounter < 50) {
                 this.playAnimation(this.IMAGES_ATTACK);
@@ -123,24 +116,19 @@ class Endboss extends EnemyObject {
                     attackCounter = 100;
                 }
             } else {
-                this.playAnimation(this.IMAGES_IDLE);
+                this.playAnimation(this.IMAGES_WALKING);
+                this.moveLeft();
             }
-
-
             if (this.enemyEnergy <= 400 && !alertTriggered) {
                 alertTriggered = true; // Sicherstellen, dass Alert nur einmal passiert
             }
-
-
             if (world.character.x > 1700 && !this.hadFirstContact) {
                 i = 0;
                 this.hadFirstContact = true
                 this.summonEnemies();
             }
-
             i++;
             attackCounter -= 2
-
         }, 200);
 
         setInterval(() => {

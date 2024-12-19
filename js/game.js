@@ -86,18 +86,12 @@ const characterImages = [
 let currentIndex = 0;
 const slideshow = document.getElementById('character-images');
 
-
 // Funktion, die das Bild ändert
 function showNextImage() {
     slideshow.src = characterImages[currentIndex];
     currentIndex = (currentIndex + 1) % characterImages.length; // Index inkrementieren und zurücksetzen, wenn Ende erreicht
 }
-
-
 setInterval(showNextImage, 80);
-
-
-
 
 
 function init() {
@@ -123,6 +117,7 @@ function toggleSound() {
     }
 }
 
+
 function toggleControlsInfo() {
     let ControleContainer = document.getElementById('controls-info-container');
     ControleContainer.classList.toggle('show-hide-box')
@@ -147,7 +142,18 @@ function startGame() {
     startScreen.classList.add('d-none');
 }
 
-/////////////////////
+
+function resetGame() {
+    let endScreen = document.getElementById('endscreen');
+    endScreen.classList.toggle('d-flex');
+
+}
+
+
+function stopGame() {
+
+}
+
 
 function fullscreen() {
     let canvas = document.getElementById('canvas');
@@ -156,7 +162,6 @@ function fullscreen() {
     gameTitle.classList.toggle('d-none');
 }
 
-////////////////////
 
 window.addEventListener('keydown', (e) => {
     if (e.keyCode == 39) {
@@ -181,6 +186,7 @@ window.addEventListener('keydown', (e) => {
         keyboard.F = true;
     }
 });
+
 
 window.addEventListener('keyup', (e) => {
     if (e.keyCode == 39) {

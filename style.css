@@ -13,12 +13,10 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 0;
-
     justify-content: center;
     height: 100vh;
     color: white;
     font-size: 20px;
-
     background-image: url(img/background.jpg);
     background-size: cover;
     background-position: center;
@@ -125,6 +123,7 @@ canvas {
     background-position: center;
     background-size: cover;
     overflow: hidden;
+    border-radius: 10px;
 }
 
 .startscreen-title {
@@ -153,7 +152,6 @@ canvas {
 .start-game-btn:hover {
     scale: 1.2;
 }
-
 
 .character-images-container {
     position: absolute;
@@ -198,7 +196,6 @@ canvas {
     position: absolute;
     flex-direction: column;
     width: 700px;
-    /* height: 550px; */
     height: 350px;
     background-color: rgba(74, 129, 202, 0.8);
     display: flex;
@@ -226,9 +223,7 @@ canvas {
     align-items: center;
     width: 200px;
     height: 200px;
-    /* background-color: white; */
     border-radius: 10px;
-    /* box-shadow: 0 4px 10px rgba(255, 255, 255, 0.8); */
     padding: 10px;
 }
 
@@ -257,8 +252,6 @@ canvas {
     width: 250px;
     height: 200px;
     border-radius: 10px;
-    /* box-shadow: 0 4px 10px rgba(255, 255, 255, 0.8);
-    background-color: white; */
     padding: 10px;
 }
 
@@ -277,20 +270,89 @@ canvas {
     transform: translateY(0);
 }
 
-/* .controls-info-close-btn {
+
+.endscreen {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    bottom: 20px;
-    background-color: #d84646;
-    padding: 10px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all ease-in-out 100ms;
-    animation: pulse 2s infinite ease-in-out;
+    width: 850px;
+    height: 600px;
+    background-image: url(img/sunset.gif);
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
 }
 
-.controls-info-close-btn:hover {
-    scale: 1.1;
-} */
+.d-flex {
+    display: flex;
+}
+
+.endscreen-title {
+    font-size: 60px;
+    margin: 0;
+}
+
+
+.reset-button {
+    font-family: 'pirates';
+    display: inline-block;
+    padding: 14px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(16, 152, 247, 0.8);
+    /* Gewünschte Farbe */
+    border: 2px solid rgba(16, 152, 247, 1);
+    /* Dunklere Farbe als Rand */
+    border-radius: 50px;
+    /* Runde Form */
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 6px 15px rgba(16, 152, 247, 0.5);
+    /* Weicher Schatteneffekt */
+    text-align: center;
+    z-index: 1;
+}
+
+/* Hover-Effekt */
+.reset-button:hover {
+    background-color: rgba(16, 152, 247, 1);
+    /* Etwas kräftigerer Ton */
+    color: #f1f1f1;
+    /* Hellerer Text */
+    transform: scale(1.05);
+    /* Leichtes Vergrößern */
+    box-shadow: 0 8px 20px rgba(16, 152, 247, 0.7);
+    /* Stärkerer Schatten */
+}
+
+/* Klick-Effekt */
+.reset-button:active {
+    transform: scale(0.98);
+    /* Leichtes Zusammendrücken */
+    box-shadow: 0 4px 10px rgba(16, 152, 247, 0.4);
+    /* Geringerer Schatten */
+}
+
+
+
+@keyframes wippen {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        /* Ausgangsposition */
+    }
+
+    50% {
+        transform: translateY(-4px);
+        /* Leicht nach oben bewegen */
+    }
+}
+
 
 
 /* Schimmer-Effekt */
@@ -336,6 +398,8 @@ canvas {
         transform: scale(1);
     }
 }
+
+
 
 
 
