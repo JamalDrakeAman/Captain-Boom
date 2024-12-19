@@ -143,9 +143,9 @@ function startGame() {
 
 
 function stopGame() {
-    clearAllIntervals();
+
     endScreenStatus();
-    endScreenToggle();
+
 }
 
 function clearAllIntervals() {
@@ -160,13 +160,19 @@ function endScreenToggle() {
 function endScreenStatus() {
     let endscreenTitle = document.getElementById('endscreen-title');
     let endscreen = document.getElementById('endscreen');
-    if (winGame) {
-        endscreenTitle.innerHTML = 'YOU WIN'
-        endscreen.style.backgroundImage = "url('img/sunset.gif')"
-    } else {
-        endscreenTitle.innerHTML = 'YOU LOSE'
-        endscreen.style.backgroundImage = "url('img/giphy (6).gif')"
-    }
+
+    setTimeout(() => {
+        if (winGame) {
+            endscreenTitle.innerHTML = 'YOU WIN'
+            endscreen.style.backgroundImage = "url('img/sunset.gif')"
+        } else {
+            endscreenTitle.innerHTML = 'YOU LOSE'
+            endscreen.style.backgroundImage = "url('img/giphy (6).gif')"
+        }
+        endScreenToggle();
+        clearAllIntervals();
+    }, 1000)
+
 }
 
 function toStartScreen() {
