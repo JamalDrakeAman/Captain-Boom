@@ -163,12 +163,14 @@ function endScreenStatus() {
     if (winGame) {
         endscreenTitle.innerHTML = 'YOU WIN'
         endscreen.style.backgroundImage = "url('img/sunset.gif')"
-
     } else {
         endscreenTitle.innerHTML = 'YOU LOSE'
         endscreen.style.backgroundImage = "url('img/giphy (6).gif')"
     }
+}
 
+function toStartScreen() {
+    location.reload();
 }
 
 

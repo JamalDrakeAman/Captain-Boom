@@ -289,9 +289,26 @@ canvas {
     display: flex;
 }
 
+.toStartScreenBtn {
+    width: 80px;
+    height: 80px;
+    transition: all ease-in-out 100ms;
+    cursor: pointer;
+}
+
+.toStartScreenBtn:hover {
+    scale: 1.2;
+}
+
+.toStartScreenBtn:active {
+    scale: 0.9;
+}
+
 .endscreen-title {
-    font-size: 60px;
+    font-size: 90px;
     margin: 0;
+
+    animation: pulse 2s infinite ease-in-out;
 }
 
 
