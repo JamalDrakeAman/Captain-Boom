@@ -7,7 +7,7 @@ let sound = false;
 let game_music_sound = new Audio('audio/pirates-music.mp3');
 
 
-
+let IntervalsIDs = [];
 
 
 const characterImages = [
@@ -86,11 +86,11 @@ const characterImages = [
 let currentIndex = 0;
 const slideshow = document.getElementById('character-images');
 
-// Funktion, die das Bild ändert
 function showNextImage() {
     slideshow.src = characterImages[currentIndex];
     currentIndex = (currentIndex + 1) % characterImages.length; // Index inkrementieren und zurücksetzen, wenn Ende erreicht
 }
+
 setInterval(showNextImage, 80);
 
 
@@ -144,13 +144,21 @@ function startGame() {
 
 
 function resetGame() {
+    clearAllIntervals();
     let endScreen = document.getElementById('endscreen');
     endScreen.classList.toggle('d-flex');
 
 }
 
+function clearAllIntervals() {
+    for (let i = 1; i < 9999; i++) window.clearInterval(i);
+}
 
 function stopGame() {
+
+}
+
+function stop() {
 
 }
 

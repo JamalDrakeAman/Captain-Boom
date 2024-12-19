@@ -208,7 +208,6 @@ class World {
 
             // console.log('Distance Enemy to Character', distance);
 
-
         }
 
         return distance;

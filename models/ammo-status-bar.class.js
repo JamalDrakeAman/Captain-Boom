@@ -9,7 +9,6 @@ class AmmoStatusBar extends StatusBar {
         this.y = 89;
         this.width = 45;
         this.height = 110;
-        // this.setPercentage(100);
     }
 
 
