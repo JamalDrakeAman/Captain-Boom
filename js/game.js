@@ -6,8 +6,7 @@ let keyboard = new Keyboard();
 let sound = false;
 let game_music_sound = new Audio('audio/pirates-music.mp3');
 
-
-let IntervalsIDs = [];
+let winGame = false;
 
 
 const characterImages = [
@@ -143,22 +142,32 @@ function startGame() {
 }
 
 
-function resetGame() {
+function stopGame() {
     clearAllIntervals();
-    let endScreen = document.getElementById('endscreen');
-    endScreen.classList.toggle('d-flex');
-
+    endScreenStatus();
+    endScreenToggle();
 }
 
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
-function stopGame() {
-
+function endScreenToggle() {
+    let endScreen = document.getElementById('endscreen');
+    endScreen.classList.toggle('d-flex');
 }
 
-function stop() {
+function endScreenStatus() {
+    let endscreenTitle = document.getElementById('endscreen-title');
+    let endscreen = document.getElementById('endscreen');
+    if (winGame) {
+        endscreenTitle.innerHTML = 'YOU WIN'
+        endscreen.style.backgroundImage = "url('img/sunset.gif')"
+
+    } else {
+        endscreenTitle.innerHTML = 'YOU LOSE'
+        endscreen.style.backgroundImage = "url('img/giphy (6).gif')"
+    }
 
 }
 

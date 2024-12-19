@@ -182,14 +182,14 @@ class World {
 
     checkEndbossIsDead() {
         if (this.level.enemies[this.level.enemies.length - 1].enemyEnergy == 0) {
-            resetGame()
+            stopGame();
         }
     }
 
 
     checkCharacterIsDead() {
         if (this.healthStatusBar.percentage == 0) {
-            resetGame();
+            stopGame();
         }
     }
 
@@ -256,8 +256,7 @@ class World {
         this.ctx.fillText(`${this.coinStatusBar.itemCount}`, 100, 100);
         this.ctx.fillText(`${this.ammoStatusBar.itemCount}`, 100, 155);
 
-        this.ctx.fillStyle = 'red';
-        this.ctx.fillText(`${this.level.enemies[this.level.enemies.length - 1].enemyEnergy}o`, 600, 90);
+        this.endBossStatus();
 
         // draw() wird immer wieder aufgerufen
         let self = this;
@@ -280,6 +279,16 @@ class World {
         this.ctx.shadowBlur = 0; // Schatten unsichtbar machen
         this.ctx.shadowOffsetX = 0; // Horizontal zurücksetzen
         this.ctx.shadowOffsetY = 0; // Vertikal zurücksetzen
+    }
+
+    endBossStatus() {
+
+        let endBossEnergy = this.level.enemies[this.level.enemies.length - 1].enemyEnergy
+
+        if (endBossEnergy) {
+            this.ctx.fillStyle = 'red';
+            this.ctx.fillText(`${endBossEnergy}o`, 600, 90);
+        }
     }
 
 
