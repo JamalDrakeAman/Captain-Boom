@@ -151,7 +151,7 @@ class Endboss extends EnemyObject {
             if (summonBat && attackReady) {
                 this.summonEnemies();
             }
-        }, 1450)
+        }, 1300)
 
 
         setInterval(() => {
