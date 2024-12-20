@@ -99,7 +99,6 @@ class Skeleton extends EnemyObject {
         'img/3_enemies/skeleton/attack3/skeleton-attack7.png'
     ]
 
-    walkInterval;
 
     constructor() {
         super().loadImage('img/3_enemies/skeleton/walk/skeleton-walk1.png');

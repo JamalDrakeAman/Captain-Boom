@@ -5,6 +5,8 @@ class Endboss extends EnemyObject {
 
     enemyEnergy = 1000;
 
+    endBoss = true;
+
     offset = {
         top: 120,
         left: 270,
@@ -94,7 +96,7 @@ class Endboss extends EnemyObject {
         this.animate();
 
         this.speed = 3;
-        this.x = 2000;
+        this.x = 3000;
     }
 
     animate() {
@@ -107,7 +109,6 @@ class Endboss extends EnemyObject {
                 this.playAnimation(this.IMAGES_DEATH);
             } else if (this.enemyEnergy <= 600 && !alertTriggered) {
                 this.playAnimation(this.IMAGES_ALERT);
-                this.summonEnemies(); // Methode zum Beschwören neuer Gegner
             } else if (i < 10) {
                 this.playAnimation(this.IMAGES_ALERT);
             } else if (attackCounter < 50) {
@@ -135,8 +136,20 @@ class Endboss extends EnemyObject {
             if (this.enemyEnergy < 1000 && this.enemyEnergy > 0) {
                 this.enemyEnergy += 10;
             }
+            if (this.enemyEnergy <= 600 && !alertTriggered) {
+                this.summonEnemies(); // Methode zum Beschwören neuer Gegner
+            }
         }, 1000)
+
+        setInterval(() => {
+
+        })
+
+        
+        
     }
+
+
 
 
     endBossDead() {

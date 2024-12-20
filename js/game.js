@@ -136,31 +136,15 @@ function startGame() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    console.log('My character is', world);
+    // console.log('My character is', world);
     let startScreen = document.getElementById('startscreen');
     startScreen.classList.add('d-none');
 }
 
 
 function stopGame() {
-
-    endScreenStatus();
-
-}
-
-function clearAllIntervals() {
-    for (let i = 1; i < 9999; i++) window.clearInterval(i);
-}
-
-function endScreenToggle() {
-    let endScreen = document.getElementById('endscreen');
-    endScreen.classList.toggle('d-flex');
-}
-
-function endScreenStatus() {
     let endscreenTitle = document.getElementById('endscreen-title');
     let endscreen = document.getElementById('endscreen');
-
     setTimeout(() => {
         if (winGame) {
             endscreenTitle.innerHTML = 'YOU WIN'
@@ -169,13 +153,18 @@ function endScreenStatus() {
             endscreenTitle.innerHTML = 'YOU LOSE'
             endscreen.style.backgroundImage = "url('img/giphy (6).gif')"
         }
-        endScreenToggle();
+        endscreen.classList.toggle('d-flex');
         clearAllIntervals();
-    }, 1000)
-
+    }, 1000);
 }
 
-function toStartScreen() {
+
+function clearAllIntervals() {
+    for (let i = 1; i < 9999; i++) window.clearInterval(i);
+}
+
+
+function goStartScreen() {
     location.reload();
 }
 

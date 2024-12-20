@@ -18,7 +18,10 @@ function initLevel() {
             new Endboss()
         ],
         [
-            new Cloud()
+            new Cloud(),
+            new Cloud(),
+            new Cloud(),
+            new Cloud(),
         ],
         [
             new BackgroundObject('img/5_background/layers/sky.png', -719),
@@ -55,6 +58,27 @@ function initLevel() {
             new BackgroundObject('img/5_background/layers/cloud.png', 719 * 3),
             new BackgroundObject('img/5_background/layers/decor.png', 719 * 3),
             new BackgroundObject('img/5_background/layers/land.png', 719 * 3),
+
+            new BackgroundObject('img/5_background/layers/sky.png', 719 * 4),
+            new BackgroundObject('img/5_background/layers/sun.png', 719 * 4),
+            new BackgroundObject('img/5_background/layers/sea.png', 719 * 4),
+            new BackgroundObject('img/5_background/layers/cloud.png', 719 * 4),
+            new BackgroundObject('img/5_background/layers/decor.png', 719 * 4),
+            new BackgroundObject('img/5_background/layers/land.png', 719 * 4),
+
+            new BackgroundObject('img/5_background/layers/sky.png', 719 * 5),
+            new BackgroundObject('img/5_background/layers/sun.png', 719 * 5),
+            new BackgroundObject('img/5_background/layers/sea.png', 719 * 5),
+            new BackgroundObject('img/5_background/layers/cloud.png', 719 * 5),
+            new BackgroundObject('img/5_background/layers/decor.png', 719 * 5),
+            new BackgroundObject('img/5_background/layers/land.png', 719 * 5),
+
+            new BackgroundObject('img/5_background/layers/sky.png', 719 * 6),
+            new BackgroundObject('img/5_background/layers/sun.png', 719 * 6),
+            new BackgroundObject('img/5_background/layers/sea.png', 719 * 6),
+            new BackgroundObject('img/5_background/layers/cloud.png', 719 * 6),
+            new BackgroundObject('img/5_background/layers/decor.png', 719 * 6),
+            new BackgroundObject('img/5_background/layers/land.png', 719 * 6),
         ]
     );
 

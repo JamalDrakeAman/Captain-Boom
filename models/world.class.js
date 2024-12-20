@@ -11,8 +11,9 @@ class World {
     throwableObjects = [];
     coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
     ammo = [new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo()];
-    health = [new Health(), new Health(), new Health()]
+    health = [new Health(), new Health(), new Health()];
 
+    endBoss = this.level.enemies.find(enemie => enemie.endBoss);
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -45,9 +46,11 @@ class World {
 
             this.clearDeadEnemys();
             this.checkEnemyDistance();
+            this.checkEndBossDistance();
 
 
             this.checkCharacterIsDead();
+            this.checkEndbossIsDead();
         }, 100)
     }
 
@@ -181,7 +184,9 @@ class World {
 
 
     checkEndbossIsDead() {
-        if (this.level.enemies[this.level.enemies.length - 1].enemyEnergy == 0) {
+
+        if (!this.endBoss) {
+            winGame = true;
             stopGame();
         }
     }
@@ -201,15 +206,28 @@ class World {
             if (enemyDistance < distance) {
                 distance = enemyDistance;
             }
-            // console.log('Distance Enemy to Character', enemy);
+            // console.log('Distance Enemy to Character', enemy.distance);
         })
         if (distance < 400) {
-
-
             // console.log('Distance Enemy to Character', distance);
-
         }
 
+        return distance;
+    }
+
+
+    checkEndBossDistance() {
+        let distance = 100000000000;
+        this.level.enemies.forEach(enemy => {
+            let enemyDistance = Math.abs(this.endBoss.x - this.character.x + 120);
+            if (enemyDistance < distance) {
+                distance = enemyDistance;
+            }
+            console.log('Distance EndBoss to Character', enemyDistance);
+        })
+        if (distance < 400) {
+            console.log('Distance EndBoss to Character', distance);
+        }
         return distance;
     }
 
@@ -257,7 +275,7 @@ class World {
         this.ctx.fillText(`${this.ammoStatusBar.itemCount}`, 100, 155);
 
         this.endBossStatus();
-
+        
         // draw() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function () {
@@ -281,10 +299,9 @@ class World {
         this.ctx.shadowOffsetY = 0; // Vertikal zurücksetzen
     }
 
+
     endBossStatus() {
-
-        let endBossEnergy = this.level.enemies[this.level.enemies.length - 1].enemyEnergy
-
+        let endBossEnergy = this.endBoss.enemyEnergy
         if (endBossEnergy) {
             this.ctx.fillStyle = 'red';
             this.ctx.fillText(`${endBossEnergy}o`, 600, 90);
