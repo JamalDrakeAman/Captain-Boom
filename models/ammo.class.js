@@ -20,7 +20,7 @@ class Ammo extends PickupItemObject {
     constructor() {
         super().loadImage('img/8_item/ammo/bullet0.png');
         this.loadImages(this.IMAGES);
-        this.x = 400 + Math.random() * 1000;
+        this.x = 400 + Math.random() * 4000;
         this.y = 50 + Math.random() * 300;
         this.animate();
     }

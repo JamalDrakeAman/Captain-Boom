@@ -20,7 +20,7 @@ class Health extends PickupItemObject {
     constructor() {
         super().loadImage('img/8_item/health/heart-icon0.png');
         this.loadImages(this.IMAGES);
-        this.x = 800 + Math.random() * 1000;
+        this.x = 500 + Math.random() * 3500;
         this.y = 50 + Math.random() * 300;
         this.animate();
     }

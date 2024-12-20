@@ -110,7 +110,7 @@ class Skeleton extends EnemyObject {
         this.loadImages(this.IMAGES_ATTACK_1);
         this.loadImages(this.IMAGES_ATTACK_2);
         this.loadImages(this.IMAGES_ATTACK_3);
-        this.x = 500 + Math.random() * 2500;
+        this.x = 500 + Math.random() * 4200;
         this.speed = 0.15 + Math.random() * 0.25;
 
         this.applyGravity();

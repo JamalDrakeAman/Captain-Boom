@@ -1,6 +1,6 @@
 class AmmoStatusBar extends StatusBar {
 
-    itemCount = 100;
+    itemCount = 10;
 
     constructor() {
         super();

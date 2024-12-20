@@ -51,7 +51,7 @@ class Bat extends EnemyObject {
         this.loadImages(this.IMAGES_PURPLE_FLY);
         this.loadImages(this.IMAGES_PURPLE_HIT);
 
-        this.x = 500 + Math.random() * 2500;
+        this.x = 500 + Math.random() * 4200;
         this.y = 50 + Math.random() * 300;
         this.speed = 0.15 + Math.random() * 0.5;
 
