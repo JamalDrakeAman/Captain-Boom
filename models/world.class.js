@@ -135,14 +135,16 @@ class World {
 
 
     checkPickupHealth() {
-        this.health.forEach((health, index) => {
-            if (this.character.isColliding(health)) {
-                // console.log('Collision with Health');
-                this.health.splice(index, 1);
-                this.character.health();
-                this.healthStatusBar.setPercentage(this.character.energy);
-            }
-        });
+        if (this.healthStatusBar.percentage < 100) {
+            this.health.forEach((health, index) => {
+                if (this.character.isColliding(health)) {
+                    // console.log('Collision with Health');
+                    this.health.splice(index, 1);
+                    this.character.health();
+                    this.healthStatusBar.setPercentage(this.character.energy);
+                }
+            });
+        }
     }
 
 
