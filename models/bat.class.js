@@ -3,8 +3,8 @@ class Bat extends EnemyObject {
     width = 50;
     y = 240;
 
-
-    enemyEnergy = 30 ;
+    drop = false;
+    enemyEnergy = 30;
 
     runCounter = Math.round(Math.random() * 100);
     run = false;
@@ -84,6 +84,10 @@ class Bat extends EnemyObject {
         this.playAnimation(this.IMAGES_BLUE_HIT);
         this.speed = 0;
         this.y += 10
+        if (!this.drop) {
+            this.dropRandomItem()
+            this.drop = true;
+        }
     }
 
     enemyHurt() {
@@ -107,6 +111,47 @@ class Bat extends EnemyObject {
             this.speed = this.speed / 8;
             this.run = false;
         }
+    }
+
+
+    // randomItem(){
+
+    // }
+
+    // dropItem(){
+    //     console.log('Drop Item');
+    //     let item = 
+
+    // }
+
+    dropRandomItem() {
+        let dropChance = Math.random(); // Zufallswert zwischen 0 und 1
+        let item;
+        let dropArray;
+
+        if (dropChance < 0.1) { // 40% Chance, eine Münze zu droppen
+            item = new Coin();
+            dropArray = world.coins;
+        } else if (dropChance < 0.15) { // 30% Chance, ein Health-Item zu droppen
+            item = new Health();
+            dropArray = world.health;
+        } else if (dropChance < 0.3) { // 30% Chance, Munition zu droppen
+            item = new Ammo();
+            dropArray = world.ammo;
+        } else {
+            dropArray = 0;
+            console.log('Noo Drop');
+        }
+
+        // Setze die Position des gedroppten Objekts auf die des Gegners
+        if (dropArray !== 0) {
+            item.x = this.x;
+            item.y = this.y;
+            dropArray.push(item);
+            console.log('Drop Item ');
+            
+        }
+
     }
 
 
