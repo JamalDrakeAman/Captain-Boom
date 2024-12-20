@@ -13,7 +13,7 @@ class World {
 
     coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin(), new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
     ammo = [new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo()];
-    health = [new Health(), new Health(), new Health(), new Health(), new Health()];
+    health = [new Health(), new Health(), new Health()];
 
     endBoss = this.level.enemies.find(enemie => enemie.boss);
 
