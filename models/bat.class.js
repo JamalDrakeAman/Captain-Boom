@@ -135,7 +135,7 @@ class Bat extends EnemyObject {
         } else if (dropChance < 0.15) { // 30% Chance, ein Health-Item zu droppen
             item = new Health();
             dropArray = world.health;
-        } else if (dropChance < 0.3) { // 30% Chance, Munition zu droppen
+        } else if (dropChance < 0.35) { // 30% Chance, Munition zu droppen
             item = new Ammo();
             dropArray = world.ammo;
         } else {
