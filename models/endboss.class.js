@@ -94,38 +94,46 @@ class Endboss extends EnemyObject {
         this.loadImages(this.IMAGES_DEATH);
         this.animate();
 
-        this.speed = 3;
-        this.x = 4250;
+        this.speed = 5;
+        this.x = 4000;
     }
 
     animate() {
 
         let i = 0;
         let attackCounter = 100;
-        let alertTriggered = false;
+        let attackReady = false;
+        let summonBat = false;
+
         setInterval(() => {
             if (this.endBossDead()) {
                 this.playAnimation(this.IMAGES_DEATH);
-            } else if (this.enemyEnergy <= 600 && !alertTriggered) {
+            } else if (summonBat && attackReady) {
                 this.playAnimation(this.IMAGES_ALERT);
-            } else if (i < 10) {
-                this.playAnimation(this.IMAGES_ALERT);
-            } else if (attackCounter < 50) {
+                if (this.currentImage > 8) {
+                    this.currentImage = 5;
+                } else if (this.currentImage < 5 || this.currentImage > 7) {
+                    this.currentImage = 5;
+                }
+            } else if (attackCounter < 50 && attackReady) {
                 this.playAnimation(this.IMAGES_ATTACK);
                 if (attackCounter < 0) {
                     attackCounter = 100;
                 }
-            } else {
+            } else if(attackReady){
                 this.playAnimation(this.IMAGES_WALKING);
                 this.moveLeft();
+            } else {
+                this.playAnimation(this.IMAGES_IDLE);
             }
-            if (this.enemyEnergy <= 400 && !alertTriggered) {
-                alertTriggered = true; // Sicherstellen, dass Alert nur einmal passiert
-            }
-            if (world.character.x > 1700 && !this.hadFirstContact) {
+
+
+            if (world.character.x > 3700 && !this.hadFirstContact) {
                 i = 0;
+
                 this.hadFirstContact = true
-                this.summonEnemies();
+                attackReady = true;
+                summonBat = true;
             }
             i++;
             attackCounter -= 2
@@ -135,21 +143,31 @@ class Endboss extends EnemyObject {
             if (this.enemyEnergy < 1000 && this.enemyEnergy > 0) {
                 this.enemyEnergy += 10;
             }
-            if (this.enemyEnergy <= 600 && !alertTriggered) {
-                this.summonEnemies(); // Methode zum Beschwören neuer Gegner
-            }
+
         }, 1000)
 
+
         setInterval(() => {
+            if (summonBat && attackReady) {
+                this.summonEnemies();
+            }
+        }, 1450)
 
-        })
 
-        
-        
+        setInterval(() => {
+            summonBat = !summonBat;
+        }, 6000)
+
+
+
     }
 
     endBossDead() {
         return this.enemyEnergy == 0;
+    }
+
+    endBoosReadyToAttack() {
+
     }
 
     summonEnemies() {
@@ -157,7 +175,7 @@ class Endboss extends EnemyObject {
         for (let j = 0; j < 3; j++) { // Beschwöre z.B. 3 neue Gegner
             let newEnemy = new Bat(); // Erstelle einen neuen Gegner
             newEnemy.x = this.x + 350 // Setze die Gegnerposition nahe beim Endboss
-            newEnemy.y = 70 + Math.random() * 200;; // Standard Y-Position
+            newEnemy.y = 70 + Math.random() * 250;; // Standard Y-Position
             world.level.enemies.push(newEnemy); // Füge den Gegner zur Gegnerliste hinzu
         }
     }

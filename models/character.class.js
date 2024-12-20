@@ -53,6 +53,12 @@ class Character extends MovableObject {
 
     IMAGES_DEAD = [
         'img/1_character/dead/pirate_dead1.png',
+        'img/1_character/dead/pirate_dead1.png',
+        'img/1_character/dead/pirate_dead1.png',
+        'img/1_character/dead/pirate_dead1.png',
+        'img/1_character/dead/pirate_dead1.png',
+
+        'img/1_character/dead/pirate_dead1.png',
         'img/1_character/dead/pirate_dead2.png',
         'img/1_character/dead/pirate_dead3.png',
         'img/1_character/dead/pirate_dead4.png'
@@ -175,6 +181,11 @@ class Character extends MovableObject {
             this.playAnimation(this.IMAGES_IDLE);
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                if (this.currentImage > 8) {
+                    this.currentImage = 5;
+                } else if (this.currentImage < 5 || this.currentImage > 7) {
+                    this.currentImage = 5;
+                }
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.world.keyboard.D) {

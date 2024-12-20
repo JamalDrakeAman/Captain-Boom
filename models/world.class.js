@@ -110,7 +110,7 @@ class World {
     checkCollisionsWithSword() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isCollidingWithSword(enemy)) {
-                console.log('Collision with Sword, energy', this.character.energy);
+                // console.log('Collision with Sword, energy', this.character.energy);
                 if (this.keyboard.F) {
                     enemy.swordHit();
                     console.log('Hit enemy Energy', enemy.enemyEnergy);
@@ -125,7 +125,7 @@ class World {
     checkPickupCoins() {
         this.coins.forEach((coins, index) => {
             if (this.character.isColliding(coins)) {
-                console.log('Collision with coin');
+                // console.log('Collision with coin');
                 this.character.coins_sound.play();
                 this.coins.splice(index, 1);
                 this.coinStatusBar.pickupItem();
@@ -137,7 +137,7 @@ class World {
     checkPickupHealth() {
         this.health.forEach((health, index) => {
             if (this.character.isColliding(health)) {
-                console.log('Collision with Health');
+                // console.log('Collision with Health');
                 this.health.splice(index, 1);
                 this.character.health();
                 this.healthStatusBar.setPercentage(this.character.energy);
@@ -149,7 +149,7 @@ class World {
     checkPickupAmmo() {
         this.ammo.forEach((ammo, index) => {
             if (this.character.isColliding(ammo)) {
-                console.log('Collision with ammo');
+                // console.log('Collision with ammo');
                 this.character.loaded_sound.play();
                 this.ammo.splice(index, 1)
                 this.ammoStatusBar.pickupItem();
@@ -222,10 +222,10 @@ class World {
             if (enemyDistance < distance) {
                 distance = enemyDistance;
             }
-            // console.log('Distance EndBoss to Character', enemyDistance);
+            console.log('Distance EndBoss to Character', enemyDistance);
         })
         if (distance < 400) {
-            // console.log('Distance EndBoss to Character', distance);
+            console.log('Distance EndBoss to Character', distance);
         }
         return distance;
     }
