@@ -5,15 +5,17 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+
     healthStatusBar = new HealthStatusBar();
     coinStatusBar = new CoinStatusBar();
     ammoStatusBar = new AmmoStatusBar();
     throwableObjects = [];
+
     coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
     ammo = [new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo()];
     health = [new Health(), new Health(), new Health()];
 
-    endBoss = this.level.enemies.find(enemie => enemie.endBoss);
+    endBoss = this.level.enemies.find(enemie => enemie.boss);
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -47,7 +49,6 @@ class World {
             this.clearDeadEnemys();
             this.checkEnemyDistance();
             this.checkEndBossDistance();
-
 
             this.checkCharacterIsDead();
             this.checkEndbossIsDead();
@@ -102,7 +103,6 @@ class World {
                     console.log('enemyHit set to false', this.character.enemyHit)
                 }, 500)
             }
-
         })
     }
 
@@ -184,10 +184,10 @@ class World {
 
 
     checkEndbossIsDead() {
-
-        if (!this.endBoss) {
+        if (this.endBoss.enemyEnergy == 0) {
             winGame = true;
             stopGame();
+            console.log('Endboss is Dead');
         }
     }
 
@@ -211,7 +211,6 @@ class World {
         if (distance < 400) {
             // console.log('Distance Enemy to Character', distance);
         }
-
         return distance;
     }
 
@@ -223,10 +222,10 @@ class World {
             if (enemyDistance < distance) {
                 distance = enemyDistance;
             }
-            console.log('Distance EndBoss to Character', enemyDistance);
+            // console.log('Distance EndBoss to Character', enemyDistance);
         })
         if (distance < 400) {
-            console.log('Distance EndBoss to Character', distance);
+            // console.log('Distance EndBoss to Character', distance);
         }
         return distance;
     }
@@ -275,7 +274,7 @@ class World {
         this.ctx.fillText(`${this.ammoStatusBar.itemCount}`, 100, 155);
 
         this.endBossStatus();
-        
+
         // draw() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function () {

@@ -195,8 +195,6 @@ class Character extends MovableObject {
                         this.currentImage--
                         this.isLanding = false;
                     }
-                    // console.log('The SpeedY', this.speedY);
-                    // console.log('character y:', this.y);
                     if (this.y > 50 && !this.isLanding) {
                         this.counter = 1
                         this.playAnimation(this.IMAGES_LANDING);
@@ -205,7 +203,6 @@ class Character extends MovableObject {
                 }
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    // Walk animation
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }

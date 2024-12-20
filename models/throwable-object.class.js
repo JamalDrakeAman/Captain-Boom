@@ -26,20 +26,21 @@ class ThrowableObject extends MovableObject {
         this.shoot();
     }
 
+    
     shoot() {
-        setInterval(() => {
 
+        setInterval(() => {
             if (this.otherDirection) {
                 this.x -= 10;
             } else {
                 this.x += 10;
             }
-
         }, 10)
 
         
         setInterval(() => {
             this.playAnimation(this.IMAGES_SHOOT);
         }, 60)
+
     }
 } 

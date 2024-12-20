@@ -1,13 +1,11 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-
-
 let sound = false;
 let game_music_sound = new Audio('audio/pirates-music.mp3');
-
 let winGame = false;
 
+let currentIndex = 0;
 
 const characterImages = [
     // IDLE
@@ -82,7 +80,6 @@ const characterImages = [
 ];
 
 
-let currentIndex = 0;
 const slideshow = document.getElementById('character-images');
 
 function showNextImage() {
@@ -136,7 +133,6 @@ function startGame() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    // console.log('My character is', world);
     let startScreen = document.getElementById('startscreen');
     startScreen.classList.add('d-none');
 }
@@ -155,7 +151,7 @@ function stopGame() {
         }
         endscreen.classList.toggle('d-flex');
         clearAllIntervals();
-    }, 1000);
+    }, 1200);
 }
 
 

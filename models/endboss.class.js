@@ -4,8 +4,7 @@ class Endboss extends EnemyObject {
     y = 70;
 
     enemyEnergy = 1000;
-
-    endBoss = true;
+    boss = true;
 
     offset = {
         top: 120,
@@ -96,7 +95,7 @@ class Endboss extends EnemyObject {
         this.animate();
 
         this.speed = 3;
-        this.x = 3000;
+        this.x = 4250;
     }
 
     animate() {
@@ -148,9 +147,6 @@ class Endboss extends EnemyObject {
         
         
     }
-
-
-
 
     endBossDead() {
         return this.enemyEnergy == 0;
