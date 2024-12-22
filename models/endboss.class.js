@@ -129,13 +129,11 @@ class Endboss extends EnemyObject {
             }
             else if (attackCounter < 50 && attackReady) {
                 if (currentAnimation !== this.IMAGES_ATTACK) {
-
                     if (i == 1) {
                         this.swordAttack = true;
                         console.log('Boss Sword Attack is True');
                     }
                     i++
-
                     this.currentImage = 0; // Animation beginnt neu
                     currentAnimation = this.IMAGES_ATTACK;
                 }
