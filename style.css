@@ -270,7 +270,6 @@ canvas {
     transform: translateY(0);
 }
 
-
 .endscreen {
     display: none;
     flex-direction: column;
@@ -307,10 +306,8 @@ canvas {
 .endscreen-title {
     font-size: 90px;
     margin: 0;
-
     animation: pulse 2s infinite ease-in-out;
 }
-
 
 .reset-button {
     font-family: 'pirates';
@@ -320,40 +317,40 @@ canvas {
     font-weight: bold;
     color: white;
     background-color: rgba(16, 152, 247, 0.8);
-    /* Gewünschte Farbe */
     border: 2px solid rgba(16, 152, 247, 1);
-    /* Dunklere Farbe als Rand */
     border-radius: 50px;
-    /* Runde Form */
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     box-shadow: 0 6px 15px rgba(16, 152, 247, 0.5);
-    /* Weicher Schatteneffekt */
     text-align: center;
     z-index: 1;
 }
 
-/* Hover-Effekt */
 .reset-button:hover {
     background-color: rgba(16, 152, 247, 1);
-    /* Etwas kräftigerer Ton */
     color: #f1f1f1;
-    /* Hellerer Text */
     transform: scale(1.05);
-    /* Leichtes Vergrößern */
     box-shadow: 0 8px 20px rgba(16, 152, 247, 0.7);
-    /* Stärkerer Schatten */
 }
 
-/* Klick-Effekt */
 .reset-button:active {
     transform: scale(0.98);
-    /* Leichtes Zusammendrücken */
     box-shadow: 0 4px 10px rgba(16, 152, 247, 0.4);
-    /* Geringerer Schatten */
 }
 
+.turn-screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    background-image: url(img/background.jpg);
+    background-position: center;
+    background-size: cover;
+}
 
 
 @keyframes wippen {
@@ -361,18 +358,13 @@ canvas {
     0%,
     100% {
         transform: translateY(0);
-        /* Ausgangsposition */
     }
 
     50% {
         transform: translateY(-4px);
-        /* Leicht nach oben bewegen */
     }
 }
 
-
-
-/* Schimmer-Effekt */
 @keyframes shimmer {
     0% {
         text-shadow: 0 0 10px #fff, 0 0 20px #ff8c00, 0 0 30px #ff8c00, 0 0 40px #ff4500, 0 0 50px #ff4500, 0 0 60px #ff4500;
@@ -386,6 +378,7 @@ canvas {
         text-shadow: 0 0 10px #fff, 0 0 20px #ff8c00, 0 0 30px #ff8c00, 0 0 40px #ff4500, 0 0 50px #ff4500, 0 0 60px #ff4500;
     }
 }
+
 
 @keyframes glowingShadow {
     0% {
@@ -401,7 +394,7 @@ canvas {
     }
 }
 
-/* Pulsierender Zoom */
+
 @keyframes pulse {
     0% {
         transform: scale(1);
@@ -418,8 +411,6 @@ canvas {
 
 
 
-
-
 @media only screen and (max-width: 720px) {
     canvas {
         width: 100%;
@@ -429,5 +420,18 @@ canvas {
 @media only screen and (max-height: 480px) {
     canvas {
         height: 100vh;
+    }
+}
+
+@media(max-width: 900px) {
+    .startscreen {
+        width: 100%;
+        height: 60%;
+    }
+}
+
+@media(min-width: 720px) {
+    .turn-screen{
+        display: none;
     }
 }
