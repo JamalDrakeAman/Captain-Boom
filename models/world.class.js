@@ -36,23 +36,17 @@ class World {
         setInterval(() => {
             this.checkJumpOnEnemy();
             this.checkCollisions();
-
             this.checkThrowObjects();
-
             this.checkPickupCoins();
             this.checkPickupAmmo();
             this.checkPickupHealth()
-
             this.checkShootHitEnemys();
             this.checkCollisionsWithSword();
-
             this.clearDeadEnemys();
             this.checkEnemyDistance();
             this.checkEndBossDistance();
-
             this.checkCharacterIsDead();
             this.checkEndbossIsDead();
-
             this.checkCollisionEndbossAttack();
         }, 100)
     }
@@ -108,7 +102,6 @@ class World {
     checkCollisionsWithSword() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isCollidingWithSword(enemy)) {
-                // console.log('Collision with Sword, energy', this.character.energy);
                 if (this.keyboard.F) {
                     enemy.swordHit();
                     enemy.showEnergy = true;
@@ -117,6 +110,7 @@ class World {
             }
         });
     }
+
 
     checkCollisionEndbossAttack() {
         let attackCharacter = this.endBoss.swordAttack;
@@ -241,23 +235,16 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         this.ctx.translate(this.camera_x, 0);
-
         this.resetShadow();
         this.addObjectsToMap(this.level.backgroundObjects);
-
         this.enableShadow();
         this.addToMap(this.character);
-
         this.ctx.translate(-this.camera_x, 0);
-
         this.addToMap(this.healthStatusBar);
         this.addToMap(this.coinStatusBar);
         this.addToMap(this.ammoStatusBar);
-
         this.ctx.translate(this.camera_x, 0);
-
         this.addObjectsToMap(this.coins);
         this.addObjectsToMap(this.ammo);
         this.addObjectsToMap(this.health);
