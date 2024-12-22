@@ -118,7 +118,7 @@ canvas {
     align-items: center;
     position: absolute;
     width: 850px;
-    height: 600px;
+    height: 650px;
     background-image: url(img/9_intro_outro_screens/start/ship-background.gif);
     background-position: center;
     background-size: cover;
@@ -365,6 +365,7 @@ canvas {
     }
 }
 
+
 @keyframes shimmer {
     0% {
         text-shadow: 0 0 10px #fff, 0 0 20px #ff8c00, 0 0 30px #ff8c00, 0 0 40px #ff4500, 0 0 50px #ff4500, 0 0 60px #ff4500;
@@ -410,7 +411,6 @@ canvas {
 }
 
 
-
 @media only screen and (max-width: 720px) {
     canvas {
         width: 100%;
@@ -424,14 +424,23 @@ canvas {
 }
 
 @media(max-width: 900px) {
-    .startscreen {
+    /* .startscreen {
         width: 100%;
         height: 60%;
-    }
+    } */
 }
 
 @media(min-width: 720px) {
-    .turn-screen{
+    .turn-screen {
         display: none;
+    }
+
+
+}
+
+@media(max-width: 720px) {
+    .startscreen {
+        width: 100vw;
+        height: 100vh;
     }
 }
