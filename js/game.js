@@ -1,11 +1,14 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let sound = false;
+
 let game_music_sound = new Audio('audio/pirates-music.mp3');
 let winGame = false;
 
 let currentIndex = 0;
+
+let sound = false;
+
 
 const characterImages = [
     // IDLE
@@ -137,14 +140,13 @@ function startGame() {
     startScreen.classList.add('d-none');
 }
 
+
 function restartGame() {
     let endscreen = document.getElementById('endscreen');
     endscreen.classList.remove('d-flex');
-
     initLevel();
     world = new World(canvas, keyboard);
     console.log('Restart');
-
 }
 
 

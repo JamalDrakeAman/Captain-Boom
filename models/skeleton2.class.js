@@ -10,6 +10,8 @@ class Skeleton2 extends EnemyObject {
         bottom: 45
     }
 
+    dead = false;
+
     IMAGES_WALKING = [
         'img/3_enemies/skeleton2/walk/skeleton2-walk0.png',
         'img/3_enemies/skeleton2/walk/skeleton2-walk1.png',
@@ -63,6 +65,8 @@ class Skeleton2 extends EnemyObject {
         'img/3_enemies/skeleton2/death/skeleton2-dead13.png'
     ];
 
+    skeleton_hurt = new Audio('audio/skeleton-dead.mp3');
+
     constructor() {
         super().loadImage('img/3_enemies/skeleton/walk/skeleton-walk1.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -96,6 +100,12 @@ class Skeleton2 extends EnemyObject {
     enemyDie() {
         this.playAnimation(this.IMAGES_DEAD);
         this.speed = 0;
+        if (!this.dead) {
+            this.dead = true;
+            if (sound) {
+                this.skeleton_hurt.play();
+            }
+        }
 
     }
 

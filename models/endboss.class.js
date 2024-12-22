@@ -118,11 +118,17 @@ class Endboss extends EnemyObject {
                     currentAnimation = this.IMAGES_DEATH;
                 }
                 this.playAnimation(this.IMAGES_DEATH);
-                this.monster_sound.play();
+                if (sound) {
+                    this.monster_sound.play();
+                }
+
             }
             else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-                this.monster_hurt_sound.play();
+                if (sound) {
+                    this.monster_hurt_sound.play();
+                }
+
             }
             else if (summonBat && attackReady) {
                 if (currentAnimation !== this.IMAGES_ALERT) {
@@ -142,7 +148,9 @@ class Endboss extends EnemyObject {
                         this.swordAttack = true;
                         console.log('Boss Sword Attack is True');
                         setTimeout(() => {
-                            this.sword_hit_sound.play();
+                            if (sound) {
+                                this.sword_hit_sound.play();
+                            }
                         }, 200);
                     }
                     i++
@@ -185,13 +193,17 @@ class Endboss extends EnemyObject {
             if (world.character.x > 3600 && !this.hadFirstContact) {
                 this.hadFirstContact = true
                 attackReady = true;
-
                 summonBat = true;
-                this.monster_sound.play();
+                if (sound) {
+                    this.monster_sound.play();
+                }
+
             }
             if (summonBat && attackReady) {
                 this.summonEnemies();
-                this.summon_sound.play();
+                if (sound) {
+                    this.summon_sound.play();
+                }
             }
         }, 1000);
 
@@ -204,11 +216,6 @@ class Endboss extends EnemyObject {
 
     endBossDead() {
         return this.enemyEnergy == 0;
-    }
-
-
-    endbossHurt() {
-
     }
 
 

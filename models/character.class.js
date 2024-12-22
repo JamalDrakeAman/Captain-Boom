@@ -161,17 +161,23 @@ class Character extends MovableObject {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
-                this.walking_sound.play();
+                if (sound) {
+                    this.walking_sound.play();
+                }
             }
             if (this.world.keyboard.LEFT && this.x > -100) {
                 this.moveLeft();
                 this.otherDirection = true;
-                this.walking_sound.play();
+                if (sound) {
+                    this.walking_sound.play();
+                }
             }
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
-                this.jump_sound.play();
                 this.isLanding = false;
+                if (sound) {
+                    this.jump_sound.play();
+                }
             }
             this.world.camera_x = -this.x - 35;
         }, 1000 / 60)
@@ -190,11 +196,15 @@ class Character extends MovableObject {
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.world.keyboard.D) {
-                this.trigger_sound.play();
+                if (sound) {
+                    this.trigger_sound.play();
+                }
                 this.playAnimation(this.IMAGES_GUN_SHOOT);
             } else if (this.world.keyboard.F) {
                 this.playAnimation(this.IMAGES_SWORD_ATTACK_1);
-                this.sword_sound.play();
+                if (sound) {
+                    this.sword_sound.play();
+                }
             } else if (this.isAboveGround()) {
                 if (this.speedY > 0) {
                     this.playAnimation(this.IMAGES_JUMPING);
@@ -210,7 +220,9 @@ class Character extends MovableObject {
                     if (this.y > 50 && !this.isLanding) {
                         this.counter = 1
                         this.playAnimation(this.IMAGES_LANDING);
-                        this.landing_sound.play();
+                        if (sound) {
+                            this.landing_sound.play();
+                        }
                     }
                 }
             } else {
@@ -219,7 +231,7 @@ class Character extends MovableObject {
                 }
             }
         }, 80);
-
+        
     }
 
     health() {

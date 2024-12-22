@@ -60,23 +60,22 @@ class World {
 
     checkThrowObjects() {
         if (this.keyboard.D && this.ammoStatusBar.itemCount > 0) {
-
             if (this.character.otherDirection) {
                 let ammo = new ThrowableObject(this.character.x - 10, this.character.y + 30, this.character.otherDirection);
                 this.throwableObjects.push(ammo);
                 this.ammoStatusBar.itemCount--;
-                this.character.shoot_sound.play();
-                setTimeout(() => {
-                    this.throwableObjects.splice(0, 1);
-                }, 300)
+                if (sound) {
+                    this.character.shoot_sound.play();
+                }
+                setTimeout(() => this.throwableObjects.splice(0, 1), 300);
             } else {
                 let ammo = new ThrowableObject(this.character.x + 160, this.character.y + 30);
                 this.throwableObjects.push(ammo);
                 this.ammoStatusBar.itemCount--;
-                this.character.shoot_sound.play();
-                setTimeout(() => {
-                    this.throwableObjects.splice(0, 1);
-                }, 300)
+                if (sound) {
+                    this.character.shoot_sound.play();
+                }
+                setTimeout(() => this.throwableObjects.splice(0, 1), 300)
             }
         }
     }
@@ -96,15 +95,11 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.speedY < 0 && !this.character.enemyHit) {
                 this.character.enemyHit = true;
-                console.log('enemyHit set to true', this.character.enemyHit)
                 enemy.jumpHit();
                 this.character.bounceOffEnemy();
                 enemy.showEnergy = true;
                 setTimeout(() => enemy.showEnergy = false, 2000);
-                setTimeout(() => {
-                    this.character.enemyHit = false;
-                    console.log('enemyHit set to false', this.character.enemyHit)
-                }, 500)
+                setTimeout(() => this.character.enemyHit = false, 500);
             }
         })
     }
@@ -116,7 +111,6 @@ class World {
                 // console.log('Collision with Sword, energy', this.character.energy);
                 if (this.keyboard.F) {
                     enemy.swordHit();
-                    console.log('Hit enemy Energy', enemy.enemyEnergy);
                     enemy.showEnergy = true;
                     setTimeout(() => enemy.showEnergy = false, 2000);
                 }
@@ -127,28 +121,22 @@ class World {
     checkCollisionEndbossAttack() {
         let attackCharacter = this.endBoss.swordAttack;
         if (this.character.isEndbossAttackColliding(this.endBoss)) {
-            console.log('Endboss Attack is Colliding with Character');
-            console.log(this.endBoss.currentImage);
-
-
             if (attackCharacter && this.endBoss.currentImage > 4) {
-                console.log('Hit the Character');
                 this.character.hit();
                 this.healthStatusBar.setPercentage(this.character.energy);
             }
-            // this.character.hit();
         }
-
     }
 
 
     checkPickupCoins() {
         this.coins.forEach((coins, index) => {
             if (this.character.isColliding(coins)) {
-                // console.log('Collision with coin');
-                this.character.coins_sound.play();
                 this.coins.splice(index, 1);
                 this.coinStatusBar.pickupItem();
+                if (sound) {
+                    this.character.coins_sound.play();
+                }
             }
         });
     }
@@ -158,7 +146,6 @@ class World {
         if (this.healthStatusBar.percentage < 100) {
             this.health.forEach((health, index) => {
                 if (this.character.isColliding(health)) {
-                    // console.log('Collision with Health');
                     this.health.splice(index, 1);
                     this.character.health();
                     this.healthStatusBar.setPercentage(this.character.energy);
@@ -171,10 +158,11 @@ class World {
     checkPickupAmmo() {
         this.ammo.forEach((ammo, index) => {
             if (this.character.isColliding(ammo)) {
-                // console.log('Collision with ammo');
-                this.character.loaded_sound.play();
                 this.ammo.splice(index, 1)
                 this.ammoStatusBar.pickupItem();
+                if (sound) {
+                    this.character.loaded_sound.play();
+                }
             }
         });
     }
@@ -184,7 +172,6 @@ class World {
         this.level.enemies.forEach((enemy, index) => {
             this.throwableObjects.forEach((obj) => {
                 if (obj.isColliding(enemy)) {
-                    // console.log('Enemy', enemy);
                     this.level.enemies[index].shootHit();
                     enemy.showEnergy = true;
                     setTimeout(() => enemy.showEnergy = false, 2000);
@@ -209,7 +196,6 @@ class World {
         if (this.endBoss.enemyEnergy == 0) {
             winGame = true;
             stopGame();
-            console.log('Endboss is Dead');
         }
     }
 

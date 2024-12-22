@@ -147,8 +147,10 @@ class Skeleton extends EnemyObject {
         this.playAnimation(this.IMAGES_DEAD);
         this.speed = 0;
         if (!this.dead) {
-            this.skeleton_hurt.play();
             this.dead = true;
+            if (sound) {
+                this.skeleton_hurt.play();
+            }
         }
     }
 
