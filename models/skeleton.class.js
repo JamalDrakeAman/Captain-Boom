@@ -6,6 +6,8 @@ class Skeleton extends EnemyObject {
     runCounter = Math.round(Math.random() * 100);
     run = false;
 
+    dead = false;
+
     offset = {
         top: 65,
         left: 50,
@@ -100,6 +102,9 @@ class Skeleton extends EnemyObject {
     ]
 
 
+    skeleton_hurt = new Audio('audio/skeleton-dead.mp3');
+
+
     constructor() {
         super().loadImage('img/3_enemies/skeleton/walk/skeleton-walk1.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -141,7 +146,10 @@ class Skeleton extends EnemyObject {
     enemyDie() {
         this.playAnimation(this.IMAGES_DEAD);
         this.speed = 0;
-
+        if (!this.dead) {
+            this.skeleton_hurt.play();
+            this.dead = true;
+        }
     }
 
     enemyHurt() {

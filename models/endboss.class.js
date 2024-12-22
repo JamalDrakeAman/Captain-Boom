@@ -120,6 +120,10 @@ class Endboss extends EnemyObject {
                 this.playAnimation(this.IMAGES_DEATH);
                 this.monster_sound.play();
             }
+            else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
+                this.monster_hurt_sound.play();
+            }
             else if (summonBat && attackReady) {
                 if (currentAnimation !== this.IMAGES_ALERT) {
                     this.currentImage = 0; // Animation beginnt neu
@@ -203,7 +207,9 @@ class Endboss extends EnemyObject {
     }
 
 
-    endBoosReadyToAttack() { }
+    endbossHurt() {
+
+    }
 
 
     summonEnemies() {
