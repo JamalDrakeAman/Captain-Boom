@@ -181,6 +181,7 @@ class Character extends MovableObject {
             this.playAnimation(this.IMAGES_IDLE);
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                this.speed = 0;
                 if (this.currentImage > 8) {
                     this.currentImage = 5;
                 } else if (this.currentImage < 5 || this.currentImage > 7) {
