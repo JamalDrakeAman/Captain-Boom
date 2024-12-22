@@ -69,7 +69,7 @@ canvas {
     padding: 0 0 0 30px;
     width: 210px;
     height: 70px;
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: center;
 }
@@ -106,7 +106,7 @@ canvas {
     width: 300px;
     padding: 0 30px 0 0;
     height: 70px;
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: center;
 }
@@ -424,16 +424,38 @@ canvas {
 }
 
 @media(max-width: 900px) {
-    /* .startscreen {
-        width: 100%;
-        height: 60%;
-    } */
+    .move-container {
+        display: flex;
+    }
+
+    .action-container {
+        display: flex;
+    }
+
+    .game-title {
+        display: none;
+    }
+
+
+}
+
+@media(max-width: 800px) {
+    canvas {
+        width: 100vw;
+        height: 100vh;
+        max-height: 650px;
+    }
 }
 
 @media(min-width: 720px) {
     .turn-screen {
         display: none;
     }
+
+    /* canvas {
+        width: 100vw;
+        height: 100vh;
+    } */
 
 
 }
@@ -443,4 +465,6 @@ canvas {
         width: 100vw;
         height: 100vh;
     }
+
+
 }
