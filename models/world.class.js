@@ -185,7 +185,7 @@ class World {
             this.throwableObjects.forEach((obj) => {
                 if (obj.isColliding(enemy)) {
                     // console.log('Enemy', enemy);
-                    this.level.enemies[index].shootHit()
+                    this.level.enemies[index].shootHit();
                     enemy.showEnergy = true;
                     setTimeout(() => enemy.showEnergy = false, 2000);
                 }

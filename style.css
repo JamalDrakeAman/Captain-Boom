@@ -72,12 +72,18 @@ canvas {
     display: none;
     justify-content: space-between;
     align-items: center;
+
+    touch-action: none;
+    user-select: none;
 }
 
 .move-btn {
     width: 65px;
     height: 65px;
     cursor: pointer;
+
+    touch-action: none;
+    user-select: none;
 }
 
 .move-btn:active {
@@ -92,6 +98,9 @@ canvas {
     border: solid 2px rgba(255, 0, 0, 0.5);
     border-radius: 50%;
     cursor: pointer;
+
+    touch-action: none;
+    user-select: none;
 }
 
 .attack-btn:active {
@@ -109,6 +118,9 @@ canvas {
     display: none;
     justify-content: space-between;
     align-items: center;
+
+    touch-action: none;
+    user-select: none;
 }
 
 .startscreen {

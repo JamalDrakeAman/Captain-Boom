@@ -137,6 +137,16 @@ function startGame() {
     startScreen.classList.add('d-none');
 }
 
+function restartGame() {
+    let endscreen = document.getElementById('endscreen');
+    endscreen.classList.remove('d-flex');
+
+    initLevel();
+    world = new World(canvas, keyboard);
+    console.log('Restart');
+
+}
+
 
 function stopGame() {
     let endscreenTitle = document.getElementById('endscreen-title');

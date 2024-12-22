@@ -83,6 +83,10 @@ class Endboss extends EnemyObject {
         'img/4_boss/5_dead/Bringer-of-Death_Death_10.png'
     ];
 
+    monster_sound = new Audio('audio/monster-sound.mp3');
+    monster_hurt_sound = new Audio('audio/endboss-hurt.mp3');
+    summon_sound = new Audio('audio/boss-summon.mp3');
+    sword_hit_sound = new Audio('audio/endboss-sword.mp3');
 
     hadFirstContact = false;
 
@@ -114,6 +118,7 @@ class Endboss extends EnemyObject {
                     currentAnimation = this.IMAGES_DEATH;
                 }
                 this.playAnimation(this.IMAGES_DEATH);
+                this.monster_sound.play();
             }
             else if (summonBat && attackReady) {
                 if (currentAnimation !== this.IMAGES_ALERT) {
@@ -132,6 +137,9 @@ class Endboss extends EnemyObject {
                     if (i == 1) {
                         this.swordAttack = true;
                         console.log('Boss Sword Attack is True');
+                        setTimeout(() => {
+                            this.sword_hit_sound.play();
+                        }, 200);
                     }
                     i++
                     this.currentImage = 0; // Animation beginnt neu
@@ -170,13 +178,16 @@ class Endboss extends EnemyObject {
             if (this.enemyEnergy < 1000 && this.enemyEnergy > 0) {
                 this.enemyEnergy += 5;
             }
-            if (world.character.x > 3700 && !this.hadFirstContact) {
+            if (world.character.x > 3600 && !this.hadFirstContact) {
                 this.hadFirstContact = true
                 attackReady = true;
+
                 summonBat = true;
+                this.monster_sound.play();
             }
             if (summonBat && attackReady) {
                 this.summonEnemies();
+                this.summon_sound.play();
             }
         }, 1000);
 
@@ -204,5 +215,6 @@ class Endboss extends EnemyObject {
             world.level.enemies.push(newEnemy); // Füge den Gegner zur Gegnerliste hinzu
         }
     }
+
 
 }
