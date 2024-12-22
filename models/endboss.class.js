@@ -178,7 +178,7 @@ class Endboss extends EnemyObject {
                 summonBat = true;
             }
             if (summonBat && attackReady) {
-                // this.summonEnemies();
+                this.summonEnemies();
             }
         }, 1000);
 
