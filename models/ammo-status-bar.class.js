@@ -11,7 +11,6 @@ class AmmoStatusBar extends StatusBar {
         this.height = 110;
     }
 
-
     pickupItem() {
         this.itemCount += 1;
     }

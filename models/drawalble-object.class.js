@@ -25,6 +25,7 @@ class DrawableObject {
         })
     }
 
+    
     draw(ctx) {
         try { // Try Catch for to check faild load imges ...
             ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
@@ -33,6 +34,7 @@ class DrawableObject {
             console.log('Could not load image', this.img.src);
         }
     }
+
 
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Endboss || this instanceof ThrowableObject) {
@@ -43,6 +45,7 @@ class DrawableObject {
             ctx.stroke();
         }
     }
+
 
     drawHitbox(ctx) {
         if (this instanceof Character || this instanceof Endboss || this instanceof ThrowableObject) {

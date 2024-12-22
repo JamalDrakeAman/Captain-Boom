@@ -2,10 +2,8 @@ class Bat extends EnemyObject {
     height = 50;
     width = 50;
     y = 240;
-
     drop = false;
     enemyEnergy = 30;
-
     runCounter = Math.round(Math.random() * 100);
     run = false;
 
@@ -43,18 +41,15 @@ class Bat extends EnemyObject {
     ];
 
 
-
     constructor() {
         super().loadImage('img/3_enemies/bat/blue-bat-fly/blue-bat-fly0.png');
         this.loadImages(this.IMAGES_BLUE_FLY);
         this.loadImages(this.IMAGES_BLUE_HIT);
         this.loadImages(this.IMAGES_PURPLE_FLY);
         this.loadImages(this.IMAGES_PURPLE_HIT);
-
         this.x = 500 + Math.random() * 4200;
         this.y = 50 + Math.random() * 300;
         this.speed = 0.15 + Math.random() * 0.5;
-
         this.applyGravity();
         this.animate();
     }
@@ -95,11 +90,6 @@ class Bat extends EnemyObject {
         this.runCounter = 97;
     }
 
-    // enemyJump() {
-    //     this.playAnimation(this.IMAGES_JUMP);
-    //     this.speedY = 30;
-    //     this.jumpCounter = 0;
-    // }
 
     enemyRun() {
         this.playAnimation(this.IMAGES_PURPLE_FLY);
@@ -113,16 +103,6 @@ class Bat extends EnemyObject {
         }
     }
 
-
-    // randomItem(){
-
-    // }
-
-    // dropItem(){
-    //     console.log('Drop Item');
-    //     let item = 
-
-    // }
 
     dropRandomItem() {
         let dropChance = Math.random(); // Zufallswert zwischen 0 und 1
@@ -143,7 +123,6 @@ class Bat extends EnemyObject {
             console.log('Noo Drop');
         }
 
-        // Setze die Position des gedroppten Objekts auf die des Gegners
         if (dropArray) {
             item.x = this.x;
             item.y = this.y;

@@ -4,5 +4,4 @@ class PickupItemObject extends MovableObject {
     y = 240;
 
 
-
 }

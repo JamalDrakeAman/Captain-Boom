@@ -2,10 +2,8 @@ class Endboss extends EnemyObject {
     height = 330;
     width = 430;
     y = 70;
-
     enemyEnergy = 1000;
     boss = true;
-
     swordAttack = false;
 
     offset = {
@@ -99,7 +97,6 @@ class Endboss extends EnemyObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEATH);
         this.animate();
-
         this.speed = 5;
         this.x = 4000;
     }
@@ -128,7 +125,6 @@ class Endboss extends EnemyObject {
                 if (sound) {
                     this.monster_hurt_sound.play();
                 }
-
             }
             else if (summonBat && attackReady) {
                 if (currentAnimation !== this.IMAGES_ALERT) {
@@ -197,7 +193,6 @@ class Endboss extends EnemyObject {
                 if (sound) {
                     this.monster_sound.play();
                 }
-
             }
             if (summonBat && attackReady) {
                 this.summonEnemies();

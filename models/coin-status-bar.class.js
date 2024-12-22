@@ -19,6 +19,7 @@ class CoinStatusBar extends StatusBar {
         this.height = 45;
     }
 
+    
     pickupItem() {
         this.itemCount += 1;
     }

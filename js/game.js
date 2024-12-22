@@ -17,7 +17,6 @@ const characterImages = [
     'img/1_character/idle/pirate_idle2.png',
     'img/1_character/idle/pirate_idle3.png',
     'img/1_character/idle/pirate_idle4.png',
-
     // WALK
     'img/1_character/walk/pirate_run1.png',
     'img/1_character/walk/pirate_run2.png',
@@ -25,19 +24,15 @@ const characterImages = [
     'img/1_character/walk/pirate_run4.png',
     'img/1_character/walk/pirate_run5.png',
     'img/1_character/walk/pirate_run6.png',
-
     // JUMP
     'img/1_character/jump/pirate_jump1.png',
     'img/1_character/jump/pirate_jump2.png',
-
     // FALL
     'img/1_character/fall/pirate_fall1.png',
     'img/1_character/fall/pirate_fall2.png',
-
     //LANDING
     'img/1_character/landing/pirate_landing1.png',
     'img/1_character/landing/pirate_landing2.png',
-
     // GUN OUT
     'img/1_character/gun-out/pirate_gun_out0.png',
     'img/1_character/gun-out/pirate_gun_out1.png',
@@ -45,20 +40,18 @@ const characterImages = [
     'img/1_character/gun-out/pirate_gun_out3.png',
     'img/1_character/gun-out/pirate_gun_out4.png',
     'img/1_character/gun-out/pirate_gun_out5.png',
-
     //SHOOT
     'img/1_character/gun-shoot-with-fire/tile000.png',
     'img/1_character/gun-shoot-with-fire/tile001.png',
     'img/1_character/gun-shoot-with-fire/tile002.png',
     'img/1_character/gun-shoot-with-fire/tile003.png',
     'img/1_character/gun-shoot-with-fire/tile004.png',
-
+    //SHOOT
     'img/1_character/gun-shoot-with-fire/tile000.png',
     'img/1_character/gun-shoot-with-fire/tile001.png',
     'img/1_character/gun-shoot-with-fire/tile002.png',
     'img/1_character/gun-shoot-with-fire/tile003.png',
     'img/1_character/gun-shoot-with-fire/tile004.png',
-
     // ATTACK
     'img/1_character/sword-attack1/pirate_attack1_0.png',
     'img/1_character/sword-attack1/pirate_attack1_1.png',
@@ -120,13 +113,10 @@ function toggleSound() {
 function toggleControlsInfo() {
     let ControleContainer = document.getElementById('controls-info-container');
     ControleContainer.classList.toggle('show-hide-box')
-
     let characterShowContainer = document.getElementById('character-images-container');
     characterShowContainer.classList.toggle('change-character-position')
-
     let startScreenTitle = document.getElementById('startscreen-title');
     startScreenTitle.classList.toggle('d-none');
-
     let startScreenBtn = document.getElementById('start-game-btn');
     startScreenBtn.classList.toggle('d-none');
 }
