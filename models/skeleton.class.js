@@ -2,10 +2,8 @@ class Skeleton extends EnemyObject {
     height = 150;
     width = 150;
     y = 240;
-
     runCounter = Math.round(Math.random() * 100);
     run = false;
-
     dead = false;
 
     offset = {
@@ -117,7 +115,6 @@ class Skeleton extends EnemyObject {
         this.loadImages(this.IMAGES_ATTACK_3);
         this.x = 500 + Math.random() * 4200;
         this.speed = 0.15 + Math.random() * 0.25;
-
         this.applyGravity();
         this.animate();
     }
@@ -143,6 +140,7 @@ class Skeleton extends EnemyObject {
 
     }
 
+    
     enemyDie() {
         this.playAnimation(this.IMAGES_DEAD);
         this.speed = 0;
@@ -154,16 +152,19 @@ class Skeleton extends EnemyObject {
         }
     }
 
+
     enemyHurt() {
         this.playAnimation(this.IMAGES_HURT);
         this.runCounter = 97;
     }
+
 
     enemyJump() {
         this.playAnimation(this.IMAGES_JUMP);
         this.speedY = 30;
         this.jumpCounter = 0;
     }
+
 
     enemyRun() {
         this.playAnimation(this.IMAGES_RUN);
