@@ -129,27 +129,27 @@ class Bat extends EnemyObject {
         let item;
         let dropArray;
 
-        if (dropChance < 0.1) { // 40% Chance, eine Münze zu droppen
+        if (dropChance < 0.1) { // 10% Chance, eine Münze zu droppen
             item = new Coin();
             dropArray = world.coins;
-        } else if (dropChance < 0.15) { // 30% Chance, ein Health-Item zu droppen
+        } else if (dropChance < 0.15) { // 5% Chance, ein Health-Item zu droppen
             item = new Health();
             dropArray = world.health;
-        } else if (dropChance < 0.35) { // 30% Chance, Munition zu droppen
+        } else if (dropChance < 0.45) { // 30% Chance, Munition zu droppen
             item = new Ammo();
             dropArray = world.ammo;
         } else {
-            dropArray = 0;
+            dropArray = null; // Kein Drop
             console.log('Noo Drop');
         }
 
         // Setze die Position des gedroppten Objekts auf die des Gegners
-        if (dropArray !== 0) {
+        if (dropArray) {
             item.x = this.x;
             item.y = this.y;
             dropArray.push(item);
-            console.log('Drop Item ');
-            
+            console.log('Item Dropped:', item);
+
         }
 
     }

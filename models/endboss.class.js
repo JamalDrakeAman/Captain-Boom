@@ -6,6 +6,8 @@ class Endboss extends EnemyObject {
     enemyEnergy = 1000;
     boss = true;
 
+    swordAttack = false;
+
     offset = {
         top: 120,
         left: 270,
@@ -99,79 +101,104 @@ class Endboss extends EnemyObject {
     }
 
     animate() {
-
-        let i = 0;
         let attackCounter = 100;
         let attackReady = false;
         let summonBat = false;
+        let currentAnimation = null;
+        let i = 0
 
         setInterval(() => {
             if (this.endBossDead()) {
+                if (currentAnimation !== this.IMAGES_DEATH) {
+                    this.currentImage = 0; // Animation beginnt neu
+                    currentAnimation = this.IMAGES_DEATH;
+                }
                 this.playAnimation(this.IMAGES_DEATH);
-            } else if (summonBat && attackReady) {
+            }
+            else if (summonBat && attackReady) {
+                if (currentAnimation !== this.IMAGES_ALERT) {
+                    this.currentImage = 0; // Animation beginnt neu
+                    currentAnimation = this.IMAGES_ALERT;
+                }
                 this.playAnimation(this.IMAGES_ALERT);
                 if (this.currentImage > 8) {
                     this.currentImage = 5;
                 } else if (this.currentImage < 5 || this.currentImage > 7) {
                     this.currentImage = 5;
                 }
-            } else if (attackCounter < 50 && attackReady) {
+            }
+            else if (attackCounter < 50 && attackReady) {
+                if (currentAnimation !== this.IMAGES_ATTACK) {
+
+                    if (i == 1) {
+                        this.swordAttack = true;
+                        console.log('Boss Sword Attack is True');
+                    }
+                    i++
+
+                    this.currentImage = 0; // Animation beginnt neu
+                    currentAnimation = this.IMAGES_ATTACK;
+                }
                 this.playAnimation(this.IMAGES_ATTACK);
+                if (this.currentImage > 8) {
+                    i = 0;
+                    this.swordAttack = false;
+                    console.log('Boss Sword Attack is False');
+                }
                 if (attackCounter < 0) {
                     attackCounter = 100;
                 }
-            } else if(attackReady){
+            }
+            else if (attackReady) {
+                if (currentAnimation !== this.IMAGES_WALKING) {
+                    this.currentImage = 0; // Animation beginnt neu
+                    currentAnimation = this.IMAGES_WALKING;
+                }
                 this.playAnimation(this.IMAGES_WALKING);
                 this.moveLeft();
-            } else {
+            }
+            else {
+                if (currentAnimation !== this.IMAGES_IDLE) {
+                    this.currentImage = 0; // Animation beginnt neu
+                    currentAnimation = this.IMAGES_IDLE;
+                }
                 this.playAnimation(this.IMAGES_IDLE);
             }
-
-
-            if (world.character.x > 3700 && !this.hadFirstContact) {
-                i = 0;
-
-                this.hadFirstContact = true
-                attackReady = true;
-                summonBat = true;
-            }
-            i++;
-            attackCounter -= 2
+            attackCounter -= 2;
         }, 200);
+
 
         setInterval(() => {
             if (this.enemyEnergy < 1000 && this.enemyEnergy > 0) {
                 this.enemyEnergy += 5;
             }
-
-        }, 1000)
-
-
-        setInterval(() => {
-            if (summonBat && attackReady) {
-                this.summonEnemies();
+            if (world.character.x > 3700 && !this.hadFirstContact) {
+                this.hadFirstContact = true
+                attackReady = true;
+                summonBat = true;
             }
-        }, 1300)
+            if (summonBat && attackReady) {
+                // this.summonEnemies();
+            }
+        }, 1000);
 
 
         setInterval(() => {
             summonBat = !summonBat;
-        }, 6000)
-
-
-
+        }, 7000);
     }
+
 
     endBossDead() {
         return this.enemyEnergy == 0;
     }
 
-    endBoosReadyToAttack() {
 
-    }
+    endBoosReadyToAttack() { }
+
 
     summonEnemies() {
-        console.log("Der Endboss beschwört Verstärkung!");
+        // console.log("Der Endboss beschwört Verstärkung!");
         for (let j = 0; j < 3; j++) { // Beschwöre z.B. 3 neue Gegner
             let newEnemy = new Bat(); // Erstelle einen neuen Gegner
             newEnemy.x = this.x + 350 // Setze die Gegnerposition nahe beim Endboss
@@ -179,6 +206,5 @@ class Endboss extends EnemyObject {
             world.level.enemies.push(newEnemy); // Füge den Gegner zur Gegnerliste hinzu
         }
     }
-
 
 }

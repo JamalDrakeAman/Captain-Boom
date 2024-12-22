@@ -52,6 +52,8 @@ class World {
 
             this.checkCharacterIsDead();
             this.checkEndbossIsDead();
+
+            this.checkCollisionEndbossAttack();
         }, 100)
     }
 
@@ -89,6 +91,7 @@ class World {
         });
     }
 
+
     checkJumpOnEnemy() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.speedY < 0 && !this.character.enemyHit) {
@@ -119,6 +122,23 @@ class World {
                 }
             }
         });
+    }
+
+    checkCollisionEndbossAttack() {
+        let attackCharacter = this.endBoss.swordAttack;
+        if (this.character.isEndbossAttackColliding(this.endBoss)) {
+            console.log('Endboss Attack is Colliding with Character');
+            console.log(this.endBoss.currentImage);
+
+
+            if (attackCharacter && this.endBoss.currentImage > 4) {
+                console.log('Hit the Character');
+                this.character.hit();
+                this.healthStatusBar.setPercentage(this.character.energy);
+            }
+            // this.character.hit();
+        }
+
     }
 
 
@@ -164,7 +184,7 @@ class World {
         this.level.enemies.forEach((enemy, index) => {
             this.throwableObjects.forEach((obj) => {
                 if (obj.isColliding(enemy)) {
-                    console.log('Enemy', enemy);
+                    // console.log('Enemy', enemy);
                     this.level.enemies[index].shootHit()
                     enemy.showEnergy = true;
                     setTimeout(() => enemy.showEnergy = false, 2000);
@@ -224,10 +244,10 @@ class World {
             if (enemyDistance < distance) {
                 distance = enemyDistance;
             }
-            console.log('Distance EndBoss to Character', enemyDistance);
+            // console.log('Distance EndBoss to Character', enemyDistance);
         })
         if (distance < 400) {
-            console.log('Distance EndBoss to Character', distance);
+            // console.log('Distance EndBoss to Character', distance);
         }
         return distance;
     }
