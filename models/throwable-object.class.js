@@ -21,11 +21,9 @@ class ThrowableObject extends MovableObject {
         this.y = y;
         this.height = 350;
         this.width = 250;
-
         this.otherDirection = otherDirection
         this.shoot();
     }
-
     
     shoot() {
 
