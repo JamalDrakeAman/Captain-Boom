@@ -137,6 +137,7 @@ class Character extends MovableObject {
     trigger_sound = new Audio('audio/trigger.mp3');
     loaded_sound = new Audio('audio/load-ammo.mp3');
     coins_sound = new Audio('audio/coins.mp3');
+    hurt_sound = new Audio('audio/pirate-hurt.mp3');
 
     constructor() {
         super().loadImage('img/1_character/walk/pirate_run1.png');
@@ -195,6 +196,7 @@ class Character extends MovableObject {
                 }
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+                this.hurt_sound.play();
             } else if (this.world.keyboard.D) {
                 if (sound) {
                     this.trigger_sound.play();
@@ -231,7 +233,7 @@ class Character extends MovableObject {
                 }
             }
         }, 80);
-        
+
     }
 
     health() {
