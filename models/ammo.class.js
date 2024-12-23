@@ -16,7 +16,6 @@ class Ammo extends PickupItemObject {
         'img/8_item/ammo/bullet1.png',
     ];
 
-
     constructor() {
         super().loadImage('img/8_item/ammo/bullet0.png');
         this.loadImages(this.IMAGES);

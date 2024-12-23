@@ -97,7 +97,7 @@ class Endboss extends EnemyObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEATH);
         this.animate();
-        this.speed = 5;
+        this.speed = 8;
         this.x = 4000;
     }
 
@@ -215,8 +215,8 @@ class Endboss extends EnemyObject {
 
 
     summonEnemies() {
-        // console.log("Der Endboss beschwört Verstärkung!");
-        for (let j = 0; j < 3; j++) { // Beschwöre z.B. 3 neue Gegner
+        // console.log("Der Endboss beschwört Verstärkung");
+        for (let j = 0; j < 3; j++) { // Beschwöre  3 neue Gegner
             let newEnemy = new Bat(); // Erstelle einen neuen Gegner
             newEnemy.x = this.x + 350 // Setze die Gegnerposition nahe beim Endboss
             newEnemy.y = 70 + Math.random() * 250;; // Standard Y-Position
