@@ -196,7 +196,9 @@ class Character extends MovableObject {
                 }
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-                this.hurt_sound.play();
+                if (sound) {
+                    this.hurt_sound.play();
+                }
             } else if (this.world.keyboard.D) {
                 if (sound) {
                     this.trigger_sound.play();

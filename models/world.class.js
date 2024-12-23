@@ -17,6 +17,8 @@ class World {
 
     endBoss = this.level.enemies.find(enemie => enemie.boss);
 
+    characterRight = false;
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -228,15 +230,24 @@ class World {
             console.log('Distance EndBoss to Character', distance);
             console.log('Move Left');
             this.endBoss.otherDirection = false;
+
+            this.characterRight = false;
         } else if (distance < 0 && distance > - 400) {
             console.log('Move Right', distance);
             this.endBoss.otherDirection = true;
+
+            this.characterRight = true;
         }
         return distance;
     }
 
 
     draw() {
+        if (this.characterRight) {
+            this.camera_x = -this.character.x + (this.canvas.width * 0.3); // Charakter rechts positionieren
+        }
+
+
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
         this.resetShadow();
