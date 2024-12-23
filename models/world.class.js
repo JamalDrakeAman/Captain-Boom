@@ -219,15 +219,18 @@ class World {
 
     checkEndBossDistance() {
         let distance = 100000000000;
-        this.level.enemies.forEach(enemy => {
-            let enemyDistance = Math.abs(this.endBoss.x - this.character.x + 120);
-            if (enemyDistance < distance) {
-                distance = enemyDistance;
-            }
-            // console.log('Distance EndBoss to Character', enemyDistance);
-        })
-        if (distance < 400) {
-            // console.log('Distance EndBoss to Character', distance);
+        let enemyDistance = this.endBoss.x - this.character.x + 120;
+        if (enemyDistance < distance) {
+            distance = enemyDistance;
+        }
+        // console.log('Distance EndBoss to Character', enemyDistance);
+        if (distance < 400 && distance > 0) {
+            console.log('Distance EndBoss to Character', distance);
+            console.log('Move Left');
+            this.endBoss.otherDirection = false;
+        } else if (distance < 0 && distance > - 400) {
+            console.log('Move Right', distance);
+            this.endBoss.otherDirection = true;
         }
         return distance;
     }
