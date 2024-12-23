@@ -1,12 +1,9 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-
 let game_music_sound = new Audio('audio/pirates-music.mp3');
 let winGame = false;
-
 let currentIndex = 0;
-
 let sound = false;
 
 
@@ -153,6 +150,7 @@ function stopGame() {
         }
         endscreen.classList.toggle('d-flex');
         clearAllIntervals();
+        game_music_sound.pause();
     }, 1200);
 }
 
