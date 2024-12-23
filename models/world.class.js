@@ -17,7 +17,9 @@ class World {
 
     endBoss = this.level.enemies.find(enemie => enemie.boss);
 
-    characterRight = false;
+    // characterRight = false;
+
+    moveCamera = 0;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -231,25 +233,45 @@ class World {
             console.log('Move Left');
             this.endBoss.otherDirection = false;
 
-            this.characterRight = false;
+            this.cameraPositionLeft();
+
         } else if (distance < 0 && distance > - 400) {
             console.log('Move Right', distance);
             this.endBoss.otherDirection = true;
 
-            this.characterRight = true;
+            this.cameraPositionRight();
         }
         return distance;
     }
 
 
-    draw() {
-        if (this.characterRight) {
-            this.camera_x = -this.character.x + (this.canvas.width * 0.3); // Charakter rechts positionieren
+    cameraPositionRight() {
+        // Wenn moveCamera weniger als 20 ist, dann sanft nach rechts verschieben
+        if (this.moveCamera < 2) {
+            this.moveCamera += 0.1; // Sanftere Bewegung nach rechts
+            console.log('moveCamera', this.moveCamera);
+            
+        } else {
+            // Wenn moveCamera die Grenze erreicht hat, stoppe die Bewegung
+            this.moveCamera = 2; // Setze den maximalen Wert
         }
+    }
+    
+    cameraPositionLeft() {
+        // Wenn moveCamera mehr als 0 ist, dann sanft nach links verschieben
+        if (this.moveCamera > 0) {
+            this.moveCamera -= 0.1; // Sanftere Bewegung nach links
+            console.log('moveCamera', this.moveCamera);
+        } else {
+            // Wenn moveCamera die Grenze erreicht hat, stoppe die Bewegung
+            this.moveCamera = 0; // Setze den minimalen Wert
+        }
+    }
 
 
+    draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.translate(this.camera_x, 0);
+        this.ctx.translate(this.camera_x + this.moveCamera, 0);
         this.resetShadow();
         this.addObjectsToMap(this.level.backgroundObjects);
         this.enableShadow();
