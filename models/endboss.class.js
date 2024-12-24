@@ -169,7 +169,12 @@ class Endboss extends EnemyObject {
                     currentAnimation = this.IMAGES_WALKING;
                 }
                 this.playAnimation(this.IMAGES_WALKING);
-                this.moveLeft();
+                if (this.otherDirection) {
+                    this.moveRight();
+                } else {
+                    this.moveLeft();
+                }
+
             }
             else {
                 if (currentAnimation !== this.IMAGES_IDLE) {

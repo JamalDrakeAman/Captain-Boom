@@ -238,7 +238,6 @@ class World {
         } else if (distance < 0 && distance > - 400) {
             console.log('Move Right', distance);
             this.endBoss.otherDirection = true;
-
             this.cameraPositionRight();
         }
         return distance;
@@ -270,7 +269,7 @@ class World {
 
     cameraPositionRight() {
         setInterval(() => {
-            if (this.moveCamera < 2) {
+            if (this.moveCamera < 200) {
                 this.moveCamera += 0.1
                 console.log('Move Camera', this.moveCamera);
 
@@ -295,11 +294,11 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjects);
         this.enableShadow();
         this.addToMap(this.character);
-        this.ctx.translate(-this.camera_x, 0);
+        this.ctx.translate(-this.camera_x - this.moveCamera, 0);
         this.addToMap(this.healthStatusBar);
         this.addToMap(this.coinStatusBar);
         this.addToMap(this.ammoStatusBar);
-        this.ctx.translate(this.camera_x, 0);
+        this.ctx.translate(this.camera_x + this.moveCamera, 0);
         this.addObjectsToMap(this.coins);
         this.addObjectsToMap(this.ammo);
         this.addObjectsToMap(this.health);
@@ -315,7 +314,7 @@ class World {
         });
 
         this.addObjectsToMap(this.throwableObjects);
-        this.ctx.translate(-this.camera_x, 0);
+        this.ctx.translate(-this.camera_x - this.moveCamera, 0);
 
         // Dynamische Anzeige
         this.ctx.font = '40px pirates, Arial, Helvetica, sans-serif';
