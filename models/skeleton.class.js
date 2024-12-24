@@ -4,6 +4,7 @@ class Skeleton extends EnemyObject {
     y = 240;
     runCounter = Math.round(Math.random() * 100);
     run = false;
+
     dead = false;
 
     offset = {
@@ -12,6 +13,9 @@ class Skeleton extends EnemyObject {
         right: 50,
         bottom: 0
     }
+
+    jumpCounter = Math.round(Math.random() * 200);
+    jump = false;
 
     walkRight = false;
 
@@ -142,8 +146,12 @@ class Skeleton extends EnemyObject {
                 this.enemyHurt();
             } else if (this.runCounter > 100) {
                 this.enemyRun();
-            }
+            } 
+            // else if (this.jumpCounter > 200) {
+            //     this.enemyJump();
+            // }
             this.runCounter++
+            this.jumpCounter++
         }, 200);
 
     }
@@ -169,8 +177,14 @@ class Skeleton extends EnemyObject {
 
     enemyJump() {
         this.playAnimation(this.IMAGES_JUMP);
-        this.speedY = 30;
-        this.jumpCounter = 0;
+        if (!this.jump) {
+            this.speedY = 30;
+            this.jump = true;
+        } else if (this.jumpCounter > 310) {
+            this.jumpCounter = Math.round(Math.random() * 200);
+            this.jump = false;
+        }
+
     }
 
 
