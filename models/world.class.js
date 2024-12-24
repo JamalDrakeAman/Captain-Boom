@@ -231,12 +231,36 @@ class World {
         if (distance < 400 && distance > 0) {
             console.log('Distance EndBoss to Character', distance);
             console.log('Move Left');
-            this.endBoss.otherDirection = false;
 
+            if (this.endBoss.bossOnTheRight == true) {
+                this.endBoss.offset = {
+                    top: 120,
+                    left: 270,
+                    right: 50,
+                    bottom: 0
+                }
+                this.endBoss.bossOnTheRight = false;
+            }
+
+            this.endBoss.otherDirection = false;
             this.cameraPositionLeft();
 
         } else if (distance < 0 && distance > - 400) {
             console.log('Move Right', distance);
+
+            if (this.endBoss.bossOnTheRight == false) {
+                // distance = distance - 120;
+                // this.endBoss.x = this.endBoss.x + 400;
+                this.endBoss.offset = {
+                    top: 120,
+                    left: 50,
+                    right: 270,
+                    bottom: 0
+                }
+                // enemyDistance = enemyDistance - 420;
+                this.endBoss.bossOnTheRight = true;
+            }
+
             this.endBoss.otherDirection = true;
             this.cameraPositionRight();
         }
@@ -268,20 +292,23 @@ class World {
     // }
 
     cameraPositionRight() {
-        setInterval(() => {
-            if (this.moveCamera < 200) {
-                this.moveCamera += 0.1
-                console.log('Move Camera', this.moveCamera);
-
+        let moveRight = setInterval(() => {
+            if (this.moveCamera < 250) {
+                this.moveCamera += 0.5;
+                // console.log('Move Camera', this.moveCamera);
+            } else {
+                clearInterval(moveRight);
             }
         }, 50)
     }
 
     cameraPositionLeft() {
-        setInterval(() => {
+        let moveLeft = setInterval(() => {
             if (this.moveCamera > 0) {
-                this.moveCamera -= 0.1
-                console.log('Move Camera', this.moveCamera);
+                this.moveCamera -= 0.5;
+                // console.log('Move Camera', this.moveCamera);
+            } else {
+                clearInterval(moveLeft);
             }
         }, 50)
     }

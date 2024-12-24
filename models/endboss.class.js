@@ -6,6 +6,11 @@ class Endboss extends EnemyObject {
     boss = true;
     swordAttack = false;
 
+    speed = 8;
+    x = 3000;
+
+    bossOnTheRight = false;
+
     offset = {
         top: 120,
         left: 270,
@@ -97,8 +102,8 @@ class Endboss extends EnemyObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEATH);
         this.animate();
-        this.speed = 8;
-        this.x = 4000;
+        // this.speed = 8;
+        // this.x = 3000;
     }
 
     animate() {
@@ -191,7 +196,7 @@ class Endboss extends EnemyObject {
             if (this.enemyEnergy < 1000 && this.enemyEnergy > 0) {
                 this.enemyEnergy += 5;
             }
-            if (world.character.x > 3600 && !this.hadFirstContact) {
+            if (world.character.x > 2600 && !this.hadFirstContact) {
                 this.hadFirstContact = true
                 attackReady = true;
                 summonBat = true;
@@ -200,7 +205,7 @@ class Endboss extends EnemyObject {
                 }
             }
             if (summonBat && attackReady) {
-                this.summonEnemies();
+                // this.summonEnemies();
                 if (sound) {
                     this.summon_sound.play();
                 }
