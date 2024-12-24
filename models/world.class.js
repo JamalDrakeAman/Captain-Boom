@@ -245,27 +245,46 @@ class World {
     }
 
 
+    // cameraPositionRight() {
+    //     // Wenn moveCamera weniger als 20 ist, dann sanft nach rechts verschieben
+    //     if (this.moveCamera < 2) {
+    //         this.moveCamera += 0.1; // Sanftere Bewegung nach rechts
+    //         console.log('moveCamera', this.moveCamera);
+
+    //     } else {
+    //         // Wenn moveCamera die Grenze erreicht hat, stoppe die Bewegung
+    //         this.moveCamera = 2; // Setze den maximalen Wert
+    //     }
+    // }
+
+    // cameraPositionLeft() {
+    //     // Wenn moveCamera mehr als 0 ist, dann sanft nach links verschieben
+    //     if (this.moveCamera > 0) {
+    //         this.moveCamera -= 0.1; // Sanftere Bewegung nach links
+    //         console.log('moveCamera', this.moveCamera);
+    //     } else {
+    //         // Wenn moveCamera die Grenze erreicht hat, stoppe die Bewegung
+    //         this.moveCamera = 0; // Setze den minimalen Wert
+    //     }
+    // }
+
     cameraPositionRight() {
-        // Wenn moveCamera weniger als 20 ist, dann sanft nach rechts verschieben
-        if (this.moveCamera < 2) {
-            this.moveCamera += 0.1; // Sanftere Bewegung nach rechts
-            console.log('moveCamera', this.moveCamera);
-            
-        } else {
-            // Wenn moveCamera die Grenze erreicht hat, stoppe die Bewegung
-            this.moveCamera = 2; // Setze den maximalen Wert
-        }
+        setInterval(() => {
+            if (this.moveCamera < 2) {
+                this.moveCamera += 0.1
+                console.log('Move Camera', this.moveCamera);
+
+            }
+        }, 50)
     }
-    
+
     cameraPositionLeft() {
-        // Wenn moveCamera mehr als 0 ist, dann sanft nach links verschieben
-        if (this.moveCamera > 0) {
-            this.moveCamera -= 0.1; // Sanftere Bewegung nach links
-            console.log('moveCamera', this.moveCamera);
-        } else {
-            // Wenn moveCamera die Grenze erreicht hat, stoppe die Bewegung
-            this.moveCamera = 0; // Setze den minimalen Wert
-        }
+        setInterval(() => {
+            if (this.moveCamera > 0) {
+                this.moveCamera -= 0.1
+                console.log('Move Camera', this.moveCamera);
+            }
+        }, 50)
     }
 
 
