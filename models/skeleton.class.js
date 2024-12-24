@@ -13,6 +13,8 @@ class Skeleton extends EnemyObject {
         bottom: 0
     }
 
+    walkRight = false;
+
     IMAGES_WALKING = [
         'img/3_enemies/skeleton/walk/skeleton-walk1.png',
         'img/3_enemies/skeleton/walk/skeleton-walk2.png',
@@ -121,8 +123,14 @@ class Skeleton extends EnemyObject {
 
     animate() {
         setInterval(() => {
-            this.moveLeft();
-            this.otherDirection = true;
+            if (this.walkRight) {
+                this.moveRight();
+                this.otherDirection = false;
+            } else {
+                this.moveLeft();
+                this.otherDirection = true;
+            }
+
         }, 1000 / 60);
 
         setInterval(() => {
@@ -140,7 +148,7 @@ class Skeleton extends EnemyObject {
 
     }
 
-    
+
     enemyDie() {
         this.playAnimation(this.IMAGES_DEAD);
         this.speed = 0;

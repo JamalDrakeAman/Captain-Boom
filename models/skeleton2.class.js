@@ -85,12 +85,12 @@ class Skeleton2 extends EnemyObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            this.playAnimation(this.IMAGES_ATTACK);
+            this.playAnimation(this.IMAGES_WALKING);
             if (this.enemyEnergy == 0) {
                 this.enemyDie();
             } else if (this.isHurt()) {
                 this.enemyHurt();
-            }
+            } 
 
         }, 200);
 

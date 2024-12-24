@@ -208,15 +208,27 @@ class World {
     checkEnemyDistance() {
         let distance = 100000000000;
         this.level.enemies.forEach(enemy => {
-            let enemyDistance = Math.abs(enemy.x - this.character.x - 100);
+            let enemyDistance = enemy.x - this.character.x - 100;
             if (enemyDistance < distance) {
                 distance = enemyDistance;
             }
             // console.log('Distance Enemy to Character', enemy.distance);
+
+
+            if (distance < 400 && distance > 0) {
+                enemy = enemy.walkRight = false;
+            }
+            else if (distance < 0 && distance > - 400) {
+
+
+                enemy = enemy.walkRight = true;
+                // console.log('Move Right');
+                // console.log('Distance Enemy to Character', distance);
+                console.log('Distance Enemy to Character', enemy);
+            }
+
         })
-        if (distance < 400) {
-            // console.log('Distance Enemy to Character', distance);
-        }
+
         return distance;
     }
 
@@ -281,7 +293,7 @@ class World {
         }, 50)
     }
 
-    
+
     cameraPositionLeft() {
         let moveLeft = setInterval(() => {
             if (this.moveCamera > 0) {
