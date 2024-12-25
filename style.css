@@ -336,7 +336,6 @@ canvas {
     transition: all 0.3s ease-in-out;
     box-shadow: 0 6px 15px rgba(16, 152, 247, 0.5);
     text-align: center;
-    z-index: 1;
 }
 
 .reset-button:hover {
