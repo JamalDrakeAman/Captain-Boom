@@ -133,6 +133,7 @@ function restartGame() {
     endscreen.classList.remove('d-flex');
     initLevel();
     world = new World(canvas, keyboard);
+    winGame = false;
     console.log('Restart');
 }
 

@@ -147,9 +147,7 @@ class Skeleton extends EnemyObject {
             } else if (this.runCounter > 100) {
                 this.enemyRun();
             } 
-            // else if (this.jumpCounter > 200) {
-            //     this.enemyJump();
-            // }
+         
             this.runCounter++
             this.jumpCounter++
         }, 200);

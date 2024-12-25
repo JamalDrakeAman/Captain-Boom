@@ -17,8 +17,6 @@ class World {
 
     endBoss = this.level.enemies.find(enemie => enemie.boss);
 
-    // characterRight = false;
-
     moveCamera = 0;
 
     constructor(canvas, keyboard) {
@@ -212,75 +210,15 @@ class World {
             if (enemyDistance < distance) {
                 distance = enemyDistance;
             }
-            // console.log('Distance Enemy to Character', enemy.distance);
-
-
             if (distance < 400 && distance > 0) {
                 enemy = enemy.walkRight = false;
             }
             else if (distance < 0 && distance > - 400) {
-
-
                 enemy = enemy.walkRight = true;
-                // console.log('Move Right');
-                // console.log('Distance Enemy to Character', distance);
-                console.log('Distance Enemy to Character', enemy);
             }
-
         })
-
         return distance;
     }
-
-
-    // checkEndBossDistance() {
-    //     let distance = 100000000000;
-    //     let enemyDistance = this.endBoss.x - this.character.x + 120;
-    //     if (enemyDistance < distance) {
-    //         distance = enemyDistance;
-    //     }
-    //     // console.log('Distance EndBoss to Character', enemyDistance);
-    //     if (distance < 400 && distance > 0) {
-    //         // console.log('Distance EndBoss to Character', distance);
-    //         console.log('Move Left');
-
-    //         if (this.endBoss.bossOnTheRight == true) {
-    //             // this.endBoss.offset = {
-    //             //     top: 120,
-    //             //     left: 270,
-    //             //     right: 50,
-    //             //     bottom: 0
-    //             // }
-    //             this.endBoss.bossOnTheRight = false;
-    //             this.endBoss.x = this.endBoss.x - 120
-    //         }
-    //         console.log('Distance Boss to Character', distance);
-    //         this.endBoss.otherDirection = false;
-    //         this.cameraPositionLeft();
-    //     } else if (distance < 0 && distance > - 400) {
-    //         console.log('Move Right', distance);
-
-    //         if (this.endBoss.bossOnTheRight == false) {
-    //             // enemyDistance = enemyDistance + 220;
-    //             this.endBoss.x = this.endBoss.x + 120;
-    //             // this.endBoss.offset = {
-    //             //     top: 120,
-    //             //     left: 50,
-    //             //     right: 270,
-    //             //     bottom: 0
-    //             // }
-    //             // distance = 0;
-    //             // this.endBoss.x = this.endBoss.x + 120
-    //             // enemyDistance = enemyDistance - 420;
-    //             this.endBoss.bossOnTheRight = true;
-    //         }
-    //         console.log('Distance Boss to Character', distance);
-    //         this.endBoss.otherDirection = true;
-    //         this.cameraPositionRight();
-    //     }
-    //     console.log('Distance Boss to Character', distance);
-    //     return distance;
-    // }
 
 
     checkEndBossDistance() {
@@ -321,7 +259,6 @@ class World {
         let moveRight = setInterval(() => {
             if (this.moveCamera < 250) {
                 this.moveCamera += 0.8;
-                // console.log('Move Camera', this.moveCamera);
             } else {
                 clearInterval(moveRight);
             }
@@ -333,7 +270,6 @@ class World {
         let moveLeft = setInterval(() => {
             if (this.moveCamera > 0) {
                 this.moveCamera -= 0.8;
-                // console.log('Move Camera', this.moveCamera);
             } else {
                 clearInterval(moveLeft);
             }
