@@ -207,7 +207,7 @@ class World {
 
     checkEnemyDistance() {
         let distance = 100000000000;
-        this.level.enemies.forEach(enemy, index => {
+        this.level.enemies.forEach(enemy => {
             let enemyDistance = enemy.x - this.character.x - 100;
             if (enemyDistance < distance) {
                 distance = enemyDistance;
@@ -217,11 +217,10 @@ class World {
 
             if (distance < 400 && distance > 0) {
                 enemy = enemy.walkRight = false;
-                // this.level.enemies[index].walkRight = false;
             }
             else if (distance < 0 && distance > - 400) {
 
-                // this.level.enemies[index].walkRight = true;
+
                 enemy = enemy.walkRight = true;
                 // console.log('Move Right');
                 // console.log('Distance Enemy to Character', distance);
@@ -321,24 +320,24 @@ class World {
     cameraPositionRight() {
         let moveRight = setInterval(() => {
             if (this.moveCamera < 250) {
-                this.moveCamera += 0.5;
+                this.moveCamera += 0.8;
                 // console.log('Move Camera', this.moveCamera);
             } else {
                 clearInterval(moveRight);
             }
-        }, 50)
+        }, 20)
     }
 
 
     cameraPositionLeft() {
         let moveLeft = setInterval(() => {
             if (this.moveCamera > 0) {
-                this.moveCamera -= 0.5;
+                this.moveCamera -= 0.8;
                 // console.log('Move Camera', this.moveCamera);
             } else {
                 clearInterval(moveLeft);
             }
-        }, 50)
+        }, 20)
     }
 
 

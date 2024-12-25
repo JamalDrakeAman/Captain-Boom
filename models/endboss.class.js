@@ -205,7 +205,7 @@ class Endboss extends EnemyObject {
                 }
             }
             if (summonBat && attackReady) {
-                // this.summonEnemies();
+                this.summonEnemies();
                 if (sound) {
                     this.summon_sound.play();
                 }
@@ -228,7 +228,14 @@ class Endboss extends EnemyObject {
         // console.log("Der Endboss beschwört Verstärkung");
         for (let j = 0; j < 3; j++) { // Beschwöre  3 neue Gegner
             let newEnemy = new Bat(); // Erstelle einen neuen Gegner
-            newEnemy.x = this.x + 350 // Setze die Gegnerposition nahe beim Endboss
+            if (this.otherDirection) {
+                newEnemy.x = this.x;
+                newEnemy.otherDirection = true;
+            } else {
+                newEnemy.x = this.x + 350 // Setze die Gegnerposition nahe beim Endboss
+                newEnemy.otherDirection = false;
+            }
+
             newEnemy.y = 70 + Math.random() * 250;; // Standard Y-Position
             world.level.enemies.push(newEnemy); // Füge den Gegner zur Gegnerliste hinzu
         }

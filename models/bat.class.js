@@ -56,7 +56,12 @@ class Bat extends EnemyObject {
 
     animate() {
         setInterval(() => {
-            this.moveLeft();
+            if (this.otherDirection) {
+                this.moveRight();
+            } else {
+                this.moveLeft();
+            }
+
 
         }, 1000 / 60);
 

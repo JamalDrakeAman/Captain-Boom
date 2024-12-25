@@ -13,7 +13,6 @@ class Character extends MovableObject {
         bottom: 130
     };
 
-    energy = 999999999;
 
     IMAGES_IDLE = [
         'img/1_character/idle/pirate_idle0.png',
@@ -152,7 +151,6 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_GUN_SHOOT);
         this.loadImages(this.IMAGES_SWORD_ATTACK_1);
-
         this.applyGravity();
         this.animate();
     }
@@ -239,6 +237,7 @@ class Character extends MovableObject {
         }, 80);
 
     }
+
 
     health() {
         if (this.energy <= 80) {
