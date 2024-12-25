@@ -242,7 +242,7 @@ class World {
         // console.log('Distance EndBoss to Character', enemyDistance);
         if (distance < 400 && distance > 0) {
             // console.log('Distance EndBoss to Character', distance);
-            // console.log('Move Left');
+            console.log('Move Left');
 
             if (this.endBoss.bossOnTheRight == true) {
                 this.endBoss.offset = {
@@ -269,7 +269,7 @@ class World {
                     right: 270,
                     bottom: 0
                 }
-                distance = 0;
+                // distance = 0;
                 // this.endBoss.x = this.endBoss.x + 120
                 // enemyDistance = enemyDistance - 420;
                 this.endBoss.bossOnTheRight = true;
