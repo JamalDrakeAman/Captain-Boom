@@ -10,7 +10,7 @@ function initLevel() {
             // new Bat(),
             // new Skeleton(),
             // new Skeleton(),
-            // new Skeleton(),
+            new Skeleton(),
             new Skeleton(),
             new Skeleton(),
             new Skeleton(),

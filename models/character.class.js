@@ -13,6 +13,8 @@ class Character extends MovableObject {
         bottom: 130
     };
 
+    energy = 999999999;
+
     IMAGES_IDLE = [
         'img/1_character/idle/pirate_idle0.png',
         'img/1_character/idle/pirate_idle1.png',
