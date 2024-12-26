@@ -162,9 +162,8 @@ canvas {
     height: 100px;
     display: flex;
     justify-content: center;
-    padding-right: 30px;
+    padding-right: 50px;
     align-items: center;
-    overflow: hidden;
     transition: all ease-in-out 100ms;
 }
 
@@ -201,7 +200,7 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translateY(600px);
+    transform: translateY(100vh);
     transition: all ease-in-out 100ms;
     border-radius: 20px;
     box-shadow: 0 0 20px #fff
@@ -277,7 +276,7 @@ canvas {
     text-shadow: 0 0 10px #fff;
 }
 
-.impressum-info-container{
+.impressum-info-container {
     color: black;
     position: absolute;
     flex-direction: column;
@@ -296,7 +295,7 @@ canvas {
     padding: 50px 100px;
 }
 
-.impressum-headline{
+.impressum-headline {
     padding-top: 100px;
 }
 
@@ -386,6 +385,7 @@ canvas {
     background-image: url(img/background.jpg);
     background-position: center;
     background-size: cover;
+    z-index: 1;
 }
 
 
@@ -470,6 +470,30 @@ canvas {
 
     .game-title {
         display: none;
+    }
+
+    .startscreen {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .startscreen-title {
+        margin: 0 0 20px 0;
+    }
+
+    .start-game-btn {
+        width: 230px;
+        height: 70px;
+    }
+
+    .controls-info-btn {
+        bottom: 25px;
+        text-shadow: 0 0 10px black;
+        z-index: 1;
+    }
+
+    .controls-box {
+        padding: 0 25px 60px 25px;
     }
 
 }
