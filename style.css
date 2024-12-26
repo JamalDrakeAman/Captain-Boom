@@ -477,6 +477,11 @@ canvas {
         height: 100vh;
     }
 
+    .endscreen {
+        width: 100vw;
+        height: 100vh;
+    }
+
     .startscreen-title {
         margin: 0 0 20px 0;
     }
@@ -495,6 +500,10 @@ canvas {
     .controls-box {
         padding: 0 25px 60px 25px;
     }
+
+    /* .character-images-container{
+        position: static;
+    } */
 
 }
 
@@ -515,6 +524,8 @@ canvas {
         width: 100vw;
         height: 100vh;
     } */
+
+
 
 }
 
