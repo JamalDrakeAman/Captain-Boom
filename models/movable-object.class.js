@@ -50,7 +50,7 @@ class MovableObject extends DrawableObject {
 
     isEndbossAttackColliding(mo) {
         if (this.otherDirection) {
-            return this.x + this.offset.left - 220 < mo.x + mo.width - mo.offset.right && // Erweiterter Bereich nach links
+            return this.x + this.offset.left - 200 < mo.x + mo.width - mo.offset.right && // Erweiterter Bereich nach links
                 this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
                 this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
                 this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom

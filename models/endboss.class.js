@@ -6,7 +6,7 @@ class Endboss extends EnemyObject {
     boss = true;
     swordAttack = false;
 
-    speed = 8;
+    speed = 10;
     x = 3000;
 
     bossOnTheRight = false;
