@@ -117,6 +117,9 @@ function toggleControlsInfo() {
     startScreenTitle.classList.toggle('d-none');
     let startScreenBtn = document.getElementById('start-game-btn');
     startScreenBtn.classList.toggle('d-none');
+
+    let impressumBtn = document.getElementById('impressum-btn');
+    impressumBtn.classList.toggle('d-none');
 }
 
 function toggleImpressumInfo() {
@@ -126,6 +129,9 @@ function toggleImpressumInfo() {
     startScreenTitle.classList.toggle('d-none');
     let startScreenBtn = document.getElementById('start-game-btn');
     startScreenBtn.classList.toggle('d-none');
+
+    let cnontrolInfoBtn = document.getElementById('controls-info-btn');
+    cnontrolInfoBtn.classList.toggle('d-none');
 }
 
 
