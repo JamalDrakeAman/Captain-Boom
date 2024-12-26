@@ -17,6 +17,7 @@ body {
     height: 100vh;
     color: white;
     font-size: 20px;
+    background-color: black;
     background-image: url(img/background.jpg);
     background-size: cover;
     background-position: center;
