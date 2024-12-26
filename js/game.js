@@ -6,6 +6,7 @@ let winGame = false;
 let currentIndex = 0;
 let sound = false;
 
+let shoot = 'ready';
 
 const characterImages = [
     // IDLE
@@ -108,10 +109,19 @@ function toggleSound() {
 
 
 function toggleControlsInfo() {
-    let ControleContainer = document.getElementById('controls-info-container');
-    ControleContainer.classList.toggle('show-hide-box')
+    let controleContainer = document.getElementById('controls-info-container');
+    controleContainer.classList.toggle('show-hide-box');
     let characterShowContainer = document.getElementById('character-images-container');
     characterShowContainer.classList.toggle('change-character-position')
+    let startScreenTitle = document.getElementById('startscreen-title');
+    startScreenTitle.classList.toggle('d-none');
+    let startScreenBtn = document.getElementById('start-game-btn');
+    startScreenBtn.classList.toggle('d-none');
+}
+
+function toggleImpressumInfo() {
+    let impressumContainer = document.getElementById('impressum-info-container');
+    impressumContainer.classList.toggle('show-hide-box')
     let startScreenTitle = document.getElementById('startscreen-title');
     startScreenTitle.classList.toggle('d-none');
     let startScreenBtn = document.getElementById('start-game-btn');

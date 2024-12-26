@@ -262,6 +262,44 @@ canvas {
     animation: pulse 2s infinite ease-in-out;
 }
 
+
+.impressum-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    cursor: pointer;
+    transition: all ease-in-out 100ms;
+    z-index: 1;
+}
+
+.impressum-btn:hover {
+    scale: 1.1;
+    text-shadow: 0 0 10px #fff;
+}
+
+.impressum-info-container{
+    color: black;
+    position: absolute;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(74, 129, 202, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(110%);
+    transition: all ease-in-out 100ms;
+    border-radius: 20px;
+    box-shadow: 0 0 20px #fff;
+    overflow: hidden;
+    overflow-y: auto;
+    padding: 50px 100px;
+}
+
+.impressum-headline{
+    padding-top: 100px;
+}
+
 .d-none {
     display: none;
 }

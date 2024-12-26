@@ -2,10 +2,14 @@ class Skeleton extends EnemyObject {
     height = 150;
     width = 150;
     y = 240;
-    runCounter = Math.round(Math.random() * 100);
-    run = false;
 
+    run = false;
+    jump = false;
     dead = false;
+    walkRight = false;
+
+    runCounter = Math.round(Math.random() * 100);
+    jumpCounter = Math.round(Math.random() * 200);
 
     offset = {
         top: 65,
@@ -14,10 +18,7 @@ class Skeleton extends EnemyObject {
         bottom: 0
     }
 
-    jumpCounter = Math.round(Math.random() * 200);
-    jump = false;
-
-    walkRight = false;
+    skeleton_hurt = new Audio('audio/skeleton-dead.mp3');
 
     IMAGES_WALKING = [
         'img/3_enemies/skeleton/walk/skeleton-walk1.png',
@@ -106,9 +107,6 @@ class Skeleton extends EnemyObject {
     ]
 
 
-    skeleton_hurt = new Audio('audio/skeleton-dead.mp3');
-
-
     constructor() {
         super().loadImage('img/3_enemies/skeleton/walk/skeleton-walk1.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -138,7 +136,6 @@ class Skeleton extends EnemyObject {
         }, 1000 / 60);
 
         setInterval(() => {
-
             this.playAnimation(this.IMAGES_WALKING);
             if (this.enemyEnergy == 0) {
                 this.enemyDie();
@@ -146,8 +143,7 @@ class Skeleton extends EnemyObject {
                 this.enemyHurt();
             } else if (this.runCounter > 100) {
                 this.enemyRun();
-            } 
-         
+            }
             this.runCounter++
             this.jumpCounter++
         }, 200);

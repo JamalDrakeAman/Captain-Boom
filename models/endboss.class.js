@@ -2,14 +2,13 @@ class Endboss extends EnemyObject {
     height = 330;
     width = 430;
     y = 70;
+    x = 3000;
+    speed = 10;
     enemyEnergy = 1000;
     boss = true;
     swordAttack = false;
-
-    speed = 10;
-    x = 3000;
-
     bossOnTheRight = false;
+    hadFirstContact = false;
 
     offset = {
         top: 120,
@@ -17,6 +16,12 @@ class Endboss extends EnemyObject {
         right: 50,
         bottom: 0
     }
+
+    monster_sound = new Audio('audio/monster-sound.mp3');
+    monster_hurt_sound = new Audio('audio/endboss-hurt.mp3');
+    summon_sound = new Audio('audio/boss-summon.mp3');
+    sword_hit_sound = new Audio('audio/endboss-sword.mp3');
+
 
     IMAGES_IDLE = [
         'img/4_boss/idle/Bringer-of-Death_Idle_1.png',
@@ -86,12 +91,6 @@ class Endboss extends EnemyObject {
         'img/4_boss/5_dead/Bringer-of-Death_Death_10.png'
     ];
 
-    monster_sound = new Audio('audio/monster-sound.mp3');
-    monster_hurt_sound = new Audio('audio/endboss-hurt.mp3');
-    summon_sound = new Audio('audio/boss-summon.mp3');
-    sword_hit_sound = new Audio('audio/endboss-sword.mp3');
-
-    hadFirstContact = false;
 
     constructor() {
         super().loadImage(this.IMAGES_HURT[0]);
@@ -102,8 +101,6 @@ class Endboss extends EnemyObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEATH);
         this.animate();
-        // this.speed = 8;
-        // this.x = 3000;
     }
 
     animate() {
