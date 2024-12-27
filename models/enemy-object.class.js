@@ -1,3 +1,6 @@
+/**
+ * Represents an enemy object in the game, inheriting from `MovableObject`.
+ */
 class EnemyObject extends MovableObject {
     height = 150;
     width = 150;
@@ -5,7 +8,7 @@ class EnemyObject extends MovableObject {
     showEnergy = false;
     enemyEnergy = 100;
 
-    
+
     IMAGES_WALKING = [
         'img/3_enemies/skeleton/walk/skeleton-walk1.png',
         'img/3_enemies/skeleton/walk/skeleton-walk2.png',
@@ -17,6 +20,10 @@ class EnemyObject extends MovableObject {
         'img/3_enemies/skeleton/walk/skeleton-walk8.png',
     ];
 
+
+    /**
+     * Animates the enemy, moving it left and playing its walking animation.
+     */
     animate() {
         setInterval(() => {
             this.moveLeft();
@@ -31,6 +38,11 @@ class EnemyObject extends MovableObject {
     }
 
 
+    /**
+     * Reduces the enemy's energy when hit by a sword.
+     * 
+     * @fires lastHit - Updates the time of the last hit if the enemy still has energy.
+     */
     swordHit() {
         this.enemyEnergy -= 20;
         if (this.enemyEnergy < 0) {
@@ -41,7 +53,12 @@ class EnemyObject extends MovableObject {
     }
 
 
-    shootHit(){
+    /**
+     * Reduces the enemy's energy when hit by a shot.
+     * 
+     * @fires lastHit - Updates the time of the last hit if the enemy still has energy.
+     */
+    shootHit() {
         this.enemyEnergy -= 40;
         if (this.enemyEnergy < 0) {
             this.enemyEnergy = 0;
@@ -50,7 +67,13 @@ class EnemyObject extends MovableObject {
         }
     }
 
-    jumpHit(){
+
+    /**
+    * Reduces the enemy's energy when hit by a jump attack.
+    * 
+    * @fires lastHit - Updates the time of the last hit if the enemy still has energy.
+    */
+    jumpHit() {
         this.enemyEnergy -= 50;
         if (this.enemyEnergy < 0) {
             this.enemyEnergy = 0;
