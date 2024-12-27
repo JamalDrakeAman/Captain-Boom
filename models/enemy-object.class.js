@@ -8,7 +8,6 @@ class EnemyObject extends MovableObject {
     showEnergy = false;
     enemyEnergy = 100;
 
-
     IMAGES_WALKING = [
         'img/3_enemies/skeleton/walk/skeleton-walk1.png',
         'img/3_enemies/skeleton/walk/skeleton-walk2.png',
