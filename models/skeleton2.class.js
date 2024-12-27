@@ -1,3 +1,7 @@
+/**
+ * Represents the second type of skeleton enemy in the game.
+ * Extends the `EnemyObject` class for shared enemy functionality.
+ */
 class Skeleton2 extends EnemyObject {
     height = 200;
     width = 200;
@@ -11,6 +15,8 @@ class Skeleton2 extends EnemyObject {
     }
 
     dead = false;
+
+    skeleton_hurt = new Audio('audio/skeleton-dead.mp3');
 
     IMAGES_WALKING = [
         'img/3_enemies/skeleton2/walk/skeleton2-walk0.png',
@@ -65,8 +71,10 @@ class Skeleton2 extends EnemyObject {
         'img/3_enemies/skeleton2/death/skeleton2-dead13.png'
     ];
 
-    skeleton_hurt = new Audio('audio/skeleton-dead.mp3');
 
+    /**
+     * Constructs a new instance of `Skeleton2` with randomized properties and animations.
+     */
     constructor() {
         super().loadImage('img/3_enemies/skeleton/walk/skeleton-walk1.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -78,6 +86,10 @@ class Skeleton2 extends EnemyObject {
         this.animate();
     }
 
+
+    /**
+     * Animates the skeleton enemy by moving it and cycling through animations.
+     */
     animate() {
         setInterval(() => {
             this.moveLeft();
@@ -90,13 +102,16 @@ class Skeleton2 extends EnemyObject {
                 this.enemyDie();
             } else if (this.isHurt()) {
                 this.enemyHurt();
-            } 
+            }
 
         }, 200);
-
     }
 
-
+    
+    /**
+     * Handles the death of the skeleton enemy.
+     * Plays the death animation, stops movement, and triggers the death sound.
+     */
     enemyDie() {
         this.playAnimation(this.IMAGES_DEAD);
         this.speed = 0;
@@ -110,11 +125,17 @@ class Skeleton2 extends EnemyObject {
     }
 
 
+    /**
+     * Handles the skeleton's hurt state by playing the hurt animation.
+     */
     enemyHurt() {
         this.playAnimation(this.IMAGES_HURT);
     }
 
-    
+
+    /**
+     * Handles the skeleton's attack state by playing the attack animation.
+     */
     enemyAttack() {
         this.playAnimation(this.IMAGES_ATTACK);
     }
