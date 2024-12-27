@@ -1,3 +1,7 @@
+/**
+ * Represents a health item in the game, such as a heart icon.
+ * The item can animate and is used to restore health or lives for the player.
+ */
 class Health extends MovableObject {
     height = 40;
     width = 40;
@@ -17,6 +21,9 @@ class Health extends MovableObject {
     ];
 
 
+    /**
+     * Constructs a new `Health` instance and initializes its position and animation.
+     */
     constructor() {
         super().loadImage('img/8_item/health/heart-icon0.png');
         this.loadImages(this.IMAGES);
@@ -25,6 +32,10 @@ class Health extends MovableObject {
         this.animate();
     }
 
+
+    /**
+     * Animates the health item by cycling through the images in the `IMAGES` array.
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES);
