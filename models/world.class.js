@@ -1,3 +1,6 @@
+/**
+ * Represents the game world and its components.
+ */
 class World {
     character = new Character();
     level = level1;
@@ -5,18 +8,14 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-
     healthStatusBar = new HealthStatusBar();
     coinStatusBar = new CoinStatusBar();
     ammoStatusBar = new AmmoStatusBar();
     throwableObjects = [];
-
     coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin(), new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
     ammo = [new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo(), new Ammo()];
     health = [new Health(), new Health(), new Health()];
-
     endBoss = this.level.enemies.find(enemie => enemie.boss);
-
     moveCamera = 0;
 
     constructor(canvas, keyboard) {
@@ -28,12 +27,17 @@ class World {
         this.run();
     }
 
-
+    /**
+     * Initializes the character's reference to this world.
+     */
     setWorld() {
         this.character.world = this;
     }
 
 
+    /**
+     * Continuously checks for various game events and interactions at regular intervals.
+     */
     run() {
         setInterval(() => {
             this.checkJumpOnEnemy();
@@ -54,6 +58,7 @@ class World {
     }
 
 
+    //////////////////////////// noch Kürzen 
     checkThrowObjects() {
         if (this.keyboard.D && this.ammoStatusBar.itemCount > 0) {
             if (this.character.otherDirection) {
@@ -77,6 +82,9 @@ class World {
     }
 
 
+    /**
+     * Checks for collisions between the character and enemies.
+     */
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.enemyHit) {
@@ -87,6 +95,9 @@ class World {
     }
 
 
+    /**
+     * Checks if the character jumps on an enemy, applying the appropriate effects.
+     */
     checkJumpOnEnemy() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.speedY < 0 && !this.character.enemyHit) {
@@ -101,6 +112,9 @@ class World {
     }
 
 
+    /**
+     * Handles collisions between the character's sword and enemies.
+     */
     checkCollisionsWithSword() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isCollidingWithSword(enemy)) {
@@ -114,6 +128,9 @@ class World {
     }
 
 
+    /**
+     * Checks for collisions between the character and the end boss's attack.
+     */
     checkCollisionEndbossAttack() {
         let attackCharacter = this.endBoss.swordAttack;
         if (this.character.isEndbossAttackColliding(this.endBoss)) {
@@ -125,6 +142,9 @@ class World {
     }
 
 
+    /**
+     * Checks if the character picks up any coins.
+     */
     checkPickupCoins() {
         this.coins.forEach((coins, index) => {
             if (this.character.isColliding(coins)) {
@@ -138,6 +158,9 @@ class World {
     }
 
 
+    /**
+     * Checks if the character picks up any health items.
+     */
     checkPickupHealth() {
         if (this.healthStatusBar.percentage < 100) {
             this.health.forEach((health, index) => {
@@ -151,6 +174,9 @@ class World {
     }
 
 
+    /**
+     * Checks if the character picks up any ammunition.
+     */
     checkPickupAmmo() {
         this.ammo.forEach((ammo, index) => {
             if (this.character.isColliding(ammo)) {
@@ -164,6 +190,9 @@ class World {
     }
 
 
+    /**
+     * Checks if throwable objects hit any enemies.
+     */
     checkShootHitEnemys() {
         this.level.enemies.forEach((enemy, index) => {
             this.throwableObjects.forEach((obj) => {
@@ -177,6 +206,9 @@ class World {
     }
 
 
+    /**
+     * Removes enemies with zero energy from the game.
+     */
     clearDeadEnemys() {
         this.level.enemies.forEach((enemy) => {
             if (enemy.enemyEnergy == 0) {
@@ -188,6 +220,9 @@ class World {
     }
 
 
+    /**
+     * Checks if the end boss has been defeated and ends the game if so.
+     */
     checkEndbossIsDead() {
         if (this.endBoss.enemyEnergy == 0) {
             winGame = true;
@@ -196,6 +231,9 @@ class World {
     }
 
 
+    /**
+     * Checks if the character's health is zero and ends the game if so.
+     */
     checkCharacterIsDead() {
         if (this.healthStatusBar.percentage == 0) {
             stopGame();
@@ -203,6 +241,8 @@ class World {
     }
 
 
+
+    ////////////////////////////////// noch Kürzen
     checkEnemyDistance() {
         let distance = 100000000000;
         this.level.enemies.forEach(enemy => {
@@ -221,10 +261,11 @@ class World {
     }
 
 
+
+    ////////////////////////////////// noch Kürzen
     checkEndBossDistance() {
         let playerLeftOfEnemy = this.character.x + 200 < this.endBoss.x;
         let playerRightOfEnemy = this.character.x + 200 > this.endBoss.x + this.endBoss.width;
-
         if (playerLeftOfEnemy && this.endBoss.bossOnTheRight) {
             console.log("Move Left");
             this.endBoss.offset = {
@@ -238,7 +279,6 @@ class World {
             this.endBoss.otherDirection = false;
             this.cameraPositionLeft();
         }
-
         else if (playerRightOfEnemy && !this.endBoss.bossOnTheRight) {
             console.log("Move Right");
             this.endBoss.offset = {
@@ -255,6 +295,9 @@ class World {
     }
 
 
+    /**
+     * Moves the camera position to the right.
+     */
     cameraPositionRight() {
         let moveRight = setInterval(() => {
             if (this.moveCamera < 250) {
@@ -266,6 +309,9 @@ class World {
     }
 
 
+    /**
+     * Moves the camera position to the left.
+     */
     cameraPositionLeft() {
         let moveLeft = setInterval(() => {
             if (this.moveCamera > 0) {
@@ -277,6 +323,9 @@ class World {
     }
 
 
+    /**
+     * Draws all objects in the game world and handles rendering logic.
+     */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x + this.moveCamera, 0);
@@ -306,7 +355,6 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x - this.moveCamera, 0);
 
-        // Dynamische Anzeige
         this.ctx.font = '40px pirates, Arial, Helvetica, sans-serif';
         this.ctx.fillStyle = '#51bbe8';
         this.ctx.fillText(`${this.coinStatusBar.itemCount}`, 100, 100);
@@ -314,7 +362,6 @@ class World {
 
         this.endBossStatus();
 
-        // draw() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
@@ -322,22 +369,31 @@ class World {
     }
 
 
+    /**
+     * Enables shadow effects for the rendering context.
+     */
     enableShadow() {
-        this.ctx.shadowColor = '#000000'; // Schattenfarbe
-        this.ctx.shadowBlur = 10; // Weiche des Schattens
-        this.ctx.shadowOffsetX = 5; // Horizontale Verschiebung
-        this.ctx.shadowOffsetY = 5; // Vertikale Verschiebung
+        this.ctx.shadowColor = '#000000';
+        this.ctx.shadowBlur = 10;
+        this.ctx.shadowOffsetX = 5;
+        this.ctx.shadowOffsetY = 5;
     }
 
 
+    /**
+     * Resets shadow effects in the rendering context.
+     */
     resetShadow() {
-        this.ctx.shadowColor = 'transparent'; // Schattenfarbe entfernen
-        this.ctx.shadowBlur = 0; // Schatten unsichtbar machen
-        this.ctx.shadowOffsetX = 0; // Horizontal zurücksetzen
-        this.ctx.shadowOffsetY = 0; // Vertikal zurücksetzen
+        this.ctx.shadowColor = 'transparent';
+        this.ctx.shadowBlur = 0;
+        this.ctx.shadowOffsetX = 0;
+        this.ctx.shadowOffsetY = 0;
     }
 
 
+    /**
+     * Displays the energy level of the end boss.
+     */
     endBossStatus() {
         let endBossEnergy = this.endBoss.enemyEnergy
         if (endBossEnergy) {
@@ -347,6 +403,10 @@ class World {
     }
 
 
+    /**
+     * Adds multiple objects to the map.
+     * @param {Array} objects - The objects to add.
+     */
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
@@ -354,6 +414,10 @@ class World {
     }
 
 
+    /**
+     * Adds a single movable object to the map.
+     * @param {Object} mo - The object to add.
+     */
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
@@ -367,6 +431,10 @@ class World {
     }
 
 
+    /**
+     * Flips an object's image horizontally.
+     * @param {Object} mo - The object to flip.
+     */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -375,6 +443,10 @@ class World {
     }
 
 
+    /**
+     * Restores the object's position after flipping its image.
+     * @param {Object} mo - The object to restore.
+     */
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();

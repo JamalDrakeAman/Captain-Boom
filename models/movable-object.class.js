@@ -103,7 +103,6 @@ class MovableObject extends DrawableObject {
             this.img = this.imageCache[path];
             this.currentImage++
         } else if (this.counter == 0) {
-
             this.counting = false;
             // console.log('counter is null');
             let i = this.currentImage % images.length;
