@@ -1,3 +1,7 @@
+/**
+ * Represents the status bar for coins collected by the player.
+ * Extends the `StatusBar` class.
+ */
 class CoinStatusBar extends StatusBar {
 
     IMAGES = [
@@ -10,6 +14,10 @@ class CoinStatusBar extends StatusBar {
     ];
 
 
+    /**
+     * Constructs a new `CoinStatusBar` instance.
+     * Sets the position, dimensions, and initial image of the coin status bar.
+     */
     constructor() {
         super();
         this.loadImage('img/8_item/coin/coin0.png');
@@ -19,7 +27,11 @@ class CoinStatusBar extends StatusBar {
         this.height = 45;
     }
 
-    
+
+    /**
+     * Increases the coin count in the status bar when a coin is picked up.
+     * Updates the item count by incrementing it by 1.
+     */
     pickupItem() {
         this.itemCount += 1;
     }
