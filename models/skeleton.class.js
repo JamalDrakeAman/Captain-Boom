@@ -1,3 +1,7 @@
+/**
+ * Represents a skeleton enemy in the game.
+ * Extends the `EnemyObject` class for shared enemy functionality.
+ */
 class Skeleton extends EnemyObject {
     height = 150;
     width = 150;
@@ -107,6 +111,9 @@ class Skeleton extends EnemyObject {
     ]
 
 
+    /**
+     * Constructs a new instance of `Skeleton` with randomized properties and animations.
+     */
     constructor() {
         super().loadImage('img/3_enemies/skeleton/walk/skeleton-walk1.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -123,6 +130,10 @@ class Skeleton extends EnemyObject {
         this.animate();
     }
 
+
+    /**
+     * Animates the skeleton enemy by managing movement and animations.
+     */
     animate() {
         setInterval(() => {
             if (this.walkRight) {
@@ -147,10 +158,14 @@ class Skeleton extends EnemyObject {
             this.runCounter++
             this.jumpCounter++
         }, 200);
-
     }
 
 
+
+    /**
+     * Handles the death of the skeleton enemy.
+     * Plays the death animation, stops movement, and triggers the death sound.
+     */
     enemyDie() {
         this.playAnimation(this.IMAGES_DEAD);
         this.speed = 0;
@@ -163,12 +178,20 @@ class Skeleton extends EnemyObject {
     }
 
 
+
+    /**
+     * Handles the skeleton's hurt state by playing the hurt animation.
+     */
     enemyHurt() {
         this.playAnimation(this.IMAGES_HURT);
         this.runCounter = 97;
     }
 
 
+    /**
+     * Handles the skeleton's jump state by playing the jump animation.
+     * Initiates a jump if not already jumping.
+     */
     enemyJump() {
         this.playAnimation(this.IMAGES_JUMP);
         if (!this.jump) {
@@ -181,7 +204,10 @@ class Skeleton extends EnemyObject {
 
     }
 
-
+    /**
+    * Handles the skeleton's run state by increasing speed and playing the run animation.
+    * Toggles the run state based on the run counter.
+    */
     enemyRun() {
         this.playAnimation(this.IMAGES_RUN);
         if (!this.run) {

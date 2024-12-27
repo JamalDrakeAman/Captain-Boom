@@ -1,4 +1,4 @@
-class Coin extends PickupItemObject {
+class Coin extends MovableObject {
     height = 40;
     width = 40;
     y = 240;

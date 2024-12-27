@@ -1,4 +1,4 @@
-class Health extends PickupItemObject {
+class Health extends MovableObject {
     height = 40;
     width = 40;
     y = 240;

@@ -1,4 +1,4 @@
-class Ammo extends PickupItemObject {
+class Ammo extends MovableObject {
     height = 100;
     width = 50;
     y = 240;
