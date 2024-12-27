@@ -1,3 +1,7 @@
+/**
+ * Represents a drawable object in the game. Provides functionality to load and draw images, 
+ * and handles hitbox and frame rendering for debugging purposes.
+ */
 class DrawableObject {
     x = 120;
     y = 160;
@@ -8,15 +12,22 @@ class DrawableObject {
     imageCache = {};
 
 
+    /** 
+     * Loads a single image into the object.
+     * 
+     * @param {string} path - The file path of the image to load.
+     */
     loadImage(path) {
         this.img = new Image(); // this.img = document.getElementById('imge') <img id="image" src>
         this.img.src = path;
     }
 
+
     /**
- * 
- * @param {Array} arr - ['img/image1.pgn', 'img/image1.pgn', ....]
- */
+      * Preloads multiple images and stores them in the image cache.
+      * 
+      * @param {string[]} arr - An array of image file paths to preload.
+      */
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();
@@ -25,9 +36,14 @@ class DrawableObject {
         })
     }
 
-    
+
+    /**
+     * Draws the current image of the object onto the canvas.
+     * 
+     * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+     */
     draw(ctx) {
-        try { // Try Catch for to check faild load imges ...
+        try {
             ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
         } catch (e) {
             console.warn('Error loading image', e);
@@ -36,6 +52,11 @@ class DrawableObject {
     }
 
 
+    /**
+     * Draws a frame around the object for debugging purposes.
+     * 
+     * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+     */
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Endboss || this instanceof ThrowableObject) {
             ctx.beginPath();
@@ -47,6 +68,11 @@ class DrawableObject {
     }
 
 
+    /**
+     * Draws the hitbox of the object for debugging purposes.
+     * 
+     * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+     */
     drawHitbox(ctx) {
         if (this instanceof Character || this instanceof Endboss || this instanceof ThrowableObject) {
             ctx.beginPath();
