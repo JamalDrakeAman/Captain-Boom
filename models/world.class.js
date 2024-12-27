@@ -18,6 +18,12 @@ class World {
     endBoss = this.level.enemies.find(enemie => enemie.boss);
     moveCamera = 0;
 
+
+    /**
+     * Creates an instance of the game world.
+     * @param {HTMLCanvasElement} canvas - The canvas element where the game will be rendered.
+     * @param {Object} keyboard - The keyboard input handler.
+     */
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -241,8 +247,9 @@ class World {
     }
 
 
-
-
+    /**
+     * Checks the distance between the character and each enemy, updating their walking direction.
+     */
     checkEnemyDistance() {
         this.level.enemies.forEach(enemy => {
             let enemyDistance = enemy.x - this.character.x - 130;
@@ -256,13 +263,13 @@ class World {
     }
 
 
-
-    ////////////////////////////////// noch Kürzen
+    /**
+     * Checks the character's position relative to the end boss and updates their behavior.
+     */
     checkEndBossDistance() {
         let playerLeftOfEnemy = this.character.x + 200 < this.endBoss.x;
         let playerRightOfEnemy = this.character.x + 200 > this.endBoss.x + this.endBoss.width;
         if (playerLeftOfEnemy && this.endBoss.bossOnTheRight) {
-            console.log("Move Left");
             this.endBoss.offset = {
                 top: 120,
                 left: 270,
@@ -275,7 +282,6 @@ class World {
             this.cameraPositionLeft();
         }
         else if (playerRightOfEnemy && !this.endBoss.bossOnTheRight) {
-            console.log("Move Right");
             this.endBoss.offset = {
                 top: 120,
                 left: 50,

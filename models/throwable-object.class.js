@@ -1,3 +1,7 @@
+/**
+ * Represents a throwable object in the game, such as a projectile.
+ * Extends the `MovableObject` class to inherit movement and rendering capabilities.
+ */
 class ThrowableObject extends MovableObject {
 
     IMAGES_SHOOT = [
@@ -14,6 +18,14 @@ class ThrowableObject extends MovableObject {
         bottom: 130
     };
 
+
+    /**
+     * Creates an instance of a ThrowableObject.
+     * @param {number} x - The initial x-coordinate of the object.
+     * @param {number} y - The initial y-coordinate of the object.
+     * @param {boolean} otherDirection - Indicates the direction of movement. 
+     *                                   `true` for left, `false` for right.
+     */
     constructor(x, y, otherDirection) {
         super().loadImage('img/6_gun/shot/shot_0.png');
         this.loadImages(this.IMAGES_SHOOT);
@@ -24,9 +36,13 @@ class ThrowableObject extends MovableObject {
         this.otherDirection = otherDirection
         this.shoot();
     }
-    
-    shoot() {
 
+
+    /**
+     * Initiates the throwable object's movement and animation.
+     * The object moves horizontally based on its direction and cycles through animation frames.
+     */
+    shoot() {
         setInterval(() => {
             if (this.otherDirection) {
                 this.x -= 10;
@@ -35,10 +51,8 @@ class ThrowableObject extends MovableObject {
             }
         }, 10)
 
-        
         setInterval(() => {
             this.playAnimation(this.IMAGES_SHOOT);
         }, 60)
-
     }
 } 
