@@ -242,22 +242,17 @@ class World {
 
 
 
-    ////////////////////////////////// noch Kürzen
+
     checkEnemyDistance() {
-        let distance = 100000000000;
         this.level.enemies.forEach(enemy => {
-            let enemyDistance = enemy.x - this.character.x - 100;
-            if (enemyDistance < distance) {
-                distance = enemyDistance;
+            let enemyDistance = enemy.x - this.character.x - 130;
+            if (enemyDistance < 400 && enemyDistance > 0) {
+                enemy.walkRight = false;
             }
-            if (distance < 400 && distance > 0) {
-                enemy = enemy.walkRight = false;
-            }
-            else if (distance < 0 && distance > - 400) {
-                enemy = enemy.walkRight = true;
+            else if (enemyDistance < 0 && enemyDistance > - 400) {
+                enemy.walkRight = true;
             }
         })
-        return distance;
     }
 
 
