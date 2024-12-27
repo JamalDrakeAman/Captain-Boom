@@ -1,3 +1,7 @@
+/**
+ * Represents the final boss in the game, with unique behaviors and animations.
+ * Extends the `EnemyObject` class.
+ */
 class Endboss extends EnemyObject {
     height = 330;
     width = 430;
@@ -92,6 +96,9 @@ class Endboss extends EnemyObject {
     ];
 
 
+    /**
+     * Creates an instance of the `Endboss` class and initializes animations.
+     */
     constructor() {
         super().loadImage(this.IMAGES_HURT[0]);
         this.loadImages(this.IMAGES_IDLE);
@@ -103,6 +110,10 @@ class Endboss extends EnemyObject {
         this.animate();
     }
 
+
+    /**
+     * Handles the animation and behavior of the boss.
+     */
     animate() {
         let attackCounter = 100;
         let attackReady = false;
@@ -216,25 +227,30 @@ class Endboss extends EnemyObject {
     }
 
 
+    /**
+     * Checks if the boss is dead.
+     * @returns {boolean} True if the boss is dead, false otherwise.
+     */
     endBossDead() {
         return this.enemyEnergy == 0;
     }
 
 
+    /**
+     * Summons enemy reinforcements near the boss.
+     */
     summonEnemies() {
-        // console.log("Der Endboss beschwört Verstärkung");
-        for (let j = 0; j < 3; j++) { // Beschwöre  3 neue Gegner
-            let newEnemy = new Bat(); // Erstelle einen neuen Gegner
+        for (let j = 0; j < 3; j++) {
+            let newEnemy = new Bat();
             if (this.otherDirection) {
                 newEnemy.x = this.x;
                 newEnemy.otherDirection = true;
             } else {
-                newEnemy.x = this.x + 350 // Setze die Gegnerposition nahe beim Endboss
+                newEnemy.x = this.x + 350;
                 newEnemy.otherDirection = false;
             }
-
-            newEnemy.y = 70 + Math.random() * 250;; // Standard Y-Position
-            world.level.enemies.push(newEnemy); // Füge den Gegner zur Gegnerliste hinzu
+            newEnemy.y = 70 + Math.random() * 250;
+            world.level.enemies.push(newEnemy);
         }
     }
 
