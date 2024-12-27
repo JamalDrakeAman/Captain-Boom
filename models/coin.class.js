@@ -1,3 +1,7 @@
+/**
+ * Represents a collectible coin in the game.
+ * Extends the `MovableObject` class to inherit movement and animation behavior.
+ */
 class Coin extends MovableObject {
     height = 40;
     width = 40;
@@ -18,6 +22,12 @@ class Coin extends MovableObject {
     ];
 
 
+    /**
+    * Constructs a new `Coin` instance.
+    * - Loads the default coin image.
+    * - Loads all animation frames into the image cache.
+    * - Randomly sets the x and y coordinates for the coin within a range.
+    */
     constructor() {
         super().loadImage('img/8_item/coin/coin0.png');
         this.loadImages(this.IMAGES);
@@ -26,11 +36,15 @@ class Coin extends MovableObject {
         this.animate();
     }
 
+
+    /**
+     * Starts the coin animation by cycling through the images.
+     * Uses `setInterval` to change the frame every 300ms.
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES);
         }, 300);
     }
-
 
 }
