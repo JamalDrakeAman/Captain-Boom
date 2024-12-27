@@ -1,3 +1,7 @@
+/**
+ * Represents a health status bar that visually displays the health percentage of a character.
+ * Inherits from `StatusBar`.
+ */
 class HealthStatusBar extends StatusBar {
 
     IMAGES = [
@@ -9,6 +13,10 @@ class HealthStatusBar extends StatusBar {
         'img/7_statusbars/1_statusbar/2_statusbar_health/blue/100.png' // 5
     ];
 
+
+    /**
+     * Constructs a new `HealthStatusBar` instance with predefined images and position.
+     */
     constructor() {
         super();
         this.loadImages(this.IMAGES);
@@ -20,6 +28,12 @@ class HealthStatusBar extends StatusBar {
     }
 
 
+    /**
+     * Increases the health percentage by 20% when an item is picked up,
+     * capping the percentage at 100%.
+     * 
+     * @returns {number} The updated health percentage.
+     */
     pickupItem() {
         if (this.percentage < 100) {
             this.percentage + 20;
