@@ -11,6 +11,7 @@ class ThrowableObject extends MovableObject {
         'img/6_gun/shot/shot_3.png'
     ];
 
+    
     offset = {
         top: 130,
         left: 100,
