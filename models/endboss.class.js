@@ -7,7 +7,7 @@ class Endboss extends EnemyObject {
     width = 430;
     y = 70;
     x = 3000;
-    speed = 10;
+    speed = 15;
     enemyEnergy = 1000;
     boss = true;
     swordAttack = false;
@@ -21,8 +21,8 @@ class Endboss extends EnemyObject {
         bottom: 0
     }
 
-    monster_sound = new Audio('audio/monster-sound.mp3');
-    monster_hurt_sound = new Audio('audio/endboss-hurt.mp3');
+    // monster_sound = new Audio('audio/monster-sound.mp3');
+    // monster_hurt_sound = new Audio('audio/endboss-hurt.mp3');
     summon_sound = new Audio('audio/boss-summon.mp3');
     sword_hit_sound = new Audio('audio/endboss-sword.mp3');
 
@@ -128,16 +128,17 @@ class Endboss extends EnemyObject {
                     currentAnimation = this.IMAGES_DEATH;
                 }
                 this.playAnimation(this.IMAGES_DEATH);
-                if (sound) {
-                    this.monster_sound.play();
-                }
-
+                // if (sound) {
+                //     this.monster_sound.play();
+                // }
+                endbossSound.play();
             }
             else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-                if (sound) {
-                    this.monster_hurt_sound.play();
-                }
+                // if (sound) {
+                //     this.monster_hurt_sound.play();
+                // }
+                endbossHurtSound.play();
             }
             else if (summonBat && attackReady) {
                 if (currentAnimation !== this.IMAGES_ALERT) {
@@ -155,11 +156,12 @@ class Endboss extends EnemyObject {
                 if (currentAnimation !== this.IMAGES_ATTACK) {
                     if (i == 1) {
                         this.swordAttack = true;
-                        console.log('Boss Sword Attack is True');
+                        // console.log('Boss Sword Attack is True');
                         setTimeout(() => {
-                            if (sound) {
-                                this.sword_hit_sound.play();
-                            }
+                            // if (sound) {
+                            //     this.sword_hit_sound.play();
+                            // }
+                            endbossSwordHitSound.play();
                         }, 200);
                     }
                     i++
@@ -170,7 +172,7 @@ class Endboss extends EnemyObject {
                 if (this.currentImage > 8) {
                     i = 0;
                     this.swordAttack = false;
-                    console.log('Boss Sword Attack is False');
+                    // console.log('Boss Sword Attack is False');
                 }
                 if (attackCounter < 0) {
                     attackCounter = 100;
@@ -208,15 +210,17 @@ class Endboss extends EnemyObject {
                 this.hadFirstContact = true
                 attackReady = true;
                 summonBat = true;
-                if (sound) {
-                    this.monster_sound.play();
-                }
+                // if (sound) {
+                //     this.monster_sound.play();
+                // }
+                endbossSound.play();
             }
             if (summonBat && attackReady) {
                 this.summonEnemies();
-                if (sound) {
-                    this.summon_sound.play();
-                }
+                // if (sound) {
+                //     this.summon_sound.play();
+                // }
+                endbossSummonSound.play();
             }
         }, 1000);
 
