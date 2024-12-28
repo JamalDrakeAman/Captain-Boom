@@ -1,3 +1,7 @@
+/**
+ * Represents a Bat enemy in the game. 
+ * The Bat class extends EnemyObject and handles the animation, movement, and behavior of a flying enemy.
+ */
 class Bat extends EnemyObject {
     height = 50;
     width = 50;
@@ -41,6 +45,10 @@ class Bat extends EnemyObject {
     ];
 
 
+    /**
+     * Initializes a new instance of the Bat class.
+     * Sets random position, speed, and loads all animations.
+     */
     constructor() {
         super().loadImage('img/3_enemies/bat/blue-bat-fly/blue-bat-fly0.png');
         this.loadImages(this.IMAGES_BLUE_FLY);
@@ -54,6 +62,11 @@ class Bat extends EnemyObject {
         this.animate();
     }
 
+
+    /**
+     * Starts the animation and movement loops for the Bat.
+     * Handles movement, state changes, and animations based on energy and behavior.
+     */
     animate() {
         setInterval(() => {
             if (this.otherDirection) {
@@ -80,6 +93,11 @@ class Bat extends EnemyObject {
 
     }
 
+
+    /**
+     * Handles the death behavior of the Bat.
+     * Plays the hit animation, stops movement, and drops an item if not already dropped.
+     */
     enemyDie() {
         this.playAnimation(this.IMAGES_BLUE_HIT);
         this.speed = 0;
@@ -90,12 +108,21 @@ class Bat extends EnemyObject {
         }
     }
 
+
+    /**
+     * Handles the hurt behavior of the Bat.
+     * Plays the hit animation for the purple bat and resets the run counter.
+     */
     enemyHurt() {
         this.playAnimation(this.IMAGES_PURPLE_HIT);
         this.runCounter = 97;
     }
 
 
+    /**
+     * Makes the Bat enter a "running" state, temporarily increasing its speed.
+     * Handles the running animation and resets the state after a short time.
+     */
     enemyRun() {
         this.playAnimation(this.IMAGES_PURPLE_FLY);
         if (!this.run) {
@@ -109,25 +136,31 @@ class Bat extends EnemyObject {
     }
 
 
+
+    /**
+     * Drops a random item with specific probabilities:
+     * - 10% chance to drop a coin.
+     * - 5% chance to drop a health item.
+     * - 30% chance to drop ammo.
+     * - No drop for the remaining cases.
+     */
     dropRandomItem() {
-        let dropChance = Math.random(); // Zufallswert zwischen 0 und 1
+        let dropChance = Math.random();
         let item;
         let dropArray;
-
-        if (dropChance < 0.1) { // 10% Chance, eine Münze zu droppen
+        if (dropChance < 0.1) {
             item = new Coin();
             dropArray = world.coins;
-        } else if (dropChance < 0.15) { // 5% Chance, ein Health-Item zu droppen
+        } else if (dropChance < 0.15) {
             item = new Health();
             dropArray = world.health;
-        } else if (dropChance < 0.45) { // 30% Chance, Munition zu droppen
+        } else if (dropChance < 0.45) {
             item = new Ammo();
             dropArray = world.ammo;
         } else {
-            dropArray = null; // Kein Drop
+            dropArray = null;
             console.log('Noo Drop');
         }
-
         if (dropArray) {
             item.x = this.x;
             item.y = this.y;
@@ -135,7 +168,6 @@ class Bat extends EnemyObject {
             console.log('Item Dropped:', item);
 
         }
-
     }
 
 
