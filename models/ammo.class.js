@@ -1,3 +1,8 @@
+/**
+ * Represents an ammo object in the game.
+ * The ammo object is collectible and used as a resource for the player.
+ * Inherits from MovableObject.
+ */
 class Ammo extends MovableObject {
     height = 100;
     width = 50;
@@ -16,6 +21,11 @@ class Ammo extends MovableObject {
         'img/8_item/ammo/bullet1.png',
     ];
 
+
+    /**
+     * Initializes a new instance of the Ammo class.
+     * Loads the images for the ammo and sets its initial position.
+     */
     constructor() {
         super().loadImage('img/8_item/ammo/bullet0.png');
         this.loadImages(this.IMAGES);
@@ -24,6 +34,11 @@ class Ammo extends MovableObject {
         this.animate();
     }
 
+
+    /**
+     * Animates the ammo object by cycling through its images.
+     * The animation updates at a regular interval.
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES);
