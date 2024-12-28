@@ -116,14 +116,14 @@ class Character extends MovableObject {
         'img/1_character/sword-attack1/pirate_attack1_3.png',
         'img/1_character/sword-attack1/pirate_attack1_4.png',
         'img/1_character/sword-attack1/pirate_attack1_5.png',
-        // ATTACK 2
+        
         'img/1_character/sword-attack2/pirate_attack2_0.png',
         'img/1_character/sword-attack2/pirate_attack2_1.png',
         'img/1_character/sword-attack2/pirate_attack2_2.png',
         'img/1_character/sword-attack2/pirate_attack2_3.png',
         'img/1_character/sword-attack2/pirate_attack2_4.png',
         'img/1_character/sword-attack2/pirate_attack2_5.png',
-        // ATTACK 3
+        
         'img/1_character/sword-attack3/pirate_attack3_0.png',
         'img/1_character/sword-attack3/pirate_attack3_1.png',
         'img/1_character/sword-attack3/pirate_attack3_2.png',
@@ -245,7 +245,6 @@ class Character extends MovableObject {
             this.energy = 100;
         }
     }
-
 
 
     /**
