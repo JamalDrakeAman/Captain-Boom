@@ -1,3 +1,7 @@
+/**
+ * Represents the main character of the game.
+ * Extends the `MovableObject` class and includes various animations, sounds, and interactions.
+ */
 class Character extends MovableObject {
     height = 400;
     width = 450;
@@ -140,6 +144,11 @@ class Character extends MovableObject {
     coins_sound = new Audio('audio/coins.mp3');
     hurt_sound = new Audio('audio/pirate-hurt.mp3');
 
+
+    /**
+     * Constructs a new `Character` instance.
+     * Initializes the character's animations, loads images, applies gravity, and starts animations.
+     */
     constructor() {
         super().loadImage('img/1_character/walk/pirate_run1.png');
         this.loadImages(this.IMAGES_IDLE);
@@ -155,6 +164,11 @@ class Character extends MovableObject {
         this.animate();
     }
 
+
+    /**
+     * Manages the character's animations and interactions with the game world.
+     * Handles movement, jumping, attacking, and playing appropriate animations and sounds.
+     */
     animate() {
 
         setInterval(() => {
@@ -210,25 +224,7 @@ class Character extends MovableObject {
                     this.sword_sound.play();
                 }
             } else if (this.isAboveGround()) {
-                if (this.speedY > 0) {
-                    this.playAnimation(this.IMAGES_JUMPING);
-                    if (this.currentImage < 1) {
-                        this.currentImage--
-                    }
-                } else {
-                    this.playAnimation(this.IMAGES_FALLING);
-                    if (this.currentImage < 1) {
-                        this.currentImage--
-                        this.isLanding = false;
-                    }
-                    if (this.y > 50 && !this.isLanding) {
-                        this.counter = 1
-                        this.playAnimation(this.IMAGES_LANDING);
-                        if (sound) {
-                            this.landing_sound.play();
-                        }
-                    }
-                }
+                this.handleJumpAndFall();
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.playAnimation(this.IMAGES_WALKING);
@@ -239,11 +235,41 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Restores a portion of the character's energy (health).
+     */
     health() {
         if (this.energy <= 80) {
             this.energy = this.energy + 20;
         } else {
             this.energy = 100;
+        }
+    }
+
+
+
+    /**
+     * Handles the character's jump and fall animations.
+     */
+    handleJumpAndFall() {
+        if (this.speedY > 0) {
+            this.playAnimation(this.IMAGES_JUMPING);
+            if (this.currentImage < 1) {
+                this.currentImage--
+            }
+        } else {
+            this.playAnimation(this.IMAGES_FALLING);
+            if (this.currentImage < 1) {
+                this.currentImage--
+                this.isLanding = false;
+            }
+            if (this.y > 50 && !this.isLanding) {
+                this.counter = 1
+                this.playAnimation(this.IMAGES_LANDING);
+                if (sound) {
+                    this.landing_sound.play();
+                }
+            }
         }
     }
 
