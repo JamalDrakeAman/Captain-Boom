@@ -21,11 +21,6 @@ class Endboss extends EnemyObject {
         bottom: 0
     }
 
-    // monster_sound = new Audio('audio/monster-sound.mp3');
-    // monster_hurt_sound = new Audio('audio/endboss-hurt.mp3');
-    summon_sound = new Audio('audio/boss-summon.mp3');
-    sword_hit_sound = new Audio('audio/endboss-sword.mp3');
-
 
     IMAGES_IDLE = [
         'img/4_boss/idle/Bringer-of-Death_Idle_1.png',
@@ -124,25 +119,19 @@ class Endboss extends EnemyObject {
         setInterval(() => {
             if (this.endBossDead()) {
                 if (currentAnimation !== this.IMAGES_DEATH) {
-                    this.currentImage = 0; // Animation beginnt neu
+                    this.currentImage = 0; 
                     currentAnimation = this.IMAGES_DEATH;
                 }
                 this.playAnimation(this.IMAGES_DEATH);
-                // if (sound) {
-                //     this.monster_sound.play();
-                // }
                 endbossSound.play();
             }
             else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-                // if (sound) {
-                //     this.monster_hurt_sound.play();
-                // }
                 endbossHurtSound.play();
             }
             else if (summonBat && attackReady) {
                 if (currentAnimation !== this.IMAGES_ALERT) {
-                    this.currentImage = 0; // Animation beginnt neu
+                    this.currentImage = 0; 
                     currentAnimation = this.IMAGES_ALERT;
                 }
                 this.playAnimation(this.IMAGES_ALERT);
@@ -156,23 +145,18 @@ class Endboss extends EnemyObject {
                 if (currentAnimation !== this.IMAGES_ATTACK) {
                     if (i == 1) {
                         this.swordAttack = true;
-                        // console.log('Boss Sword Attack is True');
                         setTimeout(() => {
-                            // if (sound) {
-                            //     this.sword_hit_sound.play();
-                            // }
                             endbossSwordHitSound.play();
                         }, 200);
                     }
                     i++
-                    this.currentImage = 0; // Animation beginnt neu
+                    this.currentImage = 0;
                     currentAnimation = this.IMAGES_ATTACK;
                 }
                 this.playAnimation(this.IMAGES_ATTACK);
                 if (this.currentImage > 8) {
                     i = 0;
                     this.swordAttack = false;
-                    // console.log('Boss Sword Attack is False');
                 }
                 if (attackCounter < 0) {
                     attackCounter = 100;
@@ -180,7 +164,7 @@ class Endboss extends EnemyObject {
             }
             else if (attackReady) {
                 if (currentAnimation !== this.IMAGES_WALKING) {
-                    this.currentImage = 0; // Animation beginnt neu
+                    this.currentImage = 0; 
                     currentAnimation = this.IMAGES_WALKING;
                 }
                 this.playAnimation(this.IMAGES_WALKING);
@@ -189,11 +173,10 @@ class Endboss extends EnemyObject {
                 } else {
                     this.moveLeft();
                 }
-
             }
             else {
                 if (currentAnimation !== this.IMAGES_IDLE) {
-                    this.currentImage = 0; // Animation beginnt neu
+                    this.currentImage = 0; 
                     currentAnimation = this.IMAGES_IDLE;
                 }
                 this.playAnimation(this.IMAGES_IDLE);
@@ -210,16 +193,10 @@ class Endboss extends EnemyObject {
                 this.hadFirstContact = true
                 attackReady = true;
                 summonBat = true;
-                // if (sound) {
-                //     this.monster_sound.play();
-                // }
                 endbossSound.play();
             }
             if (summonBat && attackReady) {
                 this.summonEnemies();
-                // if (sound) {
-                //     this.summon_sound.play();
-                // }
                 endbossSummonSound.play();
             }
         }, 1000);

@@ -1,7 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let game_music_sound = new Audio('audio/pirates-music.mp3');
+// let game_music_sound = new Audio('audio/pirates-music.mp3');
 let winGame = false;
 let currentIndex = 0;
 let sound = false;
@@ -18,7 +18,7 @@ let sound = false;
 //     character_hurt_sound = new Audio('audio/pirate-hurt.mp3'),
 // ];
 
-let isMuted = false;
+let isMuted = true;
 let sounds = [];
 
 const characterJumpSound = new Audio('audio/jump.mp3');
@@ -40,8 +40,12 @@ const skeletonHurtSound = new Audio('audio/skeleton-dead.mp3');
 
 const backgroundMusic = new Audio('audio/pirates-music.mp3');
 
+const winGameSound = new Audio('audio/win-game.mp3');
+const gameOverSound = new Audio('audio/game-over.mp3');
+
+
 backgroundMusic.loop = true;
-// backgroundMusic.play();
+
 
 sounds.push(
     characterJumpSound,
@@ -74,6 +78,26 @@ function toggleMute() {
     // Optional: Aktualisiere den Button-Text basierend auf dem Mute-Status
     // const muteButton = document.getElementById('mute-button');
     // muteButton.textContent = isMuted ? 'Unmute' : 'Mute';
+
+    let soundIcon = document.getElementById('sound-icon');
+
+    soundIcon.src = isMuted ? 'img/mute-icon.png' : 'img/sound-icon.png';
+}
+
+
+function toggleSound() {
+    let soundIcon = document.getElementById('sound-icon');
+    sound = !sound;
+    if (sound) {
+        soundIcon.src = 'img/sound-icon.png';
+        game_music_sound.play();
+        setInterval(() => {
+            game_music_sound.play();
+        }, 67000);
+    } else {
+        soundIcon.src = 'img/mute-icon.png';
+        game_music_sound.pause();
+    }
 }
 
 
@@ -170,22 +194,6 @@ function init() {
 }
 
 
-function toggleSound() {
-    let soundIcon = document.getElementById('sound-icon');
-    sound = !sound;
-    if (sound) {
-        soundIcon.src = 'img/sound-icon.png';
-        game_music_sound.play();
-        setInterval(() => {
-            game_music_sound.play();
-        }, 67000);
-    } else {
-        soundIcon.src = 'img/mute-icon.png';
-        game_music_sound.pause();
-    }
-}
-
-
 
 /**
  * Toggles the visibility of the controls information container.
@@ -232,6 +240,7 @@ function startGame() {
     world = new World(canvas, keyboard);
     let startScreen = document.getElementById('startscreen');
     startScreen.classList.add('d-none');
+    backgroundMusic.play();
 }
 
 
@@ -245,6 +254,7 @@ function restartGame() {
     world = new World(canvas, keyboard);
     winGame = false;
     console.log('Restart');
+    backgroundMusic.play();
 }
 
 
@@ -259,13 +269,15 @@ function stopGame() {
         if (winGame) {
             endscreenTitle.innerHTML = 'YOU WIN'
             endscreen.style.backgroundImage = "url('img/sunset.gif')"
+            winGameSound.play();
         } else {
             endscreenTitle.innerHTML = 'YOU LOSE'
             endscreen.style.backgroundImage = "url('img/giphy (6).gif')"
+            gameOverSound.play();
         }
         endscreen.classList.toggle('d-flex');
         clearAllIntervals();
-        game_music_sound.pause();
+        backgroundMusic.pause();
     }, 1200);
 }
 
