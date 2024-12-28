@@ -76,6 +76,11 @@ const characterImages = [
 
 const slideshow = document.getElementById('character-images');
 
+
+/**
+ * Updates the displayed image in the character slideshow.
+ * Cycles through the character images at regular intervals.
+ */
 function showNextImage() {
     slideshow.src = characterImages[currentIndex];
     currentIndex = (currentIndex + 1) % characterImages.length; // Index inkrementieren und zurücksetzen, wenn Ende erreicht
@@ -84,6 +89,10 @@ function showNextImage() {
 setInterval(showNextImage, 80);
 
 
+/**
+ * Initializes the game, setting up the canvas and world.
+ * Logs the initialized character object to the console.
+ */
 function init() {
     initLevel();
     canvas = document.getElementById('canvas');
@@ -108,6 +117,11 @@ function toggleSound() {
 }
 
 
+
+/**
+ * Toggles the visibility of the controls information container.
+ * Also toggles other UI elements such as the start screen title and buttons.
+ */
 function toggleControlsInfo() {
     let controleContainer = document.getElementById('controls-info-container');
     controleContainer.classList.toggle('show-hide-box');
@@ -122,6 +136,11 @@ function toggleControlsInfo() {
     impressumBtn.classList.toggle('d-none');
 }
 
+
+/**
+ * Toggles the visibility of the "Impressum" information container.
+ * Adjusts related UI elements accordingly.
+ */
 function toggleImpressumInfo() {
     let impressumContainer = document.getElementById('impressum-info-container');
     impressumContainer.classList.toggle('show-hide-box')
@@ -135,6 +154,9 @@ function toggleImpressumInfo() {
 }
 
 
+/**
+ * Starts the game by initializing the world and hiding the start screen.
+ */
 function startGame() {
     initLevel();
     canvas = document.getElementById('canvas');
@@ -144,6 +166,9 @@ function startGame() {
 }
 
 
+/**
+ * Restarts the game by resetting the world and hiding the end screen.
+ */
 function restartGame() {
     let endscreen = document.getElementById('endscreen');
     endscreen.classList.remove('d-flex');
@@ -154,6 +179,10 @@ function restartGame() {
 }
 
 
+/**
+ * Stops the game and shows the end screen with appropriate messages and animations.
+ * Pauses the background music and clears all intervals.
+ */
 function stopGame() {
     let endscreenTitle = document.getElementById('endscreen-title');
     let endscreen = document.getElementById('endscreen');
@@ -172,16 +201,27 @@ function stopGame() {
 }
 
 
+/**
+ * Clears all active intervals in the application.
+ * Prevents unnecessary animations or logic loops from continuing.
+ */
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
 
+/**
+ * Reloads the page, taking the user back to the start screen.
+ */
 function goStartScreen() {
     location.reload();
 }
 
 
+/**
+ * Toggles fullscreen mode for the canvas element.
+ * Adjusts related UI elements accordingly.
+ */
 function fullscreen() {
     let canvas = document.getElementById('canvas');
     let gameTitle = document.getElementById('game-title');
@@ -190,6 +230,10 @@ function fullscreen() {
 }
 
 
+/**
+ * Handles `keydown` events to update the state of the `keyboard` object.
+ * Listens for specific keys (e.g., arrow keys, space, D, F).
+ */
 window.addEventListener('keydown', (e) => {
     if (e.keyCode == 39) {
         keyboard.RIGHT = true;
@@ -215,6 +259,10 @@ window.addEventListener('keydown', (e) => {
 });
 
 
+/**
+ * Handles `keyup` events to update the state of the `keyboard` object.
+ * Resets keys to their default state when released.
+ */
 window.addEventListener('keyup', (e) => {
     if (e.keyCode == 39) {
         keyboard.RIGHT = false;
