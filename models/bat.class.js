@@ -159,14 +159,11 @@ class Bat extends EnemyObject {
             dropArray = world.ammo;
         } else {
             dropArray = null;
-            console.log('Noo Drop');
         }
         if (dropArray) {
             item.x = this.x;
             item.y = this.y;
             dropArray.push(item);
-            console.log('Item Dropped:', item);
-
         }
     }
 

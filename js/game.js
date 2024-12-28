@@ -6,65 +6,134 @@ let winGame = false;
 let currentIndex = 0;
 let sound = false;
 
-let shoot = 'ready';
+// let gameSounds = [
+//     character_walking_sound = new Audio('audio/walk.mp3'),
+//     character_jump_sound = new Audio('audio/jump.mp3'),
+//     character_landing_sound = new Audio('audio/landing.mp3'),
+//     character_shoot_sound = new Audio('audio/shot.mp3'),
+//     character_sword_sound = new Audio('audio/sword.mp3'),
+//     character_trigger_sound = new Audio('audio/trigger.mp3'),
+//     character_loaded_sound = new Audio('audio/load-ammo.mp3'),
+//     character_coins_sound = new Audio('audio/coins.mp3'),
+//     character_hurt_sound = new Audio('audio/pirate-hurt.mp3'),
+// ];
+
+let isMuted = false;
+let sounds = [];
+
+const characterJumpSound = new Audio('audio/jump.mp3');
+const characterWalkSound = new Audio('audio/walk.mp3');
+const characterLandingSound = new Audio('audio/landing.mp3');
+const characterShootSound = new Audio('audio/shot.mp3');
+const characterSwordSound = new Audio('audio/sword.mp3');
+const characterTriggerSound = new Audio('audio/trigger.mp3');
+const characterLoadedSound = new Audio('audio/load-ammo.mp3');
+const characterCoinsSound = new Audio('audio/coins.mp3');
+const characterHurtSound = new Audio('audio/pirate-hurt.mp3');
+
+const endbossSound = new Audio('audio/monster-sound.mp3');
+const endbossHurtSound = new Audio('audio/endboss-hurt.mp3');
+const endbossSummonSound = new Audio('audio/boss-summon.mp3');
+const endbossSwordHitSound = new Audio('audio/endboss-sword.mp3');
+
+const skeletonHurtSound = new Audio('audio/skeleton-dead.mp3');
+
+const backgroundMusic = new Audio('audio/pirates-music.mp3');
+
+backgroundMusic.loop = true;
+// backgroundMusic.play();
+
+sounds.push(
+    characterJumpSound,
+    characterWalkSound,
+    characterLandingSound,
+    characterShootSound,
+    characterSwordSound,
+    characterTriggerSound,
+    characterLoadedSound,
+    characterCoinsSound,
+    characterHurtSound,
+
+    endbossSound,
+    endbossHurtSound,
+    endbossSummonSound,
+    endbossSwordHitSound,
+
+    skeletonHurtSound,
+
+    backgroundMusic
+)
+
+function toggleMute() {
+    isMuted = !isMuted;
+
+    sounds.forEach((sound) => {
+        sound.muted = isMuted; // Den Mute-Status aller Sounds aktualisieren
+    });
+
+    // Optional: Aktualisiere den Button-Text basierend auf dem Mute-Status
+    // const muteButton = document.getElementById('mute-button');
+    // muteButton.textContent = isMuted ? 'Unmute' : 'Mute';
+}
+
 
 const characterImages = [
-    // IDLE
+
     'img/1_character/idle/pirate_idle0.png',
     'img/1_character/idle/pirate_idle1.png',
     'img/1_character/idle/pirate_idle2.png',
     'img/1_character/idle/pirate_idle3.png',
     'img/1_character/idle/pirate_idle4.png',
-    // WALK
+
     'img/1_character/walk/pirate_run1.png',
     'img/1_character/walk/pirate_run2.png',
     'img/1_character/walk/pirate_run3.png',
     'img/1_character/walk/pirate_run4.png',
     'img/1_character/walk/pirate_run5.png',
     'img/1_character/walk/pirate_run6.png',
-    // JUMP
+
     'img/1_character/jump/pirate_jump1.png',
     'img/1_character/jump/pirate_jump2.png',
-    // FALL
+
     'img/1_character/fall/pirate_fall1.png',
     'img/1_character/fall/pirate_fall2.png',
-    //LANDING
+
     'img/1_character/landing/pirate_landing1.png',
     'img/1_character/landing/pirate_landing2.png',
-    // GUN OUT
+
     'img/1_character/gun-out/pirate_gun_out0.png',
     'img/1_character/gun-out/pirate_gun_out1.png',
     'img/1_character/gun-out/pirate_gun_out2.png',
     'img/1_character/gun-out/pirate_gun_out3.png',
     'img/1_character/gun-out/pirate_gun_out4.png',
     'img/1_character/gun-out/pirate_gun_out5.png',
-    //SHOOT
+
     'img/1_character/gun-shoot-with-fire/tile000.png',
     'img/1_character/gun-shoot-with-fire/tile001.png',
     'img/1_character/gun-shoot-with-fire/tile002.png',
     'img/1_character/gun-shoot-with-fire/tile003.png',
     'img/1_character/gun-shoot-with-fire/tile004.png',
-    //SHOOT
+
     'img/1_character/gun-shoot-with-fire/tile000.png',
     'img/1_character/gun-shoot-with-fire/tile001.png',
     'img/1_character/gun-shoot-with-fire/tile002.png',
     'img/1_character/gun-shoot-with-fire/tile003.png',
     'img/1_character/gun-shoot-with-fire/tile004.png',
-    // ATTACK
+
     'img/1_character/sword-attack1/pirate_attack1_0.png',
     'img/1_character/sword-attack1/pirate_attack1_1.png',
     'img/1_character/sword-attack1/pirate_attack1_2.png',
     'img/1_character/sword-attack1/pirate_attack1_3.png',
     'img/1_character/sword-attack1/pirate_attack1_4.png',
     'img/1_character/sword-attack1/pirate_attack1_5.png',
-    // ATTACK 2
+
     'img/1_character/sword-attack2/pirate_attack2_0.png',
     'img/1_character/sword-attack2/pirate_attack2_1.png',
     'img/1_character/sword-attack2/pirate_attack2_2.png',
     'img/1_character/sword-attack2/pirate_attack2_3.png',
     'img/1_character/sword-attack2/pirate_attack2_4.png',
     'img/1_character/sword-attack2/pirate_attack2_5.png',
-    // ATTACK 3
+
     'img/1_character/sword-attack3/pirate_attack3_0.png',
     'img/1_character/sword-attack3/pirate_attack3_1.png',
     'img/1_character/sword-attack3/pirate_attack3_2.png',

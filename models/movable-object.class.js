@@ -131,7 +131,6 @@ class MovableObject extends DrawableObject {
      * @param {string[]} images - Array of image paths for the animation.
      */
     playAnimation(images) {
-        // console.log(this.counter);
         if (this.counting && this.counter > 0) {
             this.counter--;
         } else if (!this.counting && this.counter > 0) {

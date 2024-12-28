@@ -116,14 +116,14 @@ class Character extends MovableObject {
         'img/1_character/sword-attack1/pirate_attack1_3.png',
         'img/1_character/sword-attack1/pirate_attack1_4.png',
         'img/1_character/sword-attack1/pirate_attack1_5.png',
-        
+
         'img/1_character/sword-attack2/pirate_attack2_0.png',
         'img/1_character/sword-attack2/pirate_attack2_1.png',
         'img/1_character/sword-attack2/pirate_attack2_2.png',
         'img/1_character/sword-attack2/pirate_attack2_3.png',
         'img/1_character/sword-attack2/pirate_attack2_4.png',
         'img/1_character/sword-attack2/pirate_attack2_5.png',
-        
+
         'img/1_character/sword-attack3/pirate_attack3_0.png',
         'img/1_character/sword-attack3/pirate_attack3_1.png',
         'img/1_character/sword-attack3/pirate_attack3_2.png',
@@ -133,16 +133,6 @@ class Character extends MovableObject {
     ];
 
     world;
-
-    walking_sound = new Audio('audio/walk.mp3');
-    jump_sound = new Audio('audio/jump.mp3');
-    landing_sound = new Audio('audio/landing.mp3');
-    shoot_sound = new Audio('audio/shot.mp3');
-    sword_sound = new Audio('audio/sword.mp3');
-    trigger_sound = new Audio('audio/trigger.mp3');
-    loaded_sound = new Audio('audio/load-ammo.mp3');
-    coins_sound = new Audio('audio/coins.mp3');
-    hurt_sound = new Audio('audio/pirate-hurt.mp3');
 
 
     /**
@@ -172,27 +162,22 @@ class Character extends MovableObject {
     animate() {
 
         setInterval(() => {
-            this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
-                if (sound) {
-                    this.walking_sound.play();
+                if (!this.isAboveGround()) {
+                    characterWalkSound.play();
                 }
             }
             if (this.world.keyboard.LEFT && this.x > -100) {
                 this.moveLeft();
                 this.otherDirection = true;
-                if (sound) {
-                    this.walking_sound.play();
-                }
+                characterWalkSound.play();
             }
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
                 this.isLanding = false;
-                if (sound) {
-                    this.jump_sound.play();
-                }
+                characterJumpSound.play();
             }
             this.world.camera_x = -this.x - 35;
         }, 1000 / 60)
@@ -210,19 +195,13 @@ class Character extends MovableObject {
                 }
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-                if (sound) {
-                    this.hurt_sound.play();
-                }
+                characterHurtSound.play();
             } else if (this.world.keyboard.D) {
-                if (sound) {
-                    this.trigger_sound.play();
-                }
+                characterTriggerSound.play();
                 this.playAnimation(this.IMAGES_GUN_SHOOT);
             } else if (this.world.keyboard.F) {
                 this.playAnimation(this.IMAGES_SWORD_ATTACK_1);
-                if (sound) {
-                    this.sword_sound.play();
-                }
+                characterSwordSound.play();
             } else if (this.isAboveGround()) {
                 this.handleJumpAndFall();
             } else {
@@ -265,9 +244,7 @@ class Character extends MovableObject {
             if (this.y > 50 && !this.isLanding) {
                 this.counter = 1
                 this.playAnimation(this.IMAGES_LANDING);
-                if (sound) {
-                    this.landing_sound.play();
-                }
+                characterLandingSound.play();
             }
         }
     }

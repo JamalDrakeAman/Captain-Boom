@@ -67,23 +67,17 @@ class World {
     //////////////////////////// noch Kürzen 
     checkThrowObjects() {
         if (this.keyboard.D && this.ammoStatusBar.itemCount > 0) {
+
             if (this.character.otherDirection) {
                 let ammo = new ThrowableObject(this.character.x - 10, this.character.y + 30, this.character.otherDirection);
                 this.throwableObjects.push(ammo);
-                this.ammoStatusBar.itemCount--;
-                if (sound) {
-                    this.character.shoot_sound.play();
-                }
-                setTimeout(() => this.throwableObjects.splice(0, 1), 300);
             } else {
                 let ammo = new ThrowableObject(this.character.x + 160, this.character.y + 30);
                 this.throwableObjects.push(ammo);
-                this.ammoStatusBar.itemCount--;
-                if (sound) {
-                    this.character.shoot_sound.play();
-                }
-                setTimeout(() => this.throwableObjects.splice(0, 1), 300)
             }
+            this.ammoStatusBar.itemCount--;
+            setTimeout(() => this.throwableObjects.splice(0, 1), 300)
+            characterShootSound.play();
         }
     }
 
@@ -156,9 +150,7 @@ class World {
             if (this.character.isColliding(coins)) {
                 this.coins.splice(index, 1);
                 this.coinStatusBar.pickupItem();
-                if (sound) {
-                    this.character.coins_sound.play();
-                }
+                characterCoinsSound.play();
             }
         });
     }
@@ -188,9 +180,7 @@ class World {
             if (this.character.isColliding(ammo)) {
                 this.ammo.splice(index, 1)
                 this.ammoStatusBar.pickupItem();
-                if (sound) {
-                    this.character.loaded_sound.play();
-                }
+                characterLoadedSound.play();
             }
         });
     }
