@@ -1,22 +1,8 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-// let game_music_sound = new Audio('audio/pirates-music.mp3');
 let winGame = false;
 let currentIndex = 0;
-// let sound = false;
-
-// let gameSounds = [
-//     character_walking_sound = new Audio('audio/walk.mp3'),
-//     character_jump_sound = new Audio('audio/jump.mp3'),
-//     character_landing_sound = new Audio('audio/landing.mp3'),
-//     character_shoot_sound = new Audio('audio/shot.mp3'),
-//     character_sword_sound = new Audio('audio/sword.mp3'),
-//     character_trigger_sound = new Audio('audio/trigger.mp3'),
-//     character_loaded_sound = new Audio('audio/load-ammo.mp3'),
-//     character_coins_sound = new Audio('audio/coins.mp3'),
-//     character_hurt_sound = new Audio('audio/pirate-hurt.mp3'),
-// ];
 
 let isMuted = true;
 let sounds = [];
@@ -56,8 +42,11 @@ sounds.push(
     endbossSummonSound,
     endbossSwordHitSound,
     skeletonHurtSound,
-    backgroundMusic
+    backgroundMusic,
+    winGameSound,
+    gameOverSound
 )
+
 
 function toggleMute() {
     isMuted = !isMuted;
@@ -65,11 +54,13 @@ function toggleMute() {
     updateMuteBtn();
 }
 
+
 function updateMuteStatus() {
     sounds.forEach((sound) => {
         sound.muted = isMuted; // Den Mute-Status aller Sounds aktualisieren
     });
 }
+
 
 function updateMuteBtn() {
     let soundIcon = document.getElementById('sound-icon');
@@ -78,7 +69,6 @@ function updateMuteBtn() {
 
 
 const characterImages = [
-
     'img/1_character/idle/pirate_idle0.png',
     'img/1_character/idle/pirate_idle1.png',
     'img/1_character/idle/pirate_idle2.png',
