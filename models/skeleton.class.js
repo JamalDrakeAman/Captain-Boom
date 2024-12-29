@@ -6,12 +6,10 @@ class Skeleton extends EnemyObject {
     height = 150;
     width = 150;
     y = 240;
-
     run = false;
     jump = false;
     dead = false;
     walkRight = false;
-
     runCounter = Math.round(Math.random() * 100);
     jumpCounter = Math.round(Math.random() * 200);
 
@@ -21,8 +19,6 @@ class Skeleton extends EnemyObject {
         right: 50,
         bottom: 0
     }
-
-    skeleton_hurt = new Audio('audio/skeleton-dead.mp3');
 
     IMAGES_WALKING = [
         'img/3_enemies/skeleton/walk/skeleton-walk1.png',
@@ -161,7 +157,6 @@ class Skeleton extends EnemyObject {
     }
 
 
-
     /**
      * Handles the death of the skeleton enemy.
      * Plays the death animation, stops movement, and triggers the death sound.
@@ -174,7 +169,6 @@ class Skeleton extends EnemyObject {
             skeletonHurtSound.play();
         }
     }
-
 
 
     /**
@@ -199,9 +193,9 @@ class Skeleton extends EnemyObject {
             this.jumpCounter = Math.round(Math.random() * 200);
             this.jump = false;
         }
-
     }
 
+    
     /**
     * Handles the skeleton's run state by increasing speed and playing the run animation.
     * Toggles the run state based on the run counter.
