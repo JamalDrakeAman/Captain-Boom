@@ -4,7 +4,7 @@ let keyboard = new Keyboard();
 // let game_music_sound = new Audio('audio/pirates-music.mp3');
 let winGame = false;
 let currentIndex = 0;
-let sound = false;
+// let sound = false;
 
 // let gameSounds = [
 //     character_walking_sound = new Audio('audio/walk.mp3'),
@@ -30,20 +30,14 @@ const characterTriggerSound = new Audio('audio/trigger.mp3');
 const characterLoadedSound = new Audio('audio/load-ammo.mp3');
 const characterCoinsSound = new Audio('audio/coins.mp3');
 const characterHurtSound = new Audio('audio/pirate-hurt.mp3');
-
 const endbossSound = new Audio('audio/monster-sound.mp3');
 const endbossHurtSound = new Audio('audio/endboss-hurt.mp3');
 const endbossSummonSound = new Audio('audio/boss-summon.mp3');
 const endbossSwordHitSound = new Audio('audio/endboss-sword.mp3');
-
 const skeletonHurtSound = new Audio('audio/skeleton-dead.mp3');
-
 const backgroundMusic = new Audio('audio/pirates-music.mp3');
-
 const winGameSound = new Audio('audio/win-game.mp3');
 const gameOverSound = new Audio('audio/game-over.mp3');
-
-
 backgroundMusic.loop = true;
 
 
@@ -57,47 +51,29 @@ sounds.push(
     characterLoadedSound,
     characterCoinsSound,
     characterHurtSound,
-
     endbossSound,
     endbossHurtSound,
     endbossSummonSound,
     endbossSwordHitSound,
-
     skeletonHurtSound,
-
     backgroundMusic
 )
 
 function toggleMute() {
     isMuted = !isMuted;
+    updateMuteStatus();
+    updateMuteBtn();
+}
 
+function updateMuteStatus() {
     sounds.forEach((sound) => {
         sound.muted = isMuted; // Den Mute-Status aller Sounds aktualisieren
     });
-
-    // Optional: Aktualisiere den Button-Text basierend auf dem Mute-Status
-    // const muteButton = document.getElementById('mute-button');
-    // muteButton.textContent = isMuted ? 'Unmute' : 'Mute';
-
-    let soundIcon = document.getElementById('sound-icon');
-
-    soundIcon.src = isMuted ? 'img/mute-icon.png' : 'img/sound-icon.png';
 }
 
-
-function toggleSound() {
+function updateMuteBtn() {
     let soundIcon = document.getElementById('sound-icon');
-    sound = !sound;
-    if (sound) {
-        soundIcon.src = 'img/sound-icon.png';
-        game_music_sound.play();
-        setInterval(() => {
-            game_music_sound.play();
-        }, 67000);
-    } else {
-        soundIcon.src = 'img/mute-icon.png';
-        game_music_sound.pause();
-    }
+    soundIcon.src = isMuted ? 'img/mute-icon.png' : 'img/sound-icon.png';
 }
 
 

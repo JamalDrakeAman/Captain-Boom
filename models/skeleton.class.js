@@ -171,9 +171,7 @@ class Skeleton extends EnemyObject {
         this.speed = 0;
         if (!this.dead) {
             this.dead = true;
-            if (sound) {
-                this.skeleton_hurt.play();
-            }
+            skeletonHurtSound.play();
         }
     }
 

@@ -107,7 +107,7 @@ class Skeleton2 extends EnemyObject {
         }, 200);
     }
 
-    
+
     /**
      * Handles the death of the skeleton enemy.
      * Plays the death animation, stops movement, and triggers the death sound.
@@ -117,9 +117,7 @@ class Skeleton2 extends EnemyObject {
         this.speed = 0;
         if (!this.dead) {
             this.dead = true;
-            if (sound) {
-                this.skeleton_hurt.play();
-            }
+            skeletonHurtSound.play();
         }
 
     }
