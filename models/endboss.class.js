@@ -13,8 +13,11 @@ class Endboss extends EnemyObject {
     swordAttack = false;
     bossOnTheRight = false;
     hadFirstContact = false;
-
     currentAnimation = null;
+    attackCounter = 100;
+    attackReady = false;
+    summonBat = false;
+    hitCounter = 0;
 
     offset = {
         top: 120,
@@ -112,66 +115,7 @@ class Endboss extends EnemyObject {
      * Handles the animation and behavior of the boss.
      */
     animate() {
-        let attackCounter = 100;
-        let attackReady = false;
-        let summonBat = false;
-        let i = 0
-
-        setInterval(() => {
-            if (this.isBossDead()) {
-                this.switchAnimation(this.IMAGES_DEATH);
-                this.playAnimation(this.IMAGES_DEATH);
-                endbossSound.play();
-            }
-            else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-                endbossHurtSound.play();
-            }
-            else if (summonBat && attackReady) {
-                this.switchAnimation(this.IMAGES_ALERT);
-                this.playAnimation(this.IMAGES_ALERT);
-                if (this.currentImage > 8) {
-                    this.currentImage = 5;
-                } else if (this.currentImage < 5 || this.currentImage > 7) {
-                    this.currentImage = 5;
-                }
-            }
-            else if (attackCounter < 50 && attackReady) {
-                if (this.currentAnimation !== this.IMAGES_ATTACK) {
-                    if (i == 1) {
-                        this.swordAttack = true;
-                        setTimeout(() => {
-                            endbossSwordHitSound.play();
-                        }, 200);
-                    }
-                    i++
-                    this.currentImage = 0;
-                    this.currentAnimation = this.IMAGES_ATTACK;
-                }
-                this.playAnimation(this.IMAGES_ATTACK);
-                if (this.currentImage > 8) {
-                    i = 0;
-                    this.swordAttack = false;
-                }
-                if (attackCounter < 0) {
-                    attackCounter = 100;
-                }
-            }
-            else if (attackReady) {
-                this.switchAnimation(this.IMAGES_WALKING)
-                this.playAnimation(this.IMAGES_WALKING);
-                if (this.otherDirection) {
-                    this.moveRight();
-                } else {
-                    this.moveLeft();
-                }
-            }
-            else {
-                this.switchAnimation(this.IMAGES_IDLE)
-                this.playAnimation(this.IMAGES_IDLE);
-            }
-            attackCounter -= 2;
-        }, 200);
+        setInterval(() => this.playEndboss(), 200);
 
 
         setInterval(() => {
@@ -180,19 +124,102 @@ class Endboss extends EnemyObject {
             }
             if (world.character.x > 2600 && !this.hadFirstContact) {
                 this.hadFirstContact = true
-                attackReady = true;
-                summonBat = true;
+                this.attackReady = true;
+                this.summonBat = true;
                 endbossSound.play();
             }
-            if (summonBat && attackReady) {
+            if (this.summonBat && this.attackReady) {
                 this.summonEnemies();
                 endbossSummonSound.play();
             }
         }, 1000);
 
         setInterval(() => {
-            summonBat = !summonBat;
+            this.summonBat = !this.summonBat;
         }, 7000);
+    }
+
+    playEndboss() {
+        if (this.isBossDead())
+            this.dead();
+        else if (this.isHurt())
+            this.hurt();
+        else if (this.isSummon())
+            this.summon();
+        else if (this.isAttack())
+            this.attack();
+        else if (this.attackReady)
+            this.walk();
+        else {
+            this.idle();
+        }
+        this.attackCounter -= 2;
+    }
+
+    dead() {
+        this.switchAnimation(this.IMAGES_DEATH);
+        this.playAnimation(this.IMAGES_DEATH);
+        endbossSound.play();
+    }
+
+    hurt() {
+        this.playAnimation(this.IMAGES_HURT);
+        endbossHurtSound.play();
+    }
+
+    isSummon() {
+        return this.summonBat && this.attackReady;
+    }
+
+    summon() {
+        this.switchAnimation(this.IMAGES_ALERT);
+        this.playAnimation(this.IMAGES_ALERT);
+        if (this.currentImage > 8) {
+            this.currentImage = 5;
+        } else if (this.currentImage < 5 || this.currentImage > 7) {
+            this.currentImage = 5;
+        }
+    }
+
+    isAttack() {
+        return this.attackCounter < 50 && this.attackReady;
+    }
+
+    attack() {
+        if (this.currentAnimation !== this.IMAGES_ATTACK) {
+            if (this.hitCounter == 1) {
+                this.swordAttack = true;
+                setTimeout(() => {
+                    endbossSwordHitSound.play();
+                }, 200);
+            }
+            this.hitCounter++
+            this.currentImage = 0;
+            this.currentAnimation = this.IMAGES_ATTACK;
+        }
+        this.playAnimation(this.IMAGES_ATTACK);
+        if (this.currentImage > 8) {
+            this.hitCounter = 0;
+            this.swordAttack = false;
+        }
+        if (this.attackCounter < 0) {
+            this.attackCounter = 100;
+        }
+    }
+
+    walk() {
+        this.switchAnimation(this.IMAGES_WALKING)
+        this.playAnimation(this.IMAGES_WALKING);
+        if (this.otherDirection) {
+            this.moveRight();
+        } else {
+            this.moveLeft();
+        }
+    }
+
+    idle() {
+        this.switchAnimation(this.IMAGES_IDLE)
+        this.playAnimation(this.IMAGES_IDLE);
     }
 
 
