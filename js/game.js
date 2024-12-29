@@ -3,7 +3,6 @@ let world;
 let keyboard = new Keyboard();
 let winGame = false;
 let currentIndex = 0;
-
 let isMuted = true;
 let sounds = [];
 
@@ -48,6 +47,9 @@ sounds.push(
 )
 
 
+/**
+ * Toggles the mute state of all sounds and updates the mute button UI.
+ */
 function toggleMute() {
     isMuted = !isMuted;
     updateMuteStatus();
@@ -55,6 +57,9 @@ function toggleMute() {
 }
 
 
+/**
+ * Updates the mute status for all sound elements.
+ */
 function updateMuteStatus() {
     sounds.forEach((sound) => {
         sound.muted = isMuted; // Den Mute-Status aller Sounds aktualisieren
@@ -62,6 +67,9 @@ function updateMuteStatus() {
 }
 
 
+/**
+ * Updates the sound icon to reflect the current mute status.
+ */
 function updateMuteBtn() {
     let soundIcon = document.getElementById('sound-icon');
     soundIcon.src = isMuted ? 'img/mute-icon.png' : 'img/sound-icon.png';
@@ -152,13 +160,12 @@ setInterval(showNextImage, 80);
  * Initializes the game, setting up the canvas and world.
  * Logs the initialized character object to the console.
  */
-function init() {
-    initLevel();
-    canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
-    console.log('My character is', world);
-}
-
+// function init() {
+//     initLevel();
+//     canvas = document.getElementById('canvas');
+//     world = new World(canvas, keyboard);
+//     console.log('My character is', world);
+// }
 
 
 /**
