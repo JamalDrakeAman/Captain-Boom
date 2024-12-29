@@ -160,57 +160,86 @@ class Character extends MovableObject {
      * Handles movement, jumping, attacking, and playing appropriate animations and sounds.
      */
     animate() {
+        setInterval(() => this.moveCharacter(), 1000 / 60);
+        setInterval(() => this.playCharacter(), 80);
+    }
 
-        setInterval(() => {
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-                this.otherDirection = false;
-                if (!this.isAboveGround()) {
-                    characterWalkSound.play();
-                }
-            }
-            if (this.world.keyboard.LEFT && this.x > -100) {
-                this.moveLeft();
-                this.otherDirection = true;
-                characterWalkSound.play();
-            }
-            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-                this.jump();
-                this.isLanding = false;
-                characterJumpSound.play();
-            }
-            this.world.camera_x = -this.x - 35;
-        }, 1000 / 60)
+    moveCharacter() {
+        if (this.canMoveRight())
+            this.moveRight();
+        if (this.canMoveLeft())
+            this.moveLeft();
+        if (this.canJump())
+            this.jump();
+        this.world.camera_x = -this.x - 35;
+    }
+
+    canMoveRight() {
+        return this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x;
+    }
+
+    moveRight() {
+        super.moveRight();
+        this.otherDirection = false;
+        if (!this.isAboveGround()) {
+            characterWalkSound.play();
+        }
+    }
+
+    canMoveLeft() {
+        return this.world.keyboard.LEFT && this.x > -100;
+    }
+
+    moveLeft() {
+        super.moveLeft();
+        this.otherDirection = true;
+        if (!this.isAboveGround()) {
+            characterWalkSound.play();
+        }
+    }
+
+    canJump() {
+        return this.world.keyboard.SPACE && !this.isAboveGround();
+    }
+
+    jump() {
+        super.jump();
+        this.isLanding = false;
+        characterJumpSound.play();
+    }
 
 
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_IDLE);
-            if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-                this.speed = 0;
-                if (this.currentImage > 8) {
-                    this.currentImage = 5;
-                } else if (this.currentImage < 5 || this.currentImage > 7) {
-                    this.currentImage = 5;
-                }
-            } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-                characterHurtSound.play();
-            } else if (this.world.keyboard.D) {
-                characterTriggerSound.play();
-                this.playAnimation(this.IMAGES_GUN_SHOOT);
-            } else if (this.world.keyboard.F) {
-                this.playAnimation(this.IMAGES_SWORD_ATTACK_1);
-                characterSwordSound.play();
-            } else if (this.isAboveGround()) {
-                this.handleJumpAndFall();
-            } else {
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    this.playAnimation(this.IMAGES_WALKING);
-                }
+    playCharacter() {
+        this.playAnimation(this.IMAGES_IDLE);
+        if (this.isDead()) {
+            this.playAnimation(this.IMAGES_DEAD);
+            this.speed = 0;
+            this.resetCurrentImage();
+        } else if (this.isHurt()) {
+            this.playAnimation(this.IMAGES_HURT);
+            characterHurtSound.play();
+        } else if (this.world.keyboard.D) {
+            characterTriggerSound.play();
+            this.playAnimation(this.IMAGES_GUN_SHOOT);
+        } else if (this.world.keyboard.F) {
+            this.playAnimation(this.IMAGES_SWORD_ATTACK_1);
+            characterSwordSound.play();
+        } else if (this.isAboveGround()) {
+            this.handleJumpAndFall();
+        } else {
+            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                this.playAnimation(this.IMAGES_WALKING);
             }
-        }, 80);
+        }
+    }
+    
 
+    resetCurrentImage() {
+        if (this.currentImage > 8) {
+            this.currentImage = 5;
+        } else if (this.currentImage < 5 || this.currentImage > 7) {
+            this.currentImage = 5;
+        }
     }
 
 

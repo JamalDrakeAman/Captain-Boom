@@ -113,15 +113,12 @@ class Endboss extends EnemyObject {
         let attackCounter = 100;
         let attackReady = false;
         let summonBat = false;
-        let currentAnimation = null;
+        this.currentAnimation = null;
         let i = 0
 
         setInterval(() => {
-            if (this.endBossDead()) {
-                if (currentAnimation !== this.IMAGES_DEATH) {
-                    this.currentImage = 0; 
-                    currentAnimation = this.IMAGES_DEATH;
-                }
+            if (this.isBossDead()) {
+                this.switchAnimation(this.IMAGES_DEATH);
                 this.playAnimation(this.IMAGES_DEATH);
                 endbossSound.play();
             }
@@ -130,10 +127,7 @@ class Endboss extends EnemyObject {
                 endbossHurtSound.play();
             }
             else if (summonBat && attackReady) {
-                if (currentAnimation !== this.IMAGES_ALERT) {
-                    this.currentImage = 0; 
-                    currentAnimation = this.IMAGES_ALERT;
-                }
+                this.switchAnimation(this.IMAGES_ALERT);
                 this.playAnimation(this.IMAGES_ALERT);
                 if (this.currentImage > 8) {
                     this.currentImage = 5;
@@ -142,7 +136,7 @@ class Endboss extends EnemyObject {
                 }
             }
             else if (attackCounter < 50 && attackReady) {
-                if (currentAnimation !== this.IMAGES_ATTACK) {
+                if (this.currentAnimation !== this.IMAGES_ATTACK) {
                     if (i == 1) {
                         this.swordAttack = true;
                         setTimeout(() => {
@@ -151,7 +145,7 @@ class Endboss extends EnemyObject {
                     }
                     i++
                     this.currentImage = 0;
-                    currentAnimation = this.IMAGES_ATTACK;
+                    this.currentAnimation = this.IMAGES_ATTACK;
                 }
                 this.playAnimation(this.IMAGES_ATTACK);
                 if (this.currentImage > 8) {
@@ -163,10 +157,7 @@ class Endboss extends EnemyObject {
                 }
             }
             else if (attackReady) {
-                if (currentAnimation !== this.IMAGES_WALKING) {
-                    this.currentImage = 0; 
-                    currentAnimation = this.IMAGES_WALKING;
-                }
+                this.switchAnimation(this.IMAGES_WALKING)
                 this.playAnimation(this.IMAGES_WALKING);
                 if (this.otherDirection) {
                     this.moveRight();
@@ -175,10 +166,7 @@ class Endboss extends EnemyObject {
                 }
             }
             else {
-                if (currentAnimation !== this.IMAGES_IDLE) {
-                    this.currentImage = 0; 
-                    currentAnimation = this.IMAGES_IDLE;
-                }
+                this.switchAnimation(this.IMAGES_IDLE)
                 this.playAnimation(this.IMAGES_IDLE);
             }
             attackCounter -= 2;
@@ -201,18 +189,24 @@ class Endboss extends EnemyObject {
             }
         }, 1000);
 
-
         setInterval(() => {
             summonBat = !summonBat;
         }, 7000);
     }
 
 
+    switchAnimation(newAnimation) {
+        if (this.currentAnimation !== newAnimation) {
+            this.currentImage = 0;
+            this.currentAnimation = newAnimation;
+        }
+    }
+
     /**
      * Checks if the boss is dead.
      * @returns {boolean} True if the boss is dead, false otherwise.
      */
-    endBossDead() {
+    isBossDead() {
         return this.enemyEnergy == 0;
     }
 
