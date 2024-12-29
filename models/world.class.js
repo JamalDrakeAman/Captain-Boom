@@ -261,6 +261,11 @@ class World {
         this.isPlayerRightOfBoss();
     }
 
+
+    /**
+     * Handles the scenario when the character is positioned to the left of the end boss.
+     * Adjusts the end boss's offset, position, and camera accordingly.
+     */
     isPlayerLeftOfBoss() {
         let playerLeftOfEnemy = this.character.x + 200 < this.endBoss.x;
         if (playerLeftOfEnemy && this.endBoss.bossOnTheRight) {
@@ -277,6 +282,11 @@ class World {
         }
     }
 
+
+    /**
+     * Handles the scenario when the character is positioned to the right of the end boss.
+     * Adjusts the end boss's offset, position, and camera accordingly.
+     */
     isPlayerRightOfBoss() {
         let playerRightOfEnemy = this.character.x + 200 > this.endBoss.x + this.endBoss.width;
         if (playerRightOfEnemy && !this.endBoss.bossOnTheRight) {
@@ -430,9 +440,9 @@ class World {
     }
 
 
-    /**
-     * Flips an object's image horizontally.
-     * @param {Object} mo - The object to flip.
+     /**
+     * Flips the image of the specified object horizontally for rendering.
+     * @param {Object} mo - The object to flip horizontally.
      */
     flipImage(mo) {
         this.ctx.save();
@@ -443,7 +453,7 @@ class World {
 
 
     /**
-     * Restores the object's position after flipping its image.
+     * Restores the position of an object after its image has been flipped horizontally.
      * @param {Object} mo - The object to restore.
      */
     flipImageBack(mo) {
