@@ -280,21 +280,33 @@ class Character extends MovableObject {
      */
     handleJumpAndFall() {
         if (this.speedY > 0) {
-            this.playAnimation(this.IMAGES_JUMPING);
-            if (this.currentImage < 1) {
-                this.currentImage--
-            }
+            this.jumping();
         } else {
             this.playAnimation(this.IMAGES_FALLING);
-            if (this.currentImage < 1) {
-                this.currentImage--
-                this.isLanding = false;
-            }
-            if (this.y > 50 && !this.isLanding) {
-                this.counter = 1
-                this.playAnimation(this.IMAGES_LANDING);
-                characterLandingSound.play();
-            }
+            this.falling();
+            this.landing();
+        }
+    }
+
+    jumping() {
+        this.playAnimation(this.IMAGES_JUMPING);
+        if (this.currentImage < 1) {
+            this.currentImage--
+        }
+    }
+
+    falling() {
+        if (this.currentImage < 1) {
+            this.currentImage--
+            this.isLanding = false;
+        }
+    }
+
+    landing() {
+        if (this.y > 50 && !this.isLanding) {
+            this.counter = 1
+            this.playAnimation(this.IMAGES_LANDING);
+            characterLandingSound.play();
         }
     }
 
