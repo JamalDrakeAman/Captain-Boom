@@ -64,10 +64,11 @@ class World {
     }
 
 
-    //////////////////////////// noch Kürzen 
+    /**
+     * Checks if throwable objects are being launched by the player.
+     */
     checkThrowObjects() {
         if (this.keyboard.D && this.ammoStatusBar.itemCount > 0) {
-
             if (this.character.otherDirection) {
                 let ammo = new ThrowableObject(this.character.x - 10, this.character.y + 30, this.character.otherDirection);
                 this.throwableObjects.push(ammo);
@@ -352,7 +353,6 @@ class World {
         this.addObjectsToMap(this.health);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
-
         this.level.enemies.forEach((enemy) => {
             if (enemy.showEnergy) {
                 this.ctx.font = '25px pirates, Arial, Helvetica, sans-serif';
@@ -360,17 +360,13 @@ class World {
                 this.ctx.fillText(`${enemy.enemyEnergy}o`, enemy.x + enemy.width / 2, enemy.y + 45);
             }
         });
-
         this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x - this.moveCamera, 0);
-
         this.ctx.font = '40px pirates, Arial, Helvetica, sans-serif';
         this.ctx.fillStyle = '#51bbe8';
         this.ctx.fillText(`${this.coinStatusBar.itemCount}`, 100, 100);
         this.ctx.fillText(`${this.ammoStatusBar.itemCount}`, 100, 155);
-
         this.endBossStatus();
-
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
@@ -440,10 +436,10 @@ class World {
     }
 
 
-     /**
-     * Flips the image of the specified object horizontally for rendering.
-     * @param {Object} mo - The object to flip horizontally.
-     */
+    /**
+    * Flips the image of the specified object horizontally for rendering.
+    * @param {Object} mo - The object to flip horizontally.
+    */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
