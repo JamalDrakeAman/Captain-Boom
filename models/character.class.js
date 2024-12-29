@@ -212,27 +212,47 @@ class Character extends MovableObject {
     playCharacter() {
         this.playAnimation(this.IMAGES_IDLE);
         if (this.isDead()) {
-            this.playAnimation(this.IMAGES_DEAD);
-            this.speed = 0;
-            this.resetCurrentImage();
+            this.dead();
         } else if (this.isHurt()) {
-            this.playAnimation(this.IMAGES_HURT);
-            characterHurtSound.play();
+            this.hurt();
         } else if (this.world.keyboard.D) {
-            characterTriggerSound.play();
-            this.playAnimation(this.IMAGES_GUN_SHOOT);
+            this.trigger();
         } else if (this.world.keyboard.F) {
-            this.playAnimation(this.IMAGES_SWORD_ATTACK_1);
-            characterSwordSound.play();
+            this.swordHit();
         } else if (this.isAboveGround()) {
             this.handleJumpAndFall();
         } else {
-            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                this.playAnimation(this.IMAGES_WALKING);
-            }
+            this.walk();
         }
     }
-    
+
+    dead() {
+        this.playAnimation(this.IMAGES_DEAD);
+        this.speed = 0;
+        this.resetCurrentImage();
+    }
+
+    hurt() {
+        this.playAnimation(this.IMAGES_HURT);
+        characterHurtSound.play();
+    }
+
+    trigger() {
+        characterTriggerSound.play();
+        this.playAnimation(this.IMAGES_GUN_SHOOT);
+    }
+
+    swordHit() {
+        this.playAnimation(this.IMAGES_SWORD_ATTACK_1);
+        characterSwordSound.play();
+    }
+
+    walk() {
+        if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            this.playAnimation(this.IMAGES_WALKING);
+        }
+    }
+
 
     resetCurrentImage() {
         if (this.currentImage > 8) {
