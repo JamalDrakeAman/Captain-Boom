@@ -1,6 +1,6 @@
 /**
- * Represents the final boss in the game, with unique behaviors and animations.
- * Extends the `EnemyObject` class.
+ * Represents the final boss in the game, with unique behaviors, animations, and abilities.
+ * Inherits properties and methods from the `EnemyObject` class.
  */
 class Endboss extends EnemyObject {
     height = 330;
@@ -112,7 +112,7 @@ class Endboss extends EnemyObject {
 
 
     /**
-     * Handles the animation and behavior of the boss.
+     * Handles the animation and behavior of the boss through periodic updates.
      */
     animate() {
         setInterval(() => this.playEndboss(), 200);
@@ -139,6 +139,10 @@ class Endboss extends EnemyObject {
         }, 7000);
     }
 
+
+    /**
+     * Determines the current state of the boss and plays the appropriate animation.
+     */
     playEndboss() {
         if (this.isBossDead())
             this.dead();
@@ -156,21 +160,38 @@ class Endboss extends EnemyObject {
         this.attackCounter -= 2;
     }
 
+
+    /**
+     * Plays the death animation and sound for the boss.
+     */
     dead() {
         this.switchAnimation(this.IMAGES_DEATH);
         this.playAnimation(this.IMAGES_DEATH);
         endbossSound.play();
     }
 
+
+    /**
+     * Plays the hurt animation and sound for the boss.
+     */
     hurt() {
         this.playAnimation(this.IMAGES_HURT);
         endbossHurtSound.play();
     }
 
+
+    /**
+     * Checks if the boss is summoning reinforcements.
+     * @returns {boolean} True if summoning, false otherwise.
+     */
     isSummon() {
         return this.summonBat && this.attackReady;
     }
 
+
+    /**
+     * Plays the summon animation and manages summoning logic.
+     */
     summon() {
         this.switchAnimation(this.IMAGES_ALERT);
         this.playAnimation(this.IMAGES_ALERT);
@@ -181,10 +202,19 @@ class Endboss extends EnemyObject {
         }
     }
 
+
+    /**
+     * Checks if the boss is ready to attack.
+     * @returns {boolean} True if attacking, false otherwise.
+     */
     isAttack() {
         return this.attackCounter < 50 && this.attackReady;
     }
 
+
+    /**
+    * Plays the attack animation and manages attack logic.
+    */
     attack() {
         if (this.currentAnimation !== this.IMAGES_ATTACK) {
             if (this.hitCounter == 1) {
@@ -207,6 +237,10 @@ class Endboss extends EnemyObject {
         }
     }
 
+
+    /**
+     * Plays the walking animation and moves the boss left or right.
+     */
     walk() {
         this.switchAnimation(this.IMAGES_WALKING)
         this.playAnimation(this.IMAGES_WALKING);
@@ -217,12 +251,20 @@ class Endboss extends EnemyObject {
         }
     }
 
+
+    /**
+     * Plays the idle animation for the boss.
+     */
     idle() {
         this.switchAnimation(this.IMAGES_IDLE)
         this.playAnimation(this.IMAGES_IDLE);
     }
 
 
+    /**
+     * Switches the current animation to a new one.
+     * @param {Array} newAnimation - Array of image paths for the new animation.
+     */
     switchAnimation(newAnimation) {
         if (this.currentAnimation !== newAnimation) {
             this.currentImage = 0;
@@ -240,7 +282,7 @@ class Endboss extends EnemyObject {
 
 
     /**
-     * Summons enemy reinforcements near the boss.
+     * Summons enemy reinforcements (bats) near the boss's position.
      */
     summonEnemies() {
         for (let j = 0; j < 3; j++) {
