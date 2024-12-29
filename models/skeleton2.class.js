@@ -6,6 +6,7 @@ class Skeleton2 extends EnemyObject {
     height = 200;
     width = 200;
     y = 240;
+    dead = false;
 
     offset = {
         top: 45,
@@ -14,9 +15,6 @@ class Skeleton2 extends EnemyObject {
         bottom: 45
     }
 
-    dead = false;
-
-    skeleton_hurt = new Audio('audio/skeleton-dead.mp3');
 
     IMAGES_WALKING = [
         'img/3_enemies/skeleton2/walk/skeleton2-walk0.png',
@@ -119,7 +117,6 @@ class Skeleton2 extends EnemyObject {
             this.dead = true;
             skeletonHurtSound.play();
         }
-
     }
 
 
@@ -137,5 +134,5 @@ class Skeleton2 extends EnemyObject {
     enemyAttack() {
         this.playAnimation(this.IMAGES_ATTACK);
     }
-
+    
 }
