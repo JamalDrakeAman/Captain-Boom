@@ -117,7 +117,6 @@ class Endboss extends EnemyObject {
     animate() {
         setInterval(() => this.playEndboss(), 200);
 
-
         setInterval(() => {
             if (this.enemyEnergy < 1000 && this.enemyEnergy > 0) {
                 this.enemyEnergy += 5;
