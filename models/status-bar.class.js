@@ -3,11 +3,11 @@
  * Extends the `DrawableObject` class for rendering functionality.
  */
 class StatusBar extends DrawableObject {
-
     IMAGES = [];
     percentage = 100;
     itemCount = 0;
 
+    
     /**
      * Updates the percentage value of the status bar and sets the corresponding image.
      * @param {number} percentage - The new percentage value (0 to 100).
@@ -17,6 +17,7 @@ class StatusBar extends DrawableObject {
         let path = this.IMAGES[this.resolveImageIndex()]
         this.img = this.imageCache[path];
     }
+
 
     /**
      * Determines the index of the image to display based on the current percentage.
@@ -38,6 +39,7 @@ class StatusBar extends DrawableObject {
         }
     }
 
+
     /**
      * Increases the item count associated with this status bar by a fixed value (e.g., 20).
      * Used for tracking collectibles like coins or ammo.
@@ -45,4 +47,5 @@ class StatusBar extends DrawableObject {
     pickupItem() {
         this.itemCount += 20;
     }
+
 }
