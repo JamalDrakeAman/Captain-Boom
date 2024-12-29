@@ -257,8 +257,12 @@ class World {
      * Checks the character's position relative to the end boss and updates their behavior.
      */
     checkEndBossDistance() {
+        this.isPlayerLeftOfBoss();
+        this.isPlayerRightOfBoss();
+    }
+
+    isPlayerLeftOfBoss() {
         let playerLeftOfEnemy = this.character.x + 200 < this.endBoss.x;
-        let playerRightOfEnemy = this.character.x + 200 > this.endBoss.x + this.endBoss.width;
         if (playerLeftOfEnemy && this.endBoss.bossOnTheRight) {
             this.endBoss.offset = {
                 top: 120,
@@ -271,7 +275,11 @@ class World {
             this.endBoss.otherDirection = false;
             this.cameraPositionLeft();
         }
-        else if (playerRightOfEnemy && !this.endBoss.bossOnTheRight) {
+    }
+
+    isPlayerRightOfBoss() {
+        let playerRightOfEnemy = this.character.x + 200 > this.endBoss.x + this.endBoss.width;
+        if (playerRightOfEnemy && !this.endBoss.bossOnTheRight) {
             this.endBoss.offset = {
                 top: 120,
                 left: 50,

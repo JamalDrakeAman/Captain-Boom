@@ -14,6 +14,8 @@ class Endboss extends EnemyObject {
     bossOnTheRight = false;
     hadFirstContact = false;
 
+    currentAnimation = null;
+
     offset = {
         top: 120,
         left: 270,
@@ -113,7 +115,6 @@ class Endboss extends EnemyObject {
         let attackCounter = 100;
         let attackReady = false;
         let summonBat = false;
-        this.currentAnimation = null;
         let i = 0
 
         setInterval(() => {

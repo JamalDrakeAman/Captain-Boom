@@ -7,7 +7,6 @@ class Character extends MovableObject {
     width = 450;
     y = 80;
     speed = 10;
-
     enemyHit = false;
 
     offset = {
@@ -16,7 +15,6 @@ class Character extends MovableObject {
         right: 190,
         bottom: 130
     };
-
 
     IMAGES_IDLE = [
         'img/1_character/idle/pirate_idle0.png',
