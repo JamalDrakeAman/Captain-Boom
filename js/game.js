@@ -282,6 +282,7 @@ function fullscreen() {
     gameTitle.classList.toggle('d-none');
 }
 
+let shoot = false;;
 
 /**
  * Handles `keydown` events to update the state of the `keyboard` object.
@@ -303,8 +304,12 @@ window.addEventListener('keydown', (e) => {
     if (e.keyCode == 32) {
         keyboard.SPACE = true;
     }
-    if (e.keyCode == 68) {
+    if (e.keyCode == 68 && !shoot) {
         keyboard.D = true;
+        setTimeout(() => {
+            shoot = true;
+            keyboard.D = false;
+        }, 100);
     }
     if (e.keyCode == 70) {
         keyboard.F = true;
@@ -334,6 +339,7 @@ window.addEventListener('keyup', (e) => {
     }
     if (e.keyCode == 68) {
         keyboard.D = false;
+        shoot = false;
     }
     if (e.keyCode == 70) {
         keyboard.F = false;
