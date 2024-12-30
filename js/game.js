@@ -226,7 +226,6 @@ function restartGame() {
     initLevel();
     world = new World(canvas, keyboard);
     winGame = false;
-    console.log('Restart');
     backgroundMusic.play();
 }
 
@@ -240,12 +239,12 @@ function stopGame() {
     let endscreen = document.getElementById('endscreen');
     setTimeout(() => {
         if (winGame) {
-            endscreenTitle.innerHTML = 'YOU WIN'
-            endscreen.style.backgroundImage = "url('img/sunset.gif')"
+            endscreenTitle.innerHTML = 'YOU WIN';
+            endscreen.style.backgroundImage = "url('img/sunset.gif')";
             winGameSound.play();
         } else {
-            endscreenTitle.innerHTML = 'YOU LOSE'
-            endscreen.style.backgroundImage = "url('img/giphy (6).gif')"
+            endscreenTitle.innerHTML = 'YOU LOSE';
+            endscreen.style.backgroundImage = "url('img/giphy (6).gif')";
             gameOverSound.play();
         }
         endscreen.classList.toggle('d-flex');
