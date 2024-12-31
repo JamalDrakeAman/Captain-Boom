@@ -502,9 +502,9 @@ canvas {
         padding: 0 25px 60px 25px;
     }
 
-    /* .character-images-container{
-        position: static;
-    } */
+    .impressum-headline {
+        padding-top: 250px;
+    }
 
 }
 
