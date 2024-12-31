@@ -58,7 +58,7 @@ class DrawableObject {
      * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
      */
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Endboss || this instanceof ThrowableObject) {
+        if (this instanceof Character || this instanceof Endboss || this instanceof ThrowableObject || this instanceof Bat || this instanceof Skeleton || this instanceof Skeleton2) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
@@ -74,7 +74,7 @@ class DrawableObject {
      * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
      */
     drawHitbox(ctx) {
-        if (this instanceof Character || this instanceof Endboss || this instanceof ThrowableObject) {
+        if (this instanceof Character || this instanceof Endboss || this instanceof ThrowableObject || this instanceof Bat || this instanceof Skeleton || this instanceof Skeleton2) {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = 'red';

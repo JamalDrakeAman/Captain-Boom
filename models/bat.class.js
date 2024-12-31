@@ -12,10 +12,10 @@ class Bat extends EnemyObject {
     run = false;
 
     offset = {
-        top: 7,
-        left: 7,
-        right: 7,
-        bottom: 7
+        top: 5,
+        left: 5,
+        right: 5,
+        bottom: 5
     }
 
     IMAGES_BLUE_FLY = [

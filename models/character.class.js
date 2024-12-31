@@ -13,7 +13,7 @@ class Character extends MovableObject {
         top: 140,
         left: 190,
         right: 190,
-        bottom: 130
+        bottom: 120
     };
 
     IMAGES_IDLE = [

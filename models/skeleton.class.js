@@ -14,7 +14,7 @@ class Skeleton extends EnemyObject {
     jumpCounter = Math.round(Math.random() * 200);
 
     offset = {
-        top: 65,
+        top: 60,
         left: 50,
         right: 50,
         bottom: 0
