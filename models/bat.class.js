@@ -11,6 +11,10 @@ class Bat extends EnemyObject {
     runCounter = Math.round(Math.random() * 100);
     run = false;
 
+    dropChance = Math.random();
+    item;
+    dropArray;
+
     offset = {
         top: 5,
         left: 5,
@@ -136,7 +140,6 @@ class Bat extends EnemyObject {
     }
 
 
-
     /**
      * Drops a random item with specific probabilities:
      * - 10% chance to drop a coin.
@@ -145,25 +148,55 @@ class Bat extends EnemyObject {
      * - No drop for the remaining cases.
      */
     dropRandomItem() {
-        let dropChance = Math.random();
-        let item;
-        let dropArray;
-        if (dropChance < 0.1) {
-            item = new Coin();
-            dropArray = world.coins;
-        } else if (dropChance < 0.15) {
-            item = new Health();
-            dropArray = world.health;
-        } else if (dropChance < 0.45) {
-            item = new Ammo();
-            dropArray = world.ammo;
+        if (this.dropChance < 0.1) {
+            this.dropCoin();
+        } else if (this.dropChance < 0.15) {
+            this.dropHealth();
+        } else if (this.dropChance < 0.45) {
+            this.dropAmmo();
         } else {
-            dropArray = null;
+            this.dropArray = null;
         }
-        if (dropArray) {
-            item.x = this.x;
-            item.y = this.y;
-            dropArray.push(item);
+        this.addItemToDropArray();
+    }
+
+
+    /**
+     * Drops a coin item and assigns it to the corresponding array.
+     */
+    dropCoin() {
+        this.item = new Coin();
+        this.dropArray = world.coins;
+    }
+
+
+    /**
+     * Drops a health item and assigns it to the corresponding array.
+     */
+    dropHealth() {
+        this.item = new Health();
+        this.dropArray = world.health;
+    }
+
+
+    /**
+     * Drops an ammo item and assigns it to the corresponding array.
+     */
+    dropAmmo() {
+        this.item = new Ammo();
+        this.dropArray = world.ammo;
+    }
+
+
+    /**
+     * Adds the dropped item to the designated drop array.
+     * Sets the item's position based on the Bat's current position.
+     */
+    addItemToDropArray() {
+        if (this.dropArray) {
+            this.item.x = this.x;
+            this.item.y = this.y;
+            this.dropArray.push(this.item);
         }
     }
 
