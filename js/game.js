@@ -6,6 +6,9 @@ let currentIndex = 0;
 let isMuted = true;
 let sounds = [];
 
+let shoot = false;
+let hit = false;
+
 const characterJumpSound = new Audio('audio/jump.mp3');
 const characterWalkSound = new Audio('audio/walk.mp3');
 const characterLandingSound = new Audio('audio/landing.mp3');
@@ -282,8 +285,7 @@ function fullscreen() {
     gameTitle.classList.toggle('d-none');
 }
 
-let shoot = false;
-let hit = false;
+
 
 /**
  * Handles `keydown` events to update the state of the `keyboard` object.
