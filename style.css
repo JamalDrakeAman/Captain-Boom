@@ -516,18 +516,17 @@ canvas {
     }
 }
 
+/* 
 @media(min-width: 720px) {
     .turn-screen {
         display: none;
     }
+} */
 
-    /* canvas {
-        width: 100vw;
-        height: 100vh;
-    } */
-
-
-
+@media (min-width: 667px) and (min-height: 375px){
+    .turn-screen {
+        display: none;
+    }
 }
 
 @media(max-width: 720px) {
