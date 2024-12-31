@@ -43,7 +43,7 @@ class EnemyObject extends MovableObject {
      * @fires lastHit - Updates the time of the last hit if the enemy still has energy.
      */
     swordHit() {
-        this.enemyEnergy -= 20;
+        this.enemyEnergy -= 30;
         if (this.enemyEnergy < 0) {
             this.enemyEnergy = 0;
         } else {
