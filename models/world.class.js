@@ -342,17 +342,47 @@ class World {
         this.resetShadow();
         this.addObjectsToMap(this.level.backgroundObjects);
         this.enableShadow();
+        this.drawGameObjects();
+        this.ctx.translate(-this.camera_x - this.moveCamera, 0);
+        this.drawStatusbarStatus();
+        this.endBossStatus();
+        let self = this;
+        requestAnimationFrame(function () {
+            self.draw();
+        });
+    }
+
+
+    /**
+     * Draws the main game objects including the character and items.
+     */
+    drawGameObjects() {
         this.addToMap(this.character);
+        this.drawStatusBars();
+        this.drawItems();
+        this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.enemies);
+        this.drawEnemyEnergy();
+        this.addObjectsToMap(this.throwableObjects);
+    }
+
+
+    /**
+     * Draws the status bars for health, coins, and ammunition.
+     */
+    drawStatusBars() {
         this.ctx.translate(-this.camera_x - this.moveCamera, 0);
         this.addToMap(this.healthStatusBar);
         this.addToMap(this.coinStatusBar);
         this.addToMap(this.ammoStatusBar);
         this.ctx.translate(this.camera_x + this.moveCamera, 0);
-        this.addObjectsToMap(this.coins);
-        this.addObjectsToMap(this.ammo);
-        this.addObjectsToMap(this.health);
-        this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.enemies);
+    }
+
+
+    /**
+     * Draws the energy levels of enemies when visible.
+     */
+    drawEnemyEnergy() {
         this.level.enemies.forEach((enemy) => {
             if (enemy.showEnergy) {
                 this.ctx.font = '25px pirates, Arial, Helvetica, sans-serif';
@@ -360,17 +390,27 @@ class World {
                 this.ctx.fillText(`${enemy.enemyEnergy}o`, enemy.x + enemy.width / 2, enemy.y + 45);
             }
         });
-        this.addObjectsToMap(this.throwableObjects);
-        this.ctx.translate(-this.camera_x - this.moveCamera, 0);
+    }
+
+
+    /**
+     * Displays the status bar values for coins and ammunition.
+     */
+    drawStatusbarStatus() {
         this.ctx.font = '40px pirates, Arial, Helvetica, sans-serif';
         this.ctx.fillStyle = '#51bbe8';
         this.ctx.fillText(`${this.coinStatusBar.itemCount}`, 100, 100);
         this.ctx.fillText(`${this.ammoStatusBar.itemCount}`, 100, 155);
-        this.endBossStatus();
-        let self = this;
-        requestAnimationFrame(function () {
-            self.draw();
-        });
+    }
+
+
+    /**
+     * Draws collectible items (coins, ammunition, and health).
+     */
+    drawItems() {
+        this.addObjectsToMap(this.coins);
+        this.addObjectsToMap(this.ammo);
+        this.addObjectsToMap(this.health);
     }
 
 
