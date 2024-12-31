@@ -116,26 +116,36 @@ class Endboss extends EnemyObject {
      */
     animate() {
         setInterval(() => this.playEndboss(), 200);
-
         setInterval(() => {
-            if (this.enemyEnergy < 1000 && this.enemyEnergy > 0) {
-                this.enemyEnergy += 5;
-            }
-            if (world.character.x > 2600 && !this.hadFirstContact) {
-                this.hadFirstContact = true
-                this.attackReady = true;
-                this.summonBat = true;
-                endbossSound.play();
-            }
-            if (this.summonBat && this.attackReady) {
-                this.summonEnemies();
-                endbossSummonSound.play();
-            }
+            this.regenerateEnergy();
+            this.checkFirstContact();
+            this.checkSummonBat();
         }, 1000);
-
         setInterval(() => {
             this.summonBat = !this.summonBat;
         }, 7000);
+    }
+
+    regenerateEnergy() {
+        if (this.enemyEnergy < 1000 && this.enemyEnergy > 0) {
+            this.enemyEnergy += 5;
+        }
+    }
+
+    checkFirstContact() {
+        if (world.character.x > 2600 && !this.hadFirstContact) {
+            this.hadFirstContact = true
+            this.attackReady = true;
+            this.summonBat = true;
+            endbossSound.play();
+        }
+    }
+
+    checkSummonBat() {
+        if (this.summonBat && this.attackReady) {
+            this.summonEnemies();
+            endbossSummonSound.play();
+        }
     }
 
 
