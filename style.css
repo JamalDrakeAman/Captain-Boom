@@ -460,7 +460,7 @@ canvas {
     }
 }
 
-@media(max-width: 900px) {
+@media (pointer:coarse) {
     .move-container {
         display: flex;
     }
@@ -468,6 +468,9 @@ canvas {
     .action-container {
         display: flex;
     }
+}
+
+@media(max-width: 900px) {
 
     .game-title {
         display: none;
@@ -508,6 +511,7 @@ canvas {
 
 }
 
+
 @media(max-width: 800px) {
     canvas {
         width: 100vw;
@@ -517,7 +521,7 @@ canvas {
 }
 
 
-@media (min-width: 667px) and (min-height: 375px){
+@media (min-width: 660px) and (min-height: 370px) {
     .turn-screen {
         display: none;
     }

@@ -160,18 +160,6 @@ setInterval(showNextImage, 80);
 
 
 /**
- * Initializes the game, setting up the canvas and world.
- * Logs the initialized character object to the console.
- */
-// function init() {
-//     initLevel();
-//     canvas = document.getElementById('canvas');
-//     world = new World(canvas, keyboard);
-//     console.log('My character is', world);
-// }
-
-
-/**
  * Toggles the visibility of the controls information container.
  * Also toggles other UI elements such as the start screen title and buttons.
  */
