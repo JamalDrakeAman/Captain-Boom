@@ -72,29 +72,38 @@ class Bat extends EnemyObject {
      * Handles movement, state changes, and animations based on energy and behavior.
      */
     animate() {
-        setInterval(() => {
-            if (this.otherDirection) {
-                this.moveRight();
-            } else {
-                this.moveLeft();
-            }
+        setInterval(() => this.moveBat(), 1000 / 60);
+
+        setInterval(() => this.playBat(), 100);
+
+    }
 
 
-        }, 1000 / 60);
+    /**
+     * Handles the movement of the bat based on its direction.
+     */
+    moveBat() {
+        if (this.otherDirection) {
+            this.moveRight();
+        } else {
+            this.moveLeft();
+        }
+    }
 
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_BLUE_FLY);
-            if (this.enemyEnergy == 0) {
-                this.enemyDie();
-            } else if (this.isHurt()) {
-                this.enemyHurt();
-            } else if (this.runCounter > 100) {
-                this.enemyRun();
-            }
-            this.runCounter++
 
-        }, 100);
-
+    /**
+     * Controls the bat's animations and states, including hurt, death, and run behavior.
+     */
+    playBat() {
+        this.playAnimation(this.IMAGES_BLUE_FLY);
+        if (this.enemyEnergy == 0) {
+            this.enemyDie();
+        } else if (this.isHurt()) {
+            this.enemyHurt();
+        } else if (this.runCounter > 100) {
+            this.enemyRun();
+        }
+        this.runCounter++
     }
 
 

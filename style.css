@@ -511,6 +511,12 @@ canvas {
 
 }
 
+@media(max-height:500px) {
+    .game-title {
+        display: none;
+    }
+}
+
 
 @media(max-width: 800px) {
     canvas {
