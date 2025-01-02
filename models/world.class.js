@@ -239,9 +239,9 @@ class World extends Collisions{
      */
     drawGameObjects() {
         this.addToMap(this.character);
+        this.addObjectsToMap(this.level.clouds);
         this.drawStatusBars();
         this.drawItems();
-        this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
         this.drawEnemyEnergy();
         this.addObjectsToMap(this.throwableObjects);
