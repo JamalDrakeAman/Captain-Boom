@@ -146,7 +146,6 @@ const characterImages = [
 
 const slideshow = document.getElementById('character-images');
 
-
 /**
  * Updates the displayed image in the character slideshow.
  * Cycles through the character images at regular intervals.

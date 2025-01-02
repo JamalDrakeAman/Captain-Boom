@@ -557,6 +557,8 @@ canvas {
     .turn-screen {
         display: none;
     }
+
+
 }
 
 @media(max-width: 720px) {
@@ -565,5 +567,7 @@ canvas {
         height: 100vh;
     }
 
-
+    .fullscreen-icon {
+        display: none;
+    }
 }
