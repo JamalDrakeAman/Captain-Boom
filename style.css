@@ -470,7 +470,7 @@ canvas {
     }
 }
 
-@media(max-width: 900px) {
+@media(max-width: 1000px) {
 
     .game-title {
         display: none;
@@ -511,6 +511,7 @@ canvas {
 
 }
 
+
 @media(max-height:500px) {
     .game-title {
         display: none;
@@ -527,7 +528,7 @@ canvas {
 }
 
 
-@media (min-width: 660px) and (min-height: 370px) {
+@media (min-width: 600px) and (min-height: 330px) {
     .turn-screen {
         display: none;
     }
