@@ -255,7 +255,6 @@ class Endboss extends EnemyObject {
     }
 
 
-
     /**
      * Plays the walking animation and moves the boss left or right.
      */
