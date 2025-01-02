@@ -225,6 +225,22 @@ class Endboss extends EnemyObject {
     * Plays the attack animation and manages attack logic.
     */
     attack() {
+        this.initializeAttackAnimation();
+        this.playAnimation(this.IMAGES_ATTACK);
+        if (this.currentImage > 8) {
+            this.hitCounter = 0;
+            this.swordAttack = false;
+        }
+        if (this.attackCounter < 0) {
+            this.attackCounter = 100;
+        }
+    }
+
+
+    /**
+    * Initializes the attack animation if it hasn't been started yet.
+    */
+    initializeAttackAnimation() {
         if (this.currentAnimation !== this.IMAGES_ATTACK) {
             if (this.hitCounter == 1) {
                 this.swordAttack = true;
@@ -236,15 +252,8 @@ class Endboss extends EnemyObject {
             this.currentImage = 0;
             this.currentAnimation = this.IMAGES_ATTACK;
         }
-        this.playAnimation(this.IMAGES_ATTACK);
-        if (this.currentImage > 8) {
-            this.hitCounter = 0;
-            this.swordAttack = false;
-        }
-        if (this.attackCounter < 0) {
-            this.attackCounter = 100;
-        }
     }
+
 
 
     /**
