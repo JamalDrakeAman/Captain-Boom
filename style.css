@@ -101,8 +101,13 @@ canvas {
 }
 
 .move-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 65px;
     height: 65px;
+    background-color: unset;
+    border-radius: 50%;
     cursor: pointer;
 }
 
@@ -111,7 +116,15 @@ canvas {
     filter: sepia();
 }
 
+.move-btn-icon {
+    width: 65px;
+    height: 65px;
+}
+
 .attack-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 60px;
     height: 60px;
     background-color: rgba(255, 0, 0, 0.1);
@@ -123,6 +136,11 @@ canvas {
 .attack-btn:active {
     scale: 1.1;
     filter: sepia();
+}
+
+.attack-btn-icon {
+    width: 60px;
+    height: 60px;
 }
 
 .action-container {
