@@ -7,6 +7,31 @@
     box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(74, 129, 202);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(50, 100, 180);
+}
+
+
+html {
+    scrollbar-color: rgb(74, 129, 202) #f1f1f1;
+    scrollbar-width: thin;
+}
+
 body {
     font-family: 'pirates', Arial, Helvetica, sans-serif;
     display: flex;
