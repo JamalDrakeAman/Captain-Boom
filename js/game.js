@@ -65,7 +65,7 @@ function toggleMute() {
  */
 function updateMuteStatus() {
     sounds.forEach((sound) => {
-        sound.muted = isMuted; // Den Mute-Status aller Sounds aktualisieren
+        sound.muted = isMuted;
     });
 }
 
@@ -153,7 +153,7 @@ const slideshow = document.getElementById('character-images');
  */
 function showNextImage() {
     slideshow.src = characterImages[currentIndex];
-    currentIndex = (currentIndex + 1) % characterImages.length; // Index inkrementieren und zurücksetzen, wenn Ende erreicht
+    currentIndex = (currentIndex + 1) % characterImages.length;
 }
 
 setInterval(showNextImage, 80);
