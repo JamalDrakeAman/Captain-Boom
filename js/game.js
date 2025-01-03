@@ -348,14 +348,16 @@ window.addEventListener('keyup', (e) => {
  * @param {Event} event - The event to stop.
  */
 function stopEvent(event) {
-    event.preventDefault();
+    if (event.cancelable) {
+        event.preventDefault();
+    }
 }
 
 
 /**
  * Simulates shooting action for touch controls.
  */
-function startTouchShoot() {
+function startTouchShoot(event) {
     keyboard.D = true;
     stopEvent(event)
     setTimeout(() => {
@@ -367,7 +369,7 @@ function startTouchShoot() {
 /**
  * Simulates hitting action for touch controls.
  */
-function startTouchHit() {
+function startTouchHit(event) {
     keyboard.F = true;
     stopEvent(event)
     setTimeout(() => {

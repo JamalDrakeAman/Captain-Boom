@@ -70,11 +70,11 @@
 
         <div class="action-container">
 
-            <button class="attack-btn" ontouchstart="startTouchShoot()" ontouchend="keyboard.D = false; shoot = false;">
+            <button class="attack-btn" ontouchstart="startTouchShoot(event)" ontouchend="keyboard.D = false; shoot = false;">
                 <img class="attack-btn-icon" src="img/9_intro_outro_screens/start/gun.png" alt="">
             </button>
 
-            <button class="attack-btn" ontouchstart="startTouchHit()" ontouchend="keyboard.F = false;">
+            <button class="attack-btn" ontouchstart="startTouchHit(event)" ontouchend="keyboard.F = false;">
                 <img class="attack-btn-icon" src="img/9_intro_outro_screens/start/sword.png" alt="">
             </button>
 
