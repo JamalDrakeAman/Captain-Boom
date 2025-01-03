@@ -341,3 +341,36 @@ window.addEventListener('keyup', (e) => {
     }
 });
 
+
+/**
+ * Stops the default action for the given event.
+ * 
+ * @param {Event} event - The event to stop.
+ */
+function stopEvent(event) {
+    event.preventDefault();
+}
+
+
+/**
+ * Simulates shooting action for touch controls.
+ */
+function startTouchShoot() {
+    keyboard.D = true;
+    stopEvent(event)
+    setTimeout(() => {
+        keyboard.D = false;
+    }, 100);
+}
+
+
+/**
+ * Simulates hitting action for touch controls.
+ */
+function startTouchHit() {
+    keyboard.F = true;
+    stopEvent(event)
+    setTimeout(() => {
+        keyboard.F = false;
+    }, 150);
+}

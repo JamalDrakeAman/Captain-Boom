@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="icon" type="image/x-icon" href="img/skull.png">
     <title>Captain Pirate</title>
 
@@ -58,11 +58,11 @@
 
         <div class="move-container">
 
-            <button class="move-btn" ontouchstart="keyboard.LEFT = true;" ontouchend="keyboard.LEFT = false;">
+            <button class="move-btn" ontouchstart="keyboard.LEFT = true; stopEvent(event)" ontouchend="keyboard.LEFT = false;">
                 <img class="move-btn-icon" src="img/9_intro_outro_screens/start/left.png" alt="">
             </button>
 
-            <button class="move-btn" ontouchstart="keyboard.RIGHT = true;" ontouchend="keyboard.RIGHT = false;">
+            <button class="move-btn" ontouchstart="keyboard.RIGHT = true; stopEvent(event)" ontouchend="keyboard.RIGHT = false;">
                 <img class="move-btn-icon" src="img/9_intro_outro_screens/start/right.png" alt="">
             </button>
 
@@ -70,15 +70,15 @@
 
         <div class="action-container">
 
-            <button class="attack-btn" ontouchstart="keyboard.D = true;" ontouchend="keyboard.D = false;">
+            <button class="attack-btn" ontouchstart="startTouchShoot()" ontouchend="keyboard.D = false; shoot = false;">
                 <img class="attack-btn-icon" src="img/9_intro_outro_screens/start/gun.png" alt="">
             </button>
 
-            <button class="attack-btn" ontouchstart="keyboard.F = true;" ontouchend="keyboard.F = false;">
+            <button class="attack-btn" ontouchstart="startTouchHit()" ontouchend="keyboard.F = false;">
                 <img class="attack-btn-icon" src="img/9_intro_outro_screens/start/sword.png" alt="">
             </button>
 
-            <button class="move-btn" ontouchstart="keyboard.SPACE = true;" ontouchend="keyboard.SPACE = false;">
+            <button class="move-btn" ontouchstart="keyboard.SPACE = true; stopEvent(event)" ontouchend="keyboard.SPACE = false;">
                 <img class="attack-btn-icon" src="img/9_intro_outro_screens/start/up.png" alt="">
 
             </button>
