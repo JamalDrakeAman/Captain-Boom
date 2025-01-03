@@ -372,5 +372,5 @@ function startTouchHit() {
     stopEvent(event)
     setTimeout(() => {
         keyboard.F = false;
-    }, 150);
+    }, 100);
 }
